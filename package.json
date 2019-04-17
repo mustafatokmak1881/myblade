@@ -1,0 +1,24 @@
+{
+  "name": "myblade.io.a",
+  "version": "4.0.0",
+  "description": "Collision other gamers. And throw all !",
+  "main": "s.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "s"
+  },
+  "keywords": [
+    "io",
+    "games",
+    "collision",
+    "with",
+    "other",
+    "gamers"
+  ],
+  "author": "Mehmet TOKMAK",
+  "license": "ISC"
+}
