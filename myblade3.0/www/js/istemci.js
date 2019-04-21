@@ -1,5 +1,8 @@
 
-var s = io.connect("http://localhost:3007");
+//var s = io.connect("http://localhost:3007");
+var s = io.connect("http://173.212.232.18:3007");
+
+
 $(document).ready(function(){
 
 	s.on("connect", function(){
