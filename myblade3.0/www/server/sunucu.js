@@ -18,7 +18,7 @@ function ci(){
 
 
 
-var timer = 500;
+var timer = 40;
 
 cc("FPS: "+ Math.floor(1000/timer));
 

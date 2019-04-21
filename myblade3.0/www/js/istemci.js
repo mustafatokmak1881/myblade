@@ -2,7 +2,9 @@
 var s = io.connect("http://localhost:3007");
 $(document).ready(function(){
 
-	$(".isimsor").fadeIn(2000);	
+	s.on("connect", function(){
+		$(".isimsor").fadeIn(1500);
+	});
 
 	s.on("hersey", function(data){
 		render(data);
@@ -12,14 +14,10 @@ $(document).ready(function(){
 
 
 $(document).on("click", ".baslabtn", function(){
-
-
 	s.emit("ilkgiris", {
 		ad: $(".ad").val()
 	});
-
-
-
+	$(".isimsor").hide();
 });
 
 
