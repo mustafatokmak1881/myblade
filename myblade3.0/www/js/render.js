@@ -11,8 +11,6 @@ karakter.src = "res/karakter.png";
 
 
 function ciz(v){
-	cc(v);
-
 	ctx.drawImage(karakter, v.x, v.y, karakter.width, karakter.height);
 }
 

@@ -18,7 +18,7 @@ function ci(){
 
 
 
-var timer = 40;
+var timer = 100;
 
 cc("FPS: "+ Math.floor(1000/timer));
 
@@ -47,7 +47,6 @@ io.on("connection", function(s){
 	s.on("ilkgiris", function(data){
 		cc(data);
 		hersey.oyuncular[s.id] = yeniOyuncu(data.ad);
-		cc(hersey);
 	});
 
 	s.on("tus", function(data){
