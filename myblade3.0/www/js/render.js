@@ -8,6 +8,4 @@ cc(myc.height);
 
 function render(data){
 	cc(data);
-
-
 }
