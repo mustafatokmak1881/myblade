@@ -12,7 +12,7 @@ karakter.src = "res/karakter.png";
 
 function ciz(v){
 	cc(v);
-	ctx.clearRect(0,0, myc.width, myc.height);
+
 	ctx.drawImage(karakter, v.x, v.y, karakter.width, karakter.height);
 }
 
@@ -20,6 +20,7 @@ function render(data){
 	//cc(data);
 
 	if (data && data.oyuncular){
+		ctx.clearRect(0,0, myc.width, myc.height);
 		$.each(data.oyuncular, function(k,v){
 			ciz(v);
 		});
