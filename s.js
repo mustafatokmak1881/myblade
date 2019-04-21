@@ -27,7 +27,7 @@ var hiz = 10;
 var way_x = 1;
 var way_y = 1;
 
-io = require("socket.io").listen(5000);
+io = require("socket.io").listen(3000);
 	
 io.on("connection", function(socket){
 	console.log("Online: "+io.engine.clientsCount);
@@ -318,6 +318,10 @@ io.on("connection", function(socket){
 
 
 setInterval(function(){
+	var x = JSON.parse(alldatas);
+
+	console.log(x);
+
 	io.emit("timerile", alldatas);
-	console.log(alldatas);	
+	//console.log(alldatas);	
 }, 50);

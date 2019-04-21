@@ -13,8 +13,8 @@ setInterval(function(){
  
 */
 	var alldatas = "";
-	//var ip_adresi = "http://37.148.211.192:3000";
-	var ip_adresi = "http://173.212.232.18:5000";
+	var ip_adresi = "http://localhost:3000";
+	//var ip_adresi = "http://173.212.232.18:3000";
 
 	var mouse_up = 0;
 	var mouse_down = 0;
@@ -393,8 +393,8 @@ function writecanvas()
 			});
 
 			socket.on("timerile", function(data){
-				console.log("timerile");
-				console.log(data);
+				//console.log("timerile");
+				//console.log(data);
 				alldatas = data;
 				writecanvas();
 			});
@@ -427,7 +427,15 @@ function writecanvas()
 						way_x = f_bolu_x;
 						way_y = f_bolu_y;
 
-						//console.log("Touchmove: "+way_x+":"+way_y);
+						console.log("Touchmove: "+way_x+":"+way_y);
+
+
+
+						socket.emit("koordinat",{
+							x : parseFloat(parseFloat(way_x)),
+							y : parseFloat(parseFloat(way_y))
+						});					
+
 					}
 			}
 			document.body.addEventListener('touchmove', function(e){
@@ -435,12 +443,6 @@ function writecanvas()
 				tmove_y = parseFloat(e.changedTouches[0].pageY);
 				touchmove_func();
 
-
-					socket.emit("koordinat",{
-						x : parseFloat(parseFloat(way_x)*parseFloat(carpi)),
-						y : parseFloat(parseFloat(way_y)*parseFloat(carpi))
-					});					
-			
 
 			}, false)
 			document.body.addEventListener('touchstart', function(e){
