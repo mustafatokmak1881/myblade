@@ -1,17 +1,12 @@
-function c(d){
-	console.log(d);
-}
-function cc(d){
-	c("--------------------------------------------");
-	c(d);
-	c("--------------------------------------------");	
-}
 
-
+var s = io.connect("http://localhost:3007");
 $(document).ready(function(){
 
-	$(".isimsor").fadeIn(2000);
+	$(".isimsor").fadeIn(2000);	
 
+	s.on("hersey", function(data){
+		render(data);
+	});	
 
 });
 
@@ -19,13 +14,18 @@ $(document).ready(function(){
 $(document).on("click", ".baslabtn", function(){
 
 
-	var s = io.connect("http://localhost:3007");
-	s.connect("ilkgiris", {
+	s.emit("ilkgiris", {
 		ad: $(".ad").val()
 	});
 
-	s.on("hepsi", function(data){
-		cc(data);
-	});	
+
+
+});
+
+
+window.addEventListener("keydown", function(e){
+	s.emit("tus", {
+		keyCode: e.keyCode
+	});
 });
 

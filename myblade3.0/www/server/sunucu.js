@@ -18,13 +18,13 @@ function ci(){
 
 
 
-var timer = 2000;
+var timer = 500;
 
 cc("FPS: "+ Math.floor(1000/timer));
 
 
 
-var hepsi = {
+var hersey = {
 	oyuncular: {},
 	zemin : {}
 }
@@ -34,7 +34,7 @@ function yeniOyuncu(ad){
 	var o = {ad: "", x:"", y:""}
 	o.ad = ad;
 	o.x = Math.floor(Math.random() * 300);
-	o.x = Math.floor(Math.random() * 300);
+	o.y = Math.floor(Math.random() * 300);
 	return o;
 }
 
@@ -46,13 +46,31 @@ io.on("connection", function(s){
 
 	s.on("ilkgiris", function(data){
 		cc(data);
-		hepsi.oyuncular[s.id] = yeniOyuncu(data.ad);
-		cc(hepsi);
+		hersey.oyuncular[s.id] = yeniOyuncu(data.ad);
+		cc(hersey);
 	});
 
+	s.on("tus", function(data){
+		c(data);
+
+		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id] && hersey.oyuncular[s.id].x){
+				if (data.keyCode == 68){
+					hersey.oyuncular[s.id].x += 5;
+				}
+				else if (data.keyCode == 65){
+					hersey.oyuncular[s.id].x -= 5;
+				}
+				else if (data.keyCode == 83){
+					hersey.oyuncular[s.id].y += 5;
+				}
+				else if (data.keyCode == 87){
+					hersey.oyuncular[s.id].y -= 5;
+				}
+		}
+	});
 
 	s.on("disconnect", function(){
-		delete hepsi.oyuncular[s.id];
+		delete hersey.oyuncular[s.id];
 	});
 
 });
@@ -61,9 +79,11 @@ io.on("connection", function(s){
 
 
 var donguzaman = setInterval(function(){
-	cc(hepsi);
-	if (hepsi && Object.keys(hepsi).length >0){
-		io.emit("hepsi", hepsi);		
+	cc(hersey);
+	if (hersey && Object.keys(hersey).length >0){
+		io.emit("hersey", hersey);		
 	}
 
 }, timer);
+
+
