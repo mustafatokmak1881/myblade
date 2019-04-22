@@ -18,7 +18,7 @@ function ci(){
 
 
 
-var timer = 100;
+var timer = 300;
 
 cc("FPS: "+ Math.floor(1000/timer));
 
@@ -31,7 +31,7 @@ var hersey = {
 
 
 function yeniOyuncu(ad){
-	var o = {ad: "", x:"", y:""}
+	var o = {ad: "", x:"", y:"", k:0}
 	o.ad = ad;
 	o.x = Math.floor(Math.random() * 300);
 	o.y = Math.floor(Math.random() * 300);
@@ -51,20 +51,8 @@ io.on("connection", function(s){
 
 	s.on("tus", function(data){
 		c(data);
-
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id] && hersey.oyuncular[s.id].x){
-				if (data.keyCode == 68){
-					hersey.oyuncular[s.id].x += 5;
-				}
-				else if (data.keyCode == 65){
-					hersey.oyuncular[s.id].x -= 5;
-				}
-				else if (data.keyCode == 83){
-					hersey.oyuncular[s.id].y += 5;
-				}
-				else if (data.keyCode == 87){
-					hersey.oyuncular[s.id].y -= 5;
-				}
+			hersey.oyuncular[s.id].k = data.keyCode;
 		}
 	});
 

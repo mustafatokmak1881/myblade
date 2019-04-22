@@ -1,5 +1,5 @@
-var keydown = 0;
-var keyup = 0;
+var asagi_tusu = 1;
+var yukari_tusu = 0;
 
 var s = io.connect("http://localhost:3007");
 //var s = io.connect("http://173.212.232.18:3007");
@@ -25,14 +25,21 @@ $(document).on("click", ".baslabtn", function(){
 });
 
 
-	s.emit("tus", {
-		keyCode: e.keyCode
-	});
+
+
 
 window.addEventListener("keydown", function(e){
-	
-	 
+	if (asagi_tusu == 1){
+		s.emit("tus", {
+			keyCode: e.keyCode
+		});
+	}	
+	asagi_tusu = 0;		
+
 });
 window.addEventListener("keyup", function(e){
-
+		s.emit("tus", {
+			keyCode: 0
+		});
+		asagi_tusu = 1;		
 });
