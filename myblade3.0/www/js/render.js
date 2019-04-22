@@ -1,3 +1,5 @@
+
+
 var myc = document.getElementById("myc");
 var ctx = myc.getContext("2d");
 myc.width = screen.width;
@@ -24,3 +26,9 @@ function render(data){
 		});
 	}
 }
+
+
+
+
+
+

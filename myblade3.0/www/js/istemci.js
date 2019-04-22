@@ -1,6 +1,8 @@
+var keydown = 0;
+var keyup = 0;
 
-//var s = io.connect("http://localhost:3007");
-var s = io.connect("http://173.212.232.18:3007");
+var s = io.connect("http://localhost:3007");
+//var s = io.connect("http://173.212.232.18:3007");
 
 $(document).ready(function(){
 
@@ -23,9 +25,14 @@ $(document).on("click", ".baslabtn", function(){
 });
 
 
-window.addEventListener("keydown", function(e){
 	s.emit("tus", {
 		keyCode: e.keyCode
 	});
-});
 
+window.addEventListener("keydown", function(e){
+	
+	 
+});
+window.addEventListener("keyup", function(e){
+
+});
