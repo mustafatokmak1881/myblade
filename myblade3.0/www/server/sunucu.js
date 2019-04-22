@@ -67,7 +67,22 @@ io.on("connection", function(s){
 
 var donguzaman = setInterval(function(){
 	cc(hersey);
-	if (hersey && Object.keys(hersey).length >0){
+	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
+		for (var sid in hersey.oyuncular){
+			var tus = hersey.oyuncular[sid].k;
+			if (tus == 68){
+				hersey.oyuncular[sid].x+=5;
+			}
+			else if (tus == 65){
+				hersey.oyuncular[sid].x-=5;
+			}
+			else if(tus == 87){
+				hersey.oyuncular[sid].y-=5;
+			}
+			else if(tus == 83){
+				hersey.oyuncular[sid].y+=5;
+			}			
+		}
 		io.emit("hersey", hersey);		
 	}
 
