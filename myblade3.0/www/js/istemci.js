@@ -1,14 +1,13 @@
 var asagi_tusu = 1;
-var yukari_tusu = 0;
 
-//var s = io.connect("http://localhost:3007");
-var s = io.connect("http://173.212.232.18:3007");
+
+var s = io.connect("http://localhost:3007");
+//var s = io.connect("http://173.212.232.18:3007");
 
 $(document).ready(function(){
 
-	s.on("connect", function(){
-		$(".isimsor").fadeIn(1500);
-	});
+	$(".isimsor").fadeIn(1500);
+
 
 	s.on("hersey", function(data){
 		render(data);
@@ -28,7 +27,7 @@ $(document).on("click", ".baslabtn", function(){
 
 
 
-window.addEventListener("keydown", function(e){
+window.addEventListener("keypress", function(e){
 	if (asagi_tusu == 1){
 		s.emit("tus", {
 			keyCode: e.keyCode
@@ -37,6 +36,8 @@ window.addEventListener("keydown", function(e){
 	asagi_tusu = 0;		
 
 });
+
+
 window.addEventListener("keyup", function(e){
 		s.emit("tus", {
 			keyCode: 0
