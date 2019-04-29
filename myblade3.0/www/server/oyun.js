@@ -18,7 +18,7 @@ function ci(){
 
 
 
-var timer = 30;
+var timer = 300;
 
 cc("FPS: "+ Math.floor(1000/timer));
 
@@ -98,7 +98,8 @@ var donguzaman = setInterval(function(){
 			
 
 		}
-		io.emit("hersey", hersey);		
+		
+		io.emit("hersey", hersey);	
 	}
 
 }, timer);
