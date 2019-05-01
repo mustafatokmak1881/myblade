@@ -8,7 +8,7 @@ myc.height = screen.height;
 
 
 var erkek = new Image();
-erkek.src = "res/erkek.png";
+erkek.src = "res/beyblade-sprite.png";
 
 
 
@@ -21,6 +21,8 @@ kiz.src = "res/kiz.png";
 function ciz(v){
 
 	ctx.clearRect(0, 0, erkek.width, erkek.height);
+	ctx.shadowColor = "red";
+	ctx.shadowBlur = 100;
 	ctx.drawImage(erkek, erkek.width/8*v.a, 0, erkek.width/8, erkek.height, v.x, v.y, erkek.width/8, erkek.height);
 }
 

@@ -18,7 +18,7 @@ function ci(){
 
 
 
-var timer = 300;
+var timer = 1000/60;
 
 cc("FPS: "+ Math.floor(1000/timer));
 
@@ -75,26 +75,26 @@ var donguzaman = setInterval(function(){
 		for (var sid in hersey.oyuncular){
 			var tus = hersey.oyuncular[sid].k;
 			if (tus == 100){
-				hersey.oyuncular[sid].x+=20;
+				hersey.oyuncular[sid].x+=5;
 			}
 			else if (tus == 97){
-				hersey.oyuncular[sid].x-=20;
+				hersey.oyuncular[sid].x-=5;
 			}
 			else if(tus == 119){
-				hersey.oyuncular[sid].y-=20;
+				hersey.oyuncular[sid].y-=5;
 			}
 			else if(tus == 115){
-				hersey.oyuncular[sid].y+=20;
+				hersey.oyuncular[sid].y+=5;
 			}
 
-			if (tus != "" && tus != 0){
+			//if (tus != "" && tus != 0){
 				if (hersey.oyuncular[sid].a>=7){
 					hersey.oyuncular[sid].a = 0;
 				}
 				hersey.oyuncular[sid].a += 1;
-			}else{
-				hersey.oyuncular[sid].a = 0;
-			}
+			//}else{
+				//hersey.oyuncular[sid].a = 0;
+			//}
 			
 
 		}
