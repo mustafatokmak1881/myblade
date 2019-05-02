@@ -18,7 +18,7 @@ function ci(){
 
 
 
-var timer = 1000/60;
+var timer = 30;
 
 cc("FPS: "+ Math.floor(1000/timer));
 
@@ -88,7 +88,7 @@ var donguzaman = setInterval(function(){
 			}
 
 			//if (tus != "" && tus != 0){
-				if (hersey.oyuncular[sid].a>=7){
+				if (hersey.oyuncular[sid].a>=4){
 					hersey.oyuncular[sid].a = 0;
 				}
 				hersey.oyuncular[sid].a += 1;

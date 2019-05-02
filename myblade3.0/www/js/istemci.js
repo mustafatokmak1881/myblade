@@ -44,3 +44,8 @@ window.addEventListener("keyup", function(e){
 		});
 		asagi_tusu = 1;		
 });
+
+window.addEventListener("resize", function(e){
+	myc.width = window.innerWidth;
+	myc.height = window.innerHeight;
+});
