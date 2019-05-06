@@ -46,14 +46,15 @@ window.addEventListener("keyup", function(e){
 });
 
 window.addEventListener("touchmove",function(e){
-	var x = e.changedTouches[0].clientX;
-	var y = e.changedTouches[0].clientY;
+	var x = e.changedTouches[0].clientX+farkX;
+	var y = e.changedTouches[0].clientY+farkY;
 	s.emit("kord", {x:x, y:y});
 
 });
 window.addEventListener("mousemove", function(e){
-	var x = e.clientX;
-	var y = e.clientY;
+	var x = e.clientX+farkX;
+	var y = e.clientY+farkY;
+	c({x:x, y:y});
 	s.emit("kord", {x:x, y:y});
 
 });

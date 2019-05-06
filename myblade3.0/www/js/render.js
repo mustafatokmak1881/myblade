@@ -40,13 +40,8 @@ function topaci_ekranda_ortala(){
 function topac_Ciz(sid,sidBilgi){
 
 
-
-
-
-
 	var ortaX = topaci_ekranda_ortala().ortaX;
 	var ortaY = topaci_ekranda_ortala().ortaY;
-
 
 	ctx.clearRect(0, 0, topac.width, topac.height);
 	ctx.shadowOffsetX = 5;
@@ -72,11 +67,6 @@ function topac_Ciz(sid,sidBilgi){
 		ctx.fillStyle = "green";
 		ctx.drawImage(topac, topac.width/7*sidBilgi.a, 0, topac.width/7, topac.height, sidBilgi.x+farkX, sidBilgi.y+farkY, topac.width/7, topac.height);	
 	}
-
-
-
-
-
 
 }
 
