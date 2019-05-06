@@ -1,8 +1,8 @@
 var asagi_tusu = 1;
 
 
-var s = io.connect("http://localhost:3007");
-//var s = io.connect("http://173.212.232.18:3007");
+var s = io.connect("http://localhost:3011");
+//var s = io.connect("http://173.212.232.18:3011");
 
 $(document).ready(function(){
 
@@ -39,10 +39,23 @@ window.addEventListener("keypress", function(e){
 
 
 window.addEventListener("keyup", function(e){
-		s.emit("tus", {
-			keyCode: 0
-		});
-		asagi_tusu = 1;		
+	s.emit("tus", {
+		keyCode: 0
+	});
+	asagi_tusu = 1;		
+});
+
+window.addEventListener("touchmove",function(e){
+	var x = e.changedTouches[0].clientX;
+	var y = e.changedTouches[0].clientY;
+	s.emit("kord", {x:x, y:y});
+
+});
+window.addEventListener("mousemove", function(e){
+	var x = e.clientX;
+	var y = e.clientY;
+	s.emit("kord", {x:x, y:y});
+
 });
 
 window.addEventListener("resize", function(e){
