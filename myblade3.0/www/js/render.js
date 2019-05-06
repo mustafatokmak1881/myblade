@@ -23,7 +23,8 @@ function zemin_Ciz(v){
 	ctx.shadowOffsetX = 10;
 	ctx.shadowOffsetY = 15;
 	ctx.shadowBlur = 15;
-	ctx.drawImage(zemin, 0, 0, zemin.width, zemin.height, v.x, v.y, zemin.width, zemin.height);
+
+	ctx.drawImage(zemin, 0, 0, zemin.width, zemin.height, v.x+farkX, v.y+farkY, zemin.width, zemin.height);
 }
 
 
@@ -36,7 +37,6 @@ function topaci_ekranda_ortala(){
 }
 
 
-
 function topac_Ciz(sid,sidBilgi){
 
 
@@ -44,9 +44,6 @@ function topac_Ciz(sid,sidBilgi){
 	ctx.font = "12px Arial";
 	ctx.fillText(sidBilgi.ad, sidBilgi.x+40, sidBilgi.y);
 	ctx.fillStyle ="black";
-
-
-
 
 	var yaziRengi = "black";
 
@@ -56,24 +53,16 @@ function topac_Ciz(sid,sidBilgi){
 	if (sid && sid == s.id){
 		yaziRengi = "red";
 
-		benimX =  sidBilgi.x;
-		benimY =  sidBilgi.y;
-
-		farkX = ortaX-benimX;
-		farkY = ortaY-benimY;
-
-
-
+		farkX = ortaX-sidBilgi.x;
+		farkY = ortaY-sidBilgi.y;
 
 		ctx.drawImage(topac, topac.width/7*sidBilgi.a, 0, topac.width/7, topac.height, ortaX, ortaY, topac.width/7, topac.height);		
 
 	}
 	else{
 		yaziRengi = "blue";
-		var x = sidBilgi.x+farkX;
-		var y = sidBilgi.y+farkY;
 
-		ctx.drawImage(topac, topac.width/7*sidBilgi.a, 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);	
+		ctx.drawImage(topac, topac.width/7*sidBilgi.a, 0, topac.width/7, topac.height, sidBilgi.x+farkX, sidBilgi.y+farkY, topac.width/7, topac.height);	
 	}
 
 	ctx.clearRect(0, 0, topac.width, topac.height);
@@ -81,8 +70,6 @@ function topac_Ciz(sid,sidBilgi){
 	ctx.shadowOffsetX = 5;
 	ctx.shadowOffsetY = 6;
 	ctx.shadowBlur = 6;
-
-	
 
 
 }
