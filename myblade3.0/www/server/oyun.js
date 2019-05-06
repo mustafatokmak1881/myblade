@@ -1,7 +1,7 @@
 
 
 const timer = 60;
-const baslangic_hizi = 1;
+const baslangic_hizi = 10;
 
 
 const hersey = {
