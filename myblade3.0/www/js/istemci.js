@@ -1,6 +1,9 @@
 var asagi_tusu = 1;
 
 
+
+
+
 var s = io.connect("http://localhost:3011");
 //var s = io.connect("http://173.212.232.18:3011");
 
@@ -24,6 +27,17 @@ $(document).on("click", ".baslabtn", function(){
 });
 
 
+function wxybul(newx, newy, x, y)
+{
+	var fx = x-newx;
+	var fy = y-newy;
+	var wtoplam = Math.abs(fx)+Math.abs(fy);
+	var wx = (fx/wtoplam)%wtoplam;
+	var wy = (fy/wtoplam)%wtoplam;	
+	var obj = {wx: wx.toFixed(2), wy: wy.toFixed(2)}
+	return obj;			
+}
+
 
 
 
@@ -46,20 +60,29 @@ window.addEventListener("keyup", function(e){
 });
 
 window.addEventListener("touchmove",function(e){
-	var x = e.changedTouches[0].clientX+farkX;
-	var y = e.changedTouches[0].clientY+farkY;
+	var x = parseInt(e.changedTouches[0].clientX+farkX);
+	var y = parseInt(e.changedTouches[0].clientY+farkY);
 	s.emit("kord", {x:x, y:y});
 
 });
 window.addEventListener("mousemove", function(e){
-	var x = e.clientX+farkX;
-	var y = e.clientY+farkY;
-	c({x:x, y:y});
-	s.emit("kord", {x:x, y:y});
+
+
+	var x = parseInt(e.clientX);
+	var y = parseInt(e.clientY);
+
+	var ortaX = topaci_ekranda_ortala().ortaX;
+	var ortaY = topaci_ekranda_ortala().ortaY;
+
+	var wxyCikti = wxybul(ortaX, ortaY, x, y);	
+	c(wxyCikti);
+
+	s.emit("kord", {wx:wxyCikti.wx, wy:wxyCikti.wy});
 
 });
 
 window.addEventListener("resize", function(e){
 	myc.width = window.innerWidth;
 	myc.height = window.innerHeight;
+
 });

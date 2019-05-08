@@ -9,6 +9,8 @@ var benimX = 0;
 var benimY = 0;
 var farkX = 0; //Benim X kordinatım ile ekranın tam ortasındaki X koordinatının farkı
 var farkY = 0; //Benim Y kordinatım ile ekranın tam ortasındaki Y koordinatının farkı
+var ortaX = 0;
+var ortaY = 0;
 
 
 var topac = new Image();
@@ -35,7 +37,8 @@ function topaci_ekranda_ortala(){
 	var ortaY = Math.floor((myc.height/2));	
 	return {ortaX: ortaX, ortaY: ortaY}
 }
-
+	ortaX = topaci_ekranda_ortala().ortaX;
+	ortaY = topaci_ekranda_ortala().ortaX;
 
 function topac_Ciz(sid,sidBilgi){
 
@@ -51,19 +54,21 @@ function topac_Ciz(sid,sidBilgi){
 	if (sid && sid == s.id){
 		ctx.shadowColor = "red";
 		ctx.font = "12px Arial";
-		ctx.fillText(sidBilgi.ad, ortaX+40, ortaY);
+		ctx.fillText(sidBilgi.ad+" "+benimX+":"+benimY, ortaX+40, ortaY);
 		ctx.fillStyle = "red";
 
+		benimX = sidBilgi.x;
+		benimY = sidBilgi.y;
 		farkX = ortaX-sidBilgi.x;
 		farkY = ortaY-sidBilgi.y;
-
+		
 		ctx.drawImage(topac, topac.width/7*sidBilgi.a, 0, topac.width/7, topac.height, ortaX, ortaY, topac.width/7, topac.height);		
 
 	}
 	else{
 		ctx.shadowColor = "green";
 		ctx.font = "10px Arial";
-		ctx.fillText(sidBilgi.ad, sidBilgi.x+farkX, sidBilgi.y+farkY);
+		ctx.fillText(sidBilgi.ad+" "+benimX+":"+benimY, sidBilgi.x+farkX, sidBilgi.y+farkY);
 		ctx.fillStyle = "green";
 		ctx.drawImage(topac, topac.width/7*sidBilgi.a, 0, topac.width/7, topac.height, sidBilgi.x+farkX, sidBilgi.y+farkY, topac.width/7, topac.height);	
 	}

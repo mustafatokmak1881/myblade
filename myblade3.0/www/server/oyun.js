@@ -1,6 +1,6 @@
 
 
-const timer = 60;
+const timer = 30;
 const baslangic_hizi = 10;
 
 
@@ -27,10 +27,6 @@ function ci(){
 function fps(){
 	cc("FPS: "+ Math.floor(1000/timer));
 }
-
-
-
-
 function yeniZemin(x, y){
 	var z = {x:x, y:y}
 	hersey.zemin.push(z);
@@ -43,26 +39,17 @@ function yeniOyuncu(ad){
 	o.y = Math.floor(Math.random() * 300);
 	return o;
 }
-function wxybul(newx, newy, x, y)
-{
-			var fx = x-newx;
-			var fy = y-newy;
-			var wtoplam = Math.abs(fx)+Math.abs(fy);
-			var wx = (fx/wtoplam)%wtoplam;
-			var wy = (fy/wtoplam)%wtoplam;	
-			var obj = {wx: wx.toFixed(2), wy: wy.toFixed(2)}
-			return obj;			
-}
+
 function pf(d1){
 	return parseFloat(d1);
 }
 
 
-
-
-
+//Yeni Zeminler
 yeniZemin(20, 20);
 yeniZemin(30, 500);
+yeniZemin(900, 300);
+
 
 
 io.on("connection", function(s){
@@ -76,7 +63,6 @@ io.on("connection", function(s){
 
 	s.on("tus", function(data){
 		//c(data);
-
 		
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id]){
 			hersey.oyuncular[s.id].k = data.keyCode;
@@ -86,21 +72,14 @@ io.on("connection", function(s){
 	});
 
 	s.on("kord", function(data){
-		var x= Math.floor(data.x);
-		var y = Math.floor(data.y);
 
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id] && hersey.oyuncular[s.id].x && hersey.oyuncular[s.id].y){
-			var wxyCikti = wxybul(hersey.oyuncular[s.id].x, hersey.oyuncular[s.id].y, data.x, data.y);		
-			var wx = wxyCikti.wx;
-			var wy = wxyCikti.wy;
 
 
+			hersey.oyuncular[s.id].wx = data.wx;
+			hersey.oyuncular[s.id].wy = data.wy;
 			
-			hersey.oyuncular[s.id].wx = wx;
-			hersey.oyuncular[s.id].wy = wy;
-
-			
-			c(hersey);
+			c(data);
 
 		}
 		else{
