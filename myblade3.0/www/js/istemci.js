@@ -26,6 +26,9 @@ $(document).on("click", ".baslabtn", function(){
 	$(".isimsor").hide();
 });
 
+function pf(d){
+	return parseFloat(d);
+}
 
 function wxybul(newx, newy, x, y)
 {
@@ -60,9 +63,16 @@ window.addEventListener("keyup", function(e){
 });
 
 window.addEventListener("touchmove",function(e){
-	var x = parseInt(e.changedTouches[0].clientX+farkX);
-	var y = parseInt(e.changedTouches[0].clientY+farkY);
-	s.emit("kord", {x:x, y:y});
+	var x = parseInt(e.changedTouches[0].clientX);
+	var y = parseInt(e.changedTouches[0].clientY);
+
+	var ortaX = pf(topaci_ekranda_ortala().ortaX+(topac.width/7/2));
+	var ortaY = pf(topaci_ekranda_ortala().ortaY+(topac.height/2));
+
+	var wxyCikti = wxybul(ortaX, ortaY, x, y);	
+	c(wxyCikti);
+
+	s.emit("kord", {wx:wxyCikti.wx, wy:wxyCikti.wy});
 
 });
 window.addEventListener("mousemove", function(e){
@@ -71,8 +81,8 @@ window.addEventListener("mousemove", function(e){
 	var x = parseInt(e.clientX);
 	var y = parseInt(e.clientY);
 
-	var ortaX = topaci_ekranda_ortala().ortaX;
-	var ortaY = topaci_ekranda_ortala().ortaY;
+	var ortaX = pf(topaci_ekranda_ortala().ortaX+(topac.width/7/2));
+	var ortaY = pf(topaci_ekranda_ortala().ortaY+(topac.height/2));
 
 	var wxyCikti = wxybul(ortaX, ortaY, x, y);	
 	c(wxyCikti);
