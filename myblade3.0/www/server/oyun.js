@@ -75,11 +75,21 @@ io.on("connection", function(s){
 
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id] && hersey.oyuncular[s.id].x && hersey.oyuncular[s.id].y){
 
+			var wxytoplam = pf(data.wy+data.wy);
+			c(wxytoplam);
 
-			hersey.oyuncular[s.id].wx = data.wx;
-			hersey.oyuncular[s.id].wy = data.wy;
-			
-			c(data);
+			if(wxytoplam <= 1){
+				hersey.oyuncular[s.id].wx = data.wx;
+				hersey.oyuncular[s.id].wy = data.wy;
+				
+			}else{
+				c("Hile");
+				c(wxytoplam);
+				return false;
+			}
+
+
+			//c(data);
 
 		}
 		else{
@@ -115,8 +125,8 @@ var donguzaman = setInterval(function(){
 		}
 		
 		io.emit("hersey", hersey);
-		c(hersey);
-		fps();
+		//c(hersey);
+		//fps();
 	}
 
 }, timer);
