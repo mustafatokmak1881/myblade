@@ -62,7 +62,7 @@ io.on("connection", function(s){
 	});
 
 	s.on("tus", function(data){
-		//c(data);
+		c(data);
 		
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id]){
 			hersey.oyuncular[s.id].k = data.keyCode;
@@ -88,12 +88,9 @@ io.on("connection", function(s){
 				return false;
 			}
 
-
-			//c(data);
-
 		}
 		else{
-			c("-");
+
 		}
 
 
@@ -125,7 +122,7 @@ var donguzaman = setInterval(function(){
 		}
 		
 		io.emit("hersey", hersey);
-		//c(hersey);
+	c(hersey);
 		//fps();
 	}
 

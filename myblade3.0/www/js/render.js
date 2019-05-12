@@ -13,7 +13,7 @@ var farkY = 0; //Benim Y kordinatım ile ekranın tam ortasındaki Y koordinatı
 
 
 var topac = new Image();
-topac.src = "res/topac.png";
+topac.src = "res/topac5.png";
 
 
 var zemin = new Image();
