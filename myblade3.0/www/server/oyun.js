@@ -64,7 +64,7 @@ io.on("connection", function(s){
 	s.on("tus", function(data){
 		c(data);
 		
-		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id]){
+		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id]){ 
 			hersey.oyuncular[s.id].k = data.keyCode;
 		}
 
@@ -111,19 +111,37 @@ var donguzaman = setInterval(function(){
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
 		for (var sid in hersey.oyuncular){
 
+			var gelenk = hersey.oyuncular[sid].k;
+
+			c(typeof gelenk);
+			c(gelenk);
+
+			if(gelenk == 0){
+				c("gelenk degeri=0");
+
+				hersey.oyuncular[sid].h = baslangic_hizi;
+
+			}else if(gelenk == 32){
+				c("gelenk degeri==32");
+				hersey.oyuncular[sid].h = baslangic_hizi*2;
+			}
+			
+
 
 			hersey.oyuncular[sid].x = pf(hersey.oyuncular[sid].x) + pf(hersey.oyuncular[sid].wx)*pf(hersey.oyuncular[sid].h);
 			hersey.oyuncular[sid].y = pf(hersey.oyuncular[sid].y) + pf(hersey.oyuncular[sid].wy)*pf(hersey.oyuncular[sid].h);
 
 				if (hersey.oyuncular[sid].a>=6){
-					hersey.oyuncular[sid].a = 0;
+					hersey.oyuncular[sid].a = 0; 
 				}
 				hersey.oyuncular[sid].a += 1;
+
+
 		}
 		
 		io.emit("hersey", hersey);
-	c(hersey);
-		//fps();
+		c(hersey);
+		fps();
 	}
 
 }, timer);
