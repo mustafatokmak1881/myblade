@@ -45,7 +45,6 @@ function topaci_ekranda_ortala(){
 	var ortaY = Math.floor((myc.height/2));	
 	return {ortaX: ortaX, ortaY: ortaY}
 }
-sdsa
 
 function topac_Ciz(sid,sidBilgi){
 	var x = 0;
