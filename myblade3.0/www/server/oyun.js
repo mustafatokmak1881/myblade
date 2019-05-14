@@ -6,7 +6,12 @@ const baslangic_hizi = 10;
 
 const hersey = {
 	oyuncular: {},
-	zemin : []
+	nesne: [],
+	sabitler: [
+		{ad: "zemin", x: 0, y:0, repeat: "repeat"},
+		{ad: "zemin", x: 0, y:500, repeat: "repeat"}
+
+	]
 }
 
 
@@ -27,9 +32,18 @@ function ci(){
 function fps(){
 	cc("FPS: "+ Math.floor(1000/timer));
 }
-function yeniZemin(x, y){
+function sabitlerHaricHersey(){
+	var sabitlerHaric = {oyuncular: hersey.oyuncular, nesne: hersey.nesne}
+	return sabitlerHaric;
+}
+
+function yeniSabit(x, y){
 	var z = {x:x, y:y}
-	hersey.zemin.push(z);
+	hersey.sabitler.push(z);
+}
+function yeniNesne(x, y){
+	var z = {x:x, y:y}
+	hersey.nesne.push(z);
 }
 
 function yeniOyuncu(ad){
@@ -46,9 +60,8 @@ function pf(d1){
 
 
 //Yeni Zeminler
-yeniZemin(20, 20);
-yeniZemin(30, 500);
-yeniZemin(900, 300);
+yeniNesne(20, 20);
+
 
 
 
@@ -57,12 +70,11 @@ io.on("connection", function(s){
 
 
 	s.on("ilkgiris", function(data){
-		cc(data);
 		hersey.oyuncular[s.id] = yeniOyuncu(data.ad);
 	});
 
 	s.on("tus", function(data){
-		c(data);
+	
 		
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id]){ 
 			hersey.oyuncular[s.id].k = data.keyCode;
@@ -76,18 +88,12 @@ io.on("connection", function(s){
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id] && hersey.oyuncular[s.id].x && hersey.oyuncular[s.id].y){
 
 			var wxytoplam = pf(data.wy+data.wy);
-			c(wxytoplam);
 
 			if(wxytoplam <= 1){
 				hersey.oyuncular[s.id].wx = data.wx;
 				hersey.oyuncular[s.id].wy = data.wy;
 				
-			}else{
-				c("Hile");
-				c(wxytoplam);
-				return false;
 			}
-
 		}
 		else{
 
@@ -113,8 +119,6 @@ var donguzaman = setInterval(function(){
 
 			var gelenk = hersey.oyuncular[sid].k;
 
-			c(typeof gelenk);
-			c(gelenk);
 
 			if(gelenk == 0){
 				c("gelenk degeri=0");
@@ -123,7 +127,7 @@ var donguzaman = setInterval(function(){
 
 			}else if(gelenk == 32){
 				c("gelenk degeri==32");
-				hersey.oyuncular[sid].h = baslangic_hizi*2;
+				hersey.oyuncular[sid].h = baslangic_hizi*3;
 			}
 			
 
@@ -139,7 +143,7 @@ var donguzaman = setInterval(function(){
 
 		}
 		
-		io.emit("hersey", hersey);
+		io.emit("hersey", sabitlerHaricHersey());
 		c(hersey);
 		fps();
 	}

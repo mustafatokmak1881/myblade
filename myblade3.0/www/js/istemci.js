@@ -14,6 +14,7 @@ $(document).ready(function(){
 
 	s.on("hersey", function(data){
 		render(data);
+		c(data);
 	});	
 
 });
@@ -70,7 +71,6 @@ window.addEventListener("touchmove",function(e){
 	var ortaY = pf(topaci_ekranda_ortala().ortaY+(topac.height/2));
 
 	var wxyCikti = wxybul(ortaX, ortaY, x, y);	
-	c(wxyCikti);
 
 	s.emit("kord", {wx:wxyCikti.wx, wy:wxyCikti.wy});
 
@@ -85,7 +85,7 @@ window.addEventListener("mousemove", function(e){
 	var ortaY = pf(topaci_ekranda_ortala().ortaY+(topac.height/2));
 
 	var wxyCikti = wxybul(ortaX, ortaY, x, y);	
-	c(wxyCikti);
+
 
 	s.emit("kord", {wx:wxyCikti.wx, wy:wxyCikti.wy});
 

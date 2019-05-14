@@ -5,10 +5,10 @@ var ctx = myc.getContext("2d");
 myc.width = window.innerWidth;
 myc.height = window.innerHeight;
 
-var mycsabit = document.getElementById("myc");
-var sabitctx = mycsabit.getContext("2d");
-mycsabit.width = window.innerWidth;
-mycsabit.height = window.innerHeight;
+var mycSabit = document.getElementById("mycSabit");
+var ctxSabit = mycSabit.getContext("2d");
+mycSabit.width = window.innerWidth;
+mycSabit.height = window.innerHeight;
 
 
 var benimX = 0;
@@ -22,19 +22,38 @@ var topac = new Image();
 topac.src = "res/topac5.png";
 
 
-var zemin = new Image();
-zemin.src = "res/zemin.png";
+var nesne = new Image();
+nesne.src = "res/nesne.png";
+
+var sabitZeminResim = new Image();
+sabitZeminResim.src = "res/sabitzemin.png";
+c(sabitZeminResim);
 
 
+var sabitZeminResimX = 100;
+var sabitZeminResimY = 100;
+
+sabitZeminResim.onload = function(){
+
+	ctxSabit.drawImage(sabitZeminResim, sabitZeminResimX+farkX, sabitZeminResimY+farkY, sabitZeminResim.width, sabitZeminResim.height);
+}
+
+/*
+var pat = ctxSabit.createPattern(sabitZeminResim, "repeat");
+ctxSabit.rect(0, 0, mycSabit.width, 100);
+ctxSabit.fillStyle = pat;
+ctxSabit.fill(); 
+
+*/
 
 
-function zemin_Ciz(v){
+function nesne_Ciz(v){
 	ctx.shadowColor = "black";
 	ctx.shadowOffsetX = 10;
 	ctx.shadowOffsetY = 15;
 	ctx.shadowBlur = 25;
 
-	ctx.drawImage(zemin, 0, 0, zemin.width, zemin.height, v.x+farkX, v.y+farkY, zemin.width, zemin.height);
+	ctx.drawImage(nesne, 0, 0, nesne.width, nesne.height, v.x+farkX, v.y+farkY, nesne.width, nesne.height);
 }
 
 
@@ -98,9 +117,9 @@ function render(data){
 	if (data && data.oyuncular){
 		ctx.clearRect(0,0, myc.width, myc.height);
 
-		if(data.zemin && data.zemin.length>0){
-			data.zemin.forEach(function(v,k){
-				zemin_Ciz(v);
+		if(data.nesne && data.nesne.length>0){
+			data.nesne.forEach(function(v,k){
+				nesne_Ciz(v);
 			});
 		}
 
