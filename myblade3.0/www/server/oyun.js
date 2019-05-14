@@ -1,6 +1,6 @@
 
 
-const timer = 30;
+const timer = 1000;
 const baslangic_hizi = 10;
 
 
