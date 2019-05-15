@@ -17,9 +17,7 @@ $(document).ready(function(){
 	});	
 
 	s.on("sabitZemin",function(data){
-		console.log(data);
-
-		sabitZemin(data);
+		//sabitZemin(data);
 	});
 
 });
