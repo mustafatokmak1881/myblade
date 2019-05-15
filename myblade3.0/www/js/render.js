@@ -1,5 +1,7 @@
 
 
+let xsabitZemin = {};
+
 var myc = document.getElementById("myc");
 var ctx = myc.getContext("2d");
 myc.width = window.innerWidth;
@@ -27,7 +29,7 @@ nesne.src = "res/nesne.png";
 
 var sabitZeminResim = new Image();
 sabitZeminResim.src = "res/sabitzemin.png";
-c(sabitZeminResim);
+
 
 
 var sabitZeminResimX = 100;
@@ -35,16 +37,29 @@ var sabitZeminResimY = 100;
 
 sabitZeminResim.onload = function(){
 
-	ctxSabit.drawImage(sabitZeminResim, sabitZeminResimX+farkX, sabitZeminResimY+farkY, sabitZeminResim.width, sabitZeminResim.height);
+	//ctxSabit.drawImage(sabitZeminResim, sabitZeminResimX+farkX, sabitZeminResimY+farkY, sabitZeminResim.width, sabitZeminResim.height);
 }
 
-/*
-var pat = ctxSabit.createPattern(sabitZeminResim, "repeat");
-ctxSabit.rect(0, 0, mycSabit.width, 100);
-ctxSabit.fillStyle = pat;
-ctxSabit.fill(); 
 
-*/
+function sabitZemin(data){
+
+
+	ctxSabit.clearRect(0, 0, mycSabit.width, mycSabit.height);
+	xsabitZemin = data.sabitZemin;
+	ctxSabit.drawImage(sabitZeminResim, xsabitZemin.x+farkX, xsabitZemin.y+farkY, sabitZeminResim.width, sabitZeminResim.height);
+
+}
+
+function sabitZeminSurekli(){
+
+	ctxSabit.clearRect(0, 0, mycSabit.width, mycSabit.height);
+	//ctxSabit.drawImage(sabitZeminResim, xsabitZemin.x+farkX, xsabitZemin.y+farkY, sabitZeminResim.width, sabitZeminResim.height);
+	var zmn = ctxSabit.createPattern(sabitZeminResim, "repeat");
+	c(zmn);
+	ctxSabit.fillStyle = zmn;
+	ctxSabit.fillRect(xsabitZemin.x+farkX, xsabitZemin.y+farkY, 300, 300);
+	c({xs:xsabitZemin.x+farkX, ys:xsabitZemin.y+farkY});
+}
 
 
 function nesne_Ciz(v){
@@ -114,6 +129,7 @@ function topac_Ciz(sid,sidBilgi){
 
 function render(data){
 
+sabitZeminSurekli();
 	if (data && data.oyuncular){
 		ctx.clearRect(0,0, myc.width, myc.height);
 

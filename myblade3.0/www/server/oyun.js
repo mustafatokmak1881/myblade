@@ -1,18 +1,15 @@
 
 
-const timer = 1000;
+const timer = 30;
 const baslangic_hizi = 10;
-
+const baslangic_cani = 10;
 
 const hersey = {
 	oyuncular: {},
-	nesne: [],
-	sabitler: [
-		{ad: "zemin", x: 0, y:0, repeat: "repeat"},
-		{ad: "zemin", x: 0, y:500, repeat: "repeat"}
+	nesne: []
 
-	]
 }
+var sabitZemin =  {ad: "zemin", x: 5, y:900, repeat: "repeat"}
 
 
 const io = require("socket.io").listen(3011);
@@ -32,10 +29,7 @@ function ci(){
 function fps(){
 	cc("FPS: "+ Math.floor(1000/timer));
 }
-function sabitlerHaricHersey(){
-	var sabitlerHaric = {oyuncular: hersey.oyuncular, nesne: hersey.nesne}
-	return sabitlerHaric;
-}
+
 
 function yeniSabit(x, y){
 	var z = {x:x, y:y}
@@ -47,7 +41,7 @@ function yeniNesne(x, y){
 }
 
 function yeniOyuncu(ad){
-	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi}
+	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani}
 	o.ad = ad;
 	o.x = Math.floor(Math.random() * 300);
 	o.y = Math.floor(Math.random() * 300);
@@ -68,9 +62,13 @@ yeniNesne(20, 20);
 io.on("connection", function(s){
 	ci();
 
+	s.emit("sabitZemin", {
+		sabitZemin: sabitZemin
+	});
 
 	s.on("ilkgiris", function(data){
 		hersey.oyuncular[s.id] = yeniOyuncu(data.ad);
+
 	});
 
 	s.on("tus", function(data){
@@ -143,7 +141,7 @@ var donguzaman = setInterval(function(){
 
 		}
 		
-		io.emit("hersey", sabitlerHaricHersey());
+		io.emit("hersey", hersey);
 		c(hersey);
 		fps();
 	}

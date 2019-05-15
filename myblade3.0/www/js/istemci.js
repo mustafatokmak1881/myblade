@@ -14,8 +14,13 @@ $(document).ready(function(){
 
 	s.on("hersey", function(data){
 		render(data);
-		c(data);
 	});	
+
+	s.on("sabitZemin",function(data){
+		console.log(data);
+
+		sabitZemin(data);
+	});
 
 });
 
