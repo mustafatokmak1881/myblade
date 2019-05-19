@@ -1,6 +1,6 @@
 
 
-let xsabitZemin = {};
+let xsabitZemin = {x:0, y:0};
 
 var myc = document.getElementById("myc");
 var ctx = myc.getContext("2d");
@@ -21,7 +21,7 @@ var farkY = 0; //Benim Y kordinatım ile ekranın tam ortasındaki Y koordinatı
 
 
 var topac = new Image();
-topac.src = "res/topac5.png";
+topac.src = "res/topac8.png";
 
 
 var nesne = new Image();
@@ -37,9 +37,16 @@ var sabitZeminResimY = 100;
 
 sabitZeminResim.onload = function(){
 
-	ctxSabit.drawImage(sabitZeminResim, sabitZeminResimX+farkX, sabitZeminResimY+farkY, sabitZeminResim.width, sabitZeminResim.height);
+	//ctxSabit.drawImage(sabitZeminResim, sabitZeminResimX+farkX, sabitZeminResimY+farkY, sabitZeminResim.width, sabitZeminResim.height);
+	ctxSabit.createPattern(sabitZeminResim , "repeat");
+	ctxSabit.fillStyle = "";
+
 }
 
+
+function sabitZeminSurekli(data){
+	c(data);
+}
 
 function nesne_Ciz(v){
 	ctx.shadowColor = "black";
@@ -94,21 +101,40 @@ function topac_Ciz(sid,sidBilgi){
 		y = sidBilgi.y+farkY;
 	}
 
-	if (sidBilgi.k == 32){
-		ctx.shadowColor= "red";
+
+	if (sidBilgi.r == "k"){	
+		ctx.shadowColor="red";
+		ctx.shadowBlur = 6;
+	}
+	else if(sidBilgi.r == "y"){
+		ctx.shadowColor = "green";
+		ctx.shadowBlur = 6;
+	}
+	else{
+
+		if (sidBilgi.r == "m"){		
+			ctx.shadowColor = "blue";
+			ctx.shadowBlur = 35;
+		}
+		else{
+				
+			ctx.shadowColor = "black";
+			ctx.shadowBlur = 6;		
+		}		
+
 	}
 
 
-	ctx.drawImage(topac, topac.width/7*sidBilgi.a, 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);	
+	ctx.drawImage(topac, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);	
 
 }
 
 
 
 function render(data){
-	c(data);
+	//c(data);
 
-//sabitZeminSurekli();
+sabitZeminSurekli();
 	if (data && data.oyuncular){
 		ctx.clearRect(0,0, myc.width, myc.height);
 

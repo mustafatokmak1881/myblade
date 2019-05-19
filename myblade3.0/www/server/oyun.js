@@ -2,7 +2,7 @@
 
 const timer = 30;
 const baslangic_hizi = 10;
-const baslangic_cani = 10;
+const baslangic_cani = 100;
 
 const hersey = {
 	oyuncular: {},
@@ -41,7 +41,7 @@ function yeniNesne(x, y){
 }
 
 function yeniOyuncu(ad){
-	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani}
+	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:""}
 	o.ad = ad;
 	o.x = Math.floor(Math.random() * 300);
 	o.y = Math.floor(Math.random() * 300);
@@ -62,18 +62,14 @@ yeniNesne(20, 20);
 io.on("connection", function(s){
 	ci();
 
-	s.emit("sabitZemin", {
-		sabitZemin: sabitZemin
-	});
+
 
 	s.on("ilkgiris", function(data){
 		hersey.oyuncular[s.id] = yeniOyuncu(data.ad);
-
 	});
 
 	s.on("tus", function(data){
-	
-		
+			
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id]){ 
 			hersey.oyuncular[s.id].k = data.keyCode;
 		}
@@ -116,15 +112,10 @@ var donguzaman = setInterval(function(){
 		for (var sid in hersey.oyuncular){
 
 			var gelenk = hersey.oyuncular[sid].k;
-
-
 			if(gelenk == 0){
-				c("gelenk degeri=0");
-
 				hersey.oyuncular[sid].h = baslangic_hizi;
 
 			}else if(gelenk == 32){
-				c("gelenk degeri==32");
 				hersey.oyuncular[sid].h = baslangic_hizi*3;
 			}
 			
@@ -133,12 +124,26 @@ var donguzaman = setInterval(function(){
 			hersey.oyuncular[sid].x = pf(hersey.oyuncular[sid].x) + pf(hersey.oyuncular[sid].wx)*pf(hersey.oyuncular[sid].h);
 			hersey.oyuncular[sid].y = pf(hersey.oyuncular[sid].y) + pf(hersey.oyuncular[sid].wy)*pf(hersey.oyuncular[sid].h);
 
-				if (hersey.oyuncular[sid].a>=6){
+				if (hersey.oyuncular[sid].a>=200){
 					hersey.oyuncular[sid].a = 0; 
 				}
+
+				if (hersey.oyuncular[sid].a < 20){
+					hersey.oyuncular[sid].r = "k";
+				}else if (hersey.oyuncular[sid].a >= 80 && hersey.oyuncular[sid].a < 120){
+					hersey.oyuncular[sid].r = "m";
+				}
+				else{
+					if (hersey.oyuncular[sid].k == 32){
+						hersey.oyuncular[sid].r = "y";
+						
+					}
+					else{
+						hersey.oyuncular[sid].r = "s";
+					}
+				}
+
 				hersey.oyuncular[sid].a += 1;
-
-
 		}
 		
 		io.emit("hersey", hersey);
