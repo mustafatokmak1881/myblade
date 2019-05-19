@@ -1,6 +1,6 @@
 
 
-let xsabitZemin = {x:0, y:0};
+
 
 var myc = document.getElementById("myc");
 var ctx = myc.getContext("2d");
@@ -15,6 +15,7 @@ mycSabit.height = window.innerHeight;
 
 var benimX = 0;
 var benimY = 0;
+var benimC = 0;
 var farkX = 0; //Benim X kordinatım ile ekranın tam ortasındaki X koordinatının farkı
 var farkY = 0; //Benim Y kordinatım ile ekranın tam ortasındaki Y koordinatının farkı
 
@@ -76,15 +77,22 @@ function topac_Ciz(sid,sidBilgi){
 	ctx.shadowOffsetX = 5;
 	ctx.shadowOffsetY = 6;
 	ctx.shadowBlur = 6;
-
+	ctx.font = "12px Arial";
 	if (sid && sid == s.id){
 		ctx.shadowColor = "black";
-		ctx.font = "12px Arial";
-		ctx.fillText(sidBilgi.ad, ortaX+40, ortaY);
+		//ctx.font = "12px Arial";
+		ctx.fillText(sidBilgi.ad, ortaX+40, ortaY-16);
 		ctx.fillStyle = "red";
 
 		benimX = sidBilgi.x;
 		benimY = sidBilgi.y;
+		benimC = sidBilgi.c;
+
+
+		if (benimC >= 64){
+			benimC = 64;
+		}
+
 		farkX = ortaX-sidBilgi.x;
 		farkY = ortaY-sidBilgi.y;
 		x = ortaX;
@@ -94,8 +102,8 @@ function topac_Ciz(sid,sidBilgi){
 	}
 	else{
 		ctx.shadowColor = "black";
-		ctx.font = "10px Arial";
-		ctx.fillText(sidBilgi.ad, sidBilgi.x+farkX, sidBilgi.y+farkY);
+		//ctx.font = "12px Arial";
+		ctx.fillText(sidBilgi.ad, sidBilgi.x+farkX+40, sidBilgi.y+farkY-16);
 		ctx.fillStyle = "green";
 		x = sidBilgi.x+farkX;
 		y = sidBilgi.y+farkY;
@@ -106,8 +114,8 @@ function topac_Ciz(sid,sidBilgi){
 		ctx.shadowColor="red";
 		ctx.shadowBlur = 6;
 	}
-	else if(sidBilgi.r == "y"){
-		ctx.shadowColor = "green";
+	else if(sidBilgi.r == "b"){
+		ctx.shadowColor = "white";
 		ctx.shadowBlur = 6;
 	}
 	else{
@@ -124,6 +132,17 @@ function topac_Ciz(sid,sidBilgi){
 
 	}
 
+	//Güç göstergesi gerçek
+	ctx.beginPath();
+	ctx.rect(x, y-10, benimC, 10);
+	ctx.fillStyle = "yellow";
+	ctx.fill();
+
+	//Güç Göstergesi Dış Çerçeve
+	ctx.beginPath();
+	ctx.rect(x,y-10, 64,10);
+	ctx.stokeStyle="#ccc";
+	ctx.stroke();
 
 	ctx.drawImage(topac, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);	
 

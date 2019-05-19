@@ -1,8 +1,8 @@
 
 
 const timer = 30;
-const baslangic_hizi = 10;
-const baslangic_cani = 100;
+const baslangic_hizi = 1;
+const baslangic_cani = 10;
 
 const hersey = {
 	oyuncular: {},
@@ -124,19 +124,19 @@ var donguzaman = setInterval(function(){
 			hersey.oyuncular[sid].x = pf(hersey.oyuncular[sid].x) + pf(hersey.oyuncular[sid].wx)*pf(hersey.oyuncular[sid].h);
 			hersey.oyuncular[sid].y = pf(hersey.oyuncular[sid].y) + pf(hersey.oyuncular[sid].wy)*pf(hersey.oyuncular[sid].h);
 
-				if (hersey.oyuncular[sid].a>=200){
+				if (hersey.oyuncular[sid].a>=600){
 					hersey.oyuncular[sid].a = 0; 
 				}
 
 				if (hersey.oyuncular[sid].a < 20){
 					hersey.oyuncular[sid].r = "k";
 				}else if (hersey.oyuncular[sid].a >= 80 && hersey.oyuncular[sid].a < 120){
-					hersey.oyuncular[sid].r = "m";
+					hersey.oyuncular[sid].r = "b";
 				}
 				else{
 					if (hersey.oyuncular[sid].k == 32){
-						hersey.oyuncular[sid].r = "y";
-						
+						hersey.oyuncular[sid].r = "m";
+
 					}
 					else{
 						hersey.oyuncular[sid].r = "s";
