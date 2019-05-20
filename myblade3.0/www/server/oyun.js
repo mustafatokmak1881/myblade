@@ -55,6 +55,9 @@ function pf(d1){
 
 //Yeni Zeminler
 yeniNesne(20, 20);
+yeniNesne(120, 120);
+yeniNesne(220, 220);
+yeniNesne(320, 320);
 
 
 

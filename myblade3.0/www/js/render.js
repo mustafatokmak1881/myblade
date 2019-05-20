@@ -46,7 +46,7 @@ sabitZeminResim.onload = function(){
 
 
 function sabitZeminSurekli(data){
-	c(data);
+	//c(data);
 }
 
 function nesne_Ciz(v){
