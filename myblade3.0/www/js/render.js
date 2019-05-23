@@ -18,6 +18,8 @@ var benimY = 0;
 var benimC = 0;
 var farkX = 0; //Benim X kordinatım ile ekranın tam ortasındaki X koordinatının farkı
 var farkY = 0; //Benim Y kordinatım ile ekranın tam ortasındaki Y koordinatının farkı
+var wx = 0;
+var wy = 0;
 
 
 
@@ -25,36 +27,24 @@ var topac = new Image();
 topac.src = "res/topac8.png";
 
 
-var nesne = new Image();
-nesne.src = "res/nesne.png";
-
-var sabitZeminResim = new Image();
-sabitZeminResim.src = "res/sabitzemin.png";
-
-
-
-var sabitZeminResimX = 100;
-var sabitZeminResimY = 100;
-
-sabitZeminResim.onload = function(){
-
-	//ctxSabit.drawImage(sabitZeminResim, sabitZeminResimX+farkX, sabitZeminResimY+farkY, sabitZeminResim.width, sabitZeminResim.height);
-	ctxSabit.createPattern(sabitZeminResim , "repeat");
-	ctxSabit.fillStyle = "";
-
-}
-
-
-function sabitZeminSurekli(data){
-	//c(data);
-}
+var zeminResim = new Image();
+zeminResim.src = "res/zeminResim-min.png";
+var gucResim = new Image();
+gucResim.src = "res/guc.png";
 
 function nesne_Ciz(v){
 	ctx.shadowColor = "black";
 	ctx.shadowOffsetX = 10;
 	ctx.shadowOffsetY = 15;
 	ctx.shadowBlur = 25;
-	ctx.drawImage(nesne, 0, 0, nesne.width, nesne.height, v.x+farkX, v.y+farkY, nesne.width, nesne.height);
+
+	if (v.t == "z"){
+		ctx.drawImage(zeminResim, 0, 0, zeminResim.width, zeminResim.height, v.x+farkX, v.y+farkY, zeminResim.width, zeminResim.height);		
+	}
+	else if(v.t == "g"){
+		ctx.drawImage(gucResim, 0, 0, gucResim.width, gucResim.height, v.x+farkX, v.y+farkY, gucResim.width, gucResim.height);
+	}
+
 }
 
 
@@ -150,12 +140,17 @@ function topac_Ciz(sid,sidBilgi){
 
 
 
-function render(data){
-	//c(data);
 
-sabitZeminSurekli();
+
+function render(data){
+	ctx.clearRect(0,0, myc.width, myc.height);
+	
+
+
+
+
+
 	if (data && data.oyuncular){
-		ctx.clearRect(0,0, myc.width, myc.height);
 
 		if(data.nesne && data.nesne.length>0){
 			data.nesne.forEach(function(v,k){
@@ -166,6 +161,7 @@ sabitZeminSurekli();
 		for (sid in data.oyuncular){
 			topac_Ciz(sid, data.oyuncular[sid]);
 		}
+		
 	}
 }
 

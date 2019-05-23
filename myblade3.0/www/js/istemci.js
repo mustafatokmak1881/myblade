@@ -13,9 +13,13 @@ $(document).ready(function(){
 
 
 	s.on("hersey", function(data){
+		c(data);
 		render(data);
 	});	
 
+	s.on("ilkgiris", function(data){
+		render(data);
+	});
 
 });
 
@@ -39,6 +43,7 @@ function wxybul(newx, newy, x, y)
 	var wx = (fx/wtoplam)%wtoplam;
 	var wy = (fy/wtoplam)%wtoplam;	
 	var obj = {wx: wx.toFixed(2), wy: wy.toFixed(2)}
+
 	return obj;			
 }
 
@@ -77,7 +82,6 @@ window.addEventListener("touchmove",function(e){
 });
 window.addEventListener("mousemove", function(e){
 
-
 	var x = parseInt(e.clientX);
 	var y = parseInt(e.clientY);
 
@@ -86,6 +90,8 @@ window.addEventListener("mousemove", function(e){
 
 	var wxyCikti = wxybul(ortaX, ortaY, x, y);	
 
+	wx = wxyCikti.wx;
+	wy = wxyCikti.wy;
 
 	s.emit("kord", {wx:wxyCikti.wx, wy:wxyCikti.wy});
 

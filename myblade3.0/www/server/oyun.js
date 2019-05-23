@@ -1,8 +1,15 @@
 
 
 const timer = 30;
-const baslangic_hizi = 1;
+const baslangic_hizi = 5;
 const baslangic_cani = 10;
+const sinir_baslangic_X = 0;
+const sinir_bitis_X = 1000;
+const sinir_baslangic_Y = 0;
+const sinir_bitis_Y = 1000;
+
+
+
 
 const hersey = {
 	oyuncular: {},
@@ -23,11 +30,20 @@ function cc(d){
 	c(d);
 	c("--------------------------------------------");	
 }
+
+function kb(obj){
+	c("KB: ");
+	c(typeof obj);
+	c((JSON.stringify(obj).length/1024).toFixed(1)+" KB");
+
+}
+
 function ci(){
 	cc("Online: "+io.engine.clientsCount);
 }
 function fps(){
 	cc("FPS: "+ Math.floor(1000/timer));
+
 }
 
 
@@ -35,18 +51,20 @@ function yeniSabit(x, y){
 	var z = {x:x, y:y}
 	hersey.sabitler.push(z);
 }
-function yeniNesne(x, y){
-	var z = {x:x, y:y}
+function yeniNesne(t,x, y){
+	var z = {t:t, x:x, y:y}
 	hersey.nesne.push(z);
 }
 
 function yeniOyuncu(ad){
 	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:""}
 	o.ad = ad;
-	o.x = Math.floor(Math.random() * 300);
+	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
 	o.y = Math.floor(Math.random() * 300);
 	return o;
 }
+
+
 
 function pf(d1){
 	return parseFloat(d1);
@@ -54,10 +72,19 @@ function pf(d1){
 
 
 //Yeni Zeminler
-yeniNesne(20, 20);
-yeniNesne(120, 120);
-yeniNesne(220, 220);
-yeniNesne(320, 320);
+yeniNesne("z", 20, 20);
+yeniNesne("z", 120, 120);
+yeniNesne("z", 220, 220);
+yeniNesne("z",320, 320);
+
+
+for(var g=0; g<30; g++){
+	yeniNesne("g", Math.floor(Math.random()*1000), Math.floor(Math.random()*1000));
+}
+
+
+
+
 
 
 
@@ -81,6 +108,7 @@ io.on("connection", function(s){
 	});
 
 	s.on("kord", function(data){
+
 
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id] && hersey.oyuncular[s.id].x && hersey.oyuncular[s.id].y){
 
@@ -150,8 +178,10 @@ var donguzaman = setInterval(function(){
 		}
 		
 		io.emit("hersey", hersey);
-		c(hersey);
+
 		fps();
+		kb(hersey);
+		
 	}
 
 }, timer);
