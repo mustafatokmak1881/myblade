@@ -122,10 +122,9 @@ function topac_Ciz(sid,sidBilgi){
 
 
 function kaliciNesneCiz(kaliciNesneler){
-	c("Burası kullanıcı çiz");
 
-	c(kaliciNesneler);
-	
+
+	// ÖNCE ZEMİN
 	for (n in kaliciNesneler){
 
 
@@ -139,6 +138,7 @@ function kaliciNesneCiz(kaliciNesneler){
 		
 	}
 
+	// SONRA DİĞER SABİTLER
 	for (n in kaliciNesneler){
 
 

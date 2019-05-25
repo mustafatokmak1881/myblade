@@ -2,6 +2,7 @@
 
 const timer = 30;
 const baslangic_hizi = 5;
+const ani_hizlanma_katsayisi = 8;
 const baslangic_cani = 10;
 const sinir_baslangic_X = 0;
 const sinir_bitis_X = 1000;
@@ -147,7 +148,7 @@ var donguzaman = setInterval(function(){
 				hersey.oyuncular[sid].h = baslangic_hizi;
 
 			}else if(gelenk == 32){
-				hersey.oyuncular[sid].h = baslangic_hizi*3;
+				hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
 			}
 			
 
