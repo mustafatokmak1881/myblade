@@ -13,13 +13,6 @@ mycSabit.width = window.innerWidth;
 mycSabit.height = window.innerHeight;
 
 
-var benimX = 0;
-var benimY = 0;
-var benimC = 0;
-var farkX = 0; //Benim X kordinatım ile ekranın tam ortasındaki X koordinatının farkı
-var farkY = 0; //Benim Y kordinatım ile ekranın tam ortasındaki Y koordinatının farkı
-var wx = 0;
-var wy = 0;
 
 
 
@@ -27,25 +20,14 @@ var topac = new Image();
 topac.src = "res/topac8.png";
 
 
-var zeminResim = new Image();
-zeminResim.src = "res/zeminResim-min.png";
-var gucResim = new Image();
-gucResim.src = "res/guc.png";
+var zeminRes = new Image();
+zeminRes.src = "res/zemin.png";
+var gucRes = new Image();
+gucRes.src = "res/guc.png";
+var hizRes = new Image();
+hizRes.src = "res/karakter.png";
 
-function nesne_Ciz(v){
-	ctx.shadowColor = "black";
-	ctx.shadowOffsetX = 10;
-	ctx.shadowOffsetY = 15;
-	ctx.shadowBlur = 25;
 
-	if (v.t == "z"){
-		ctx.drawImage(zeminResim, 0, 0, zeminResim.width, zeminResim.height, v.x+farkX, v.y+farkY, zeminResim.width, zeminResim.height);		
-	}
-	else if(v.t == "g"){
-		ctx.drawImage(gucResim, 0, 0, gucResim.width, gucResim.height, v.x+farkX, v.y+farkY, gucResim.width, gucResim.height);
-	}
-
-}
 
 
 function topaci_ekranda_ortala(){
@@ -139,16 +121,52 @@ function topac_Ciz(sid,sidBilgi){
 }
 
 
+function kaliciNesneCiz(kaliciNesneler){
+	c("Burası kullanıcı çiz");
 
+	c(kaliciNesneler);
+	
+	for (n in kaliciNesneler){
+
+
+		var x = kaliciNesneler[n].x;
+		var y = kaliciNesneler[n].y;
+		var t = kaliciNesneler[n].t;
+
+		if (t == "z"){
+			ctxSabit.drawImage(zeminRes, 0,0, zeminRes.width, zeminRes.height, x+farkX, y+farkY, zeminRes.width, zeminRes.height);
+		}
+		
+	}
+
+	for (n in kaliciNesneler){
+
+
+		var x = kaliciNesneler[n].x;
+		var y = kaliciNesneler[n].y;
+		var t = kaliciNesneler[n].t;
+
+		if (t == "g"){
+			ctxSabit.drawImage(gucRes, 0,0, gucRes.width, gucRes.height, x+farkX, y+farkY, gucRes.width, gucRes.height);
+		}
+		else if(t == "h"){
+			ctxSabit.drawImage(hizRes, 0,0, hizRes.width, hizRes.height, x+farkX, y+farkY, hizRes.width, hizRes.height);		
+		}
+
+	}
+}
 
 
 function render(data){
+	ctxSabit.clearRect(0,0, myc.width, myc.height);
 	ctx.clearRect(0,0, myc.width, myc.height);
+
+	c("Burasi Render");
+
+	kaliciNesneCiz(kaliciNesneler);
+
+
 	
-
-
-
-
 
 	if (data && data.oyuncular){
 
@@ -163,6 +181,7 @@ function render(data){
 		}
 		
 	}
+
 }
 
 

@@ -12,14 +12,20 @@ $(document).ready(function(){
 	$(".isimsor").fadeIn(1500);
 
 
+
 	s.on("hersey", function(data){
-		c(data);
+
 		render(data);
 	});	
 
 	s.on("ilkgiris", function(data){
-		render(data);
+		kaliciNesneler = data.kaliciNesneler;
+		render(kaliciNesneler);
 	});
+
+
+
+
 
 });
 

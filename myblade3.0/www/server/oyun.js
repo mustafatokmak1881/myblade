@@ -9,14 +9,34 @@ const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 1000;
 
 
+const kaliciNesneler = [];
+
+function kaliciNesneEkle(t,x,y){
+	var o = {t:t, x:x, y:y}
+	kaliciNesneler.push(o);
+}
+
+
+for (var a=0; a<10; a++){
+	kaliciNesneEkle("g", Math.floor(Math.random() * 1000), Math.floor(Math.random()*1000));
+
+}
+for (var a=0; a<10; a++){
+	kaliciNesneEkle("h", Math.floor(Math.random() * 1000), Math.floor(Math.random()*1000));
+
+}
+for (var a=0; a<10; a++){
+	kaliciNesneEkle("z", Math.floor(Math.random() * 1000), Math.floor(Math.random()*1000));
+}
+
+
 
 
 const hersey = {
 	oyuncular: {},
 	nesne: []
-
 }
-var sabitZemin =  {ad: "zemin", x: 5, y:900, repeat: "repeat"}
+
 
 
 const io = require("socket.io").listen(3011);
@@ -47,14 +67,6 @@ function fps(){
 }
 
 
-function yeniSabit(x, y){
-	var z = {x:x, y:y}
-	hersey.sabitler.push(z);
-}
-function yeniNesne(t,x, y){
-	var z = {t:t, x:x, y:y}
-	hersey.nesne.push(z);
-}
 
 function yeniOyuncu(ad){
 	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:""}
@@ -71,22 +83,6 @@ function pf(d1){
 }
 
 
-//Yeni Zeminler
-yeniNesne("z", 20, 20);
-yeniNesne("z", 120, 120);
-yeniNesne("z", 220, 220);
-yeniNesne("z",320, 320);
-
-
-for(var g=0; g<30; g++){
-	yeniNesne("g", Math.floor(Math.random()*1000), Math.floor(Math.random()*1000));
-}
-
-
-
-
-
-
 
 
 io.on("connection", function(s){
@@ -96,6 +92,10 @@ io.on("connection", function(s){
 
 	s.on("ilkgiris", function(data){
 		hersey.oyuncular[s.id] = yeniOyuncu(data.ad);
+
+		s.emit("ilkgiris", {
+			kaliciNesneler: kaliciNesneler
+		});
 	});
 
 	s.on("tus", function(data){
