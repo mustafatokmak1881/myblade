@@ -88,15 +88,15 @@ function pf(d1){
 
 io.on("connection", function(s){
 	ci();
-
+		s.emit("ilkgiris", {
+			kaliciNesneler: kaliciNesneler
+		});
 
 
 	s.on("ilkgiris", function(data){
 		hersey.oyuncular[s.id] = yeniOyuncu(data.ad);
 
-		s.emit("ilkgiris", {
-			kaliciNesneler: kaliciNesneler
-		});
+
 	});
 
 	s.on("tus", function(data){
