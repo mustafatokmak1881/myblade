@@ -204,6 +204,12 @@ function oyunDongu(){
 						if (ben_ve_nesne_farki_X < 36 && ben_ve_nesne_farki_Y <36){
 							console.log("Çarpıştınız");
 							console.log(ben_ve_nesne_farki_X+ " : "+ben_ve_nesne_farki_Y);
+							hersey.oyuncular[s.id].c += 5;
+
+							kaliciNesneler.splice(k, 1);
+
+
+
 						}
 
 					});
