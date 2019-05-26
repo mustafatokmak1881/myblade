@@ -1,7 +1,7 @@
 
 
 const timer = 30;
-const baslangic_hizi = 5;
+const baslangic_hizi = 3;
 const ani_hizlanma_katsayisi = 8;
 const baslangic_cani = 10;
 const sinir_baslangic_X = 0;
@@ -18,16 +18,16 @@ function kaliciNesneEkle(t,x,y){
 }
 
 
-for (var a=0; a<10; a++){
-	kaliciNesneEkle("g", Math.floor(Math.random() * 1000), Math.floor(Math.random()*1000));
+for (var a=0; a<100; a++){
+	kaliciNesneEkle("g", Math.floor(Math.random() * 10000), Math.floor(Math.random()*10000));
 
 }
-for (var a=0; a<10; a++){
-	kaliciNesneEkle("h", Math.floor(Math.random() * 1000), Math.floor(Math.random()*1000));
+for (var a=0; a<100; a++){
+	kaliciNesneEkle("h", Math.floor(Math.random() * 10000), Math.floor(Math.random()*10000));
 
 }
-for (var a=0; a<10; a++){
-	kaliciNesneEkle("z", Math.floor(Math.random() * 1000), Math.floor(Math.random()*1000));
+for (var a=0; a<100; a++){
+	kaliciNesneEkle("z", Math.floor(Math.random() * 10000), Math.floor(Math.random()*10000));
 }
 
 
@@ -95,8 +95,6 @@ io.on("connection", function(s){
 
 	s.on("ilkgiris", function(data){
 		hersey.oyuncular[s.id] = yeniOyuncu(data.ad);
-
-
 	});
 
 	s.on("tus", function(data){
@@ -159,7 +157,7 @@ function oyunDongu(){
 
 			var gelenk = hersey.oyuncular[sid].k;
 			if(gelenk == 0){
-				hersey.oyuncular[sid].h = baslangic_hizi;
+				hersey.oyuncular[sid].h = hersey.oyuncular[sid].h;
 
 			}else if(gelenk == 32){
 				hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
@@ -201,12 +199,23 @@ function oyunDongu(){
 						var ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
 						var ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);
 
-						if (ben_ve_nesne_farki_X < 36 && ben_ve_nesne_farki_Y <36){
-							console.log("Çarpıştınız");
-							console.log(ben_ve_nesne_farki_X+ " : "+ben_ve_nesne_farki_Y);
-							hersey.oyuncular[s.id].c += 5;
+						if (ben_ve_nesne_farki_X < 36 && ben_ve_nesne_farki_Y <36 && kaliciNesne.t != "z"){
+		
+							if (kaliciNesne.t == "g"){
+								hersey.oyuncular[s.id].c += 5;
+								c(hersey.oyuncular[s.id]);					
+							}
+							
+							if(kaliciNesne.t == "h"){
+								hersey.oyuncular[s.id].h += 0.3;
+								c(hersey.oyuncular[s.id]);
+							}
+
 
 							kaliciNesneler.splice(k, 1);
+							io.emit("kaliciNesneSil", {
+								k:k
+							});
 
 
 
@@ -215,27 +224,6 @@ function oyunDongu(){
 					});
 				}
 
-
-/*
-
-				if (hersey && hersey.oyuncular && hersey.oyuncular[s.id] && hersey.oyuncular[s.id].x && hersey.oyuncular[s.id].y){
-
-					var benimX = hersey.oyuncular[s.id].x;
-					var benimY = hersey.oyuncular[s.id].y;
-					var ben_ve_nesne_farki_X = Math.abs(hersey.oyuncular[sid].x-benimX);
-					var ben_ve_nesne_farki_Y = Math.abs(hersey.oyuncular[sid].y-benimY);
-
-
-					console.log(ben_ve_nesne_farki_X);
-
-					if (ben_ve_nesne_farki_X < 36 && hersey.oyuncular[s.id] && ben_ve_nesne_farki_Y >36){
-						console.log("Çarpıştınız");
-					}else{
-						console.log("Çarpışma yok");
-					}
-
-				}
-*/
 
 
 				hersey.oyuncular[sid].a += 1;

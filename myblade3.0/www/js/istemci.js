@@ -23,6 +23,9 @@ $(document).ready(function(){
 		render(kaliciNesneler);
 	});
 
+	s.on("kaliciNesneSil", function(data){
+		kaliciNesneler.splice(data.k, 1);
+	});
 
 
 
