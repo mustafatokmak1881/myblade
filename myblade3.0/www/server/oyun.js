@@ -140,6 +140,18 @@ io.on("connection", function(s){
 
 var donguzaman = setInterval(function(){
 
+	oyunDongu();
+
+}, timer);
+
+
+
+
+
+
+
+
+function oyunDongu(){
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
 		for (var sid in hersey.oyuncular){
 
@@ -178,13 +190,23 @@ var donguzaman = setInterval(function(){
 				hersey.oyuncular[sid].a += 1;
 		}
 		
+
+
+
+
+
+
+
+		/*
+		
+			Buranın altına kod yazmak yok :)
+
+
+		*/
 		io.emit("hersey", hersey);
 
 		fps();
 		kb(hersey);
 		
-	}
-
-}, timer);
-
-
+	}	
+}
