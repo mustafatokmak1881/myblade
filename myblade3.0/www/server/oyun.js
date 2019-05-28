@@ -157,7 +157,7 @@ function oyunDongu(){
 
 			var gelenk = hersey.oyuncular[sid].k;
 			if(gelenk == 0){
-				hersey.oyuncular[sid].h = hersey.oyuncular[sid].h;
+				hersey.oyuncular[sid].h = baslangic_hizi;
 
 			}else if(gelenk == 32){
 				hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
@@ -246,6 +246,7 @@ function oyunDongu(){
 
 		//fps();
 		//kb(hersey);
+		console.log(hersey);
 		
 	}
 

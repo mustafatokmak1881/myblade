@@ -26,6 +26,9 @@ $(document).ready(function(){
 	s.on("kaliciNesneSil", function(data){
 		kaliciNesneler.splice(data.k, 1);
 	});
+	s.on("oyunbitti", function(data){
+		alert(data.mesaj);
+	});
 
 
 
