@@ -152,8 +152,23 @@ var donguzaman = setInterval(function(){
 function oyunDongu(){
 
 
+
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
 		for (var sid in hersey.oyuncular){
+
+
+	if (hersey.oyuncular[sid] && hersey.oyuncular[sid].c && hersey.oyuncular[sid].c < 1){
+		
+		try{
+		
+			io.to(sid).emit("oyunbitti", "");
+			delete hersey.oyuncular[sid];
+			return false;
+		}catch(err){
+
+		}
+	}
+
 
 			var gelenk = hersey.oyuncular[sid].k;
 			if(gelenk == 0){
@@ -252,11 +267,7 @@ function oyunDongu(){
 		console.log(hersey);
 
 
-		if (hersey && hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].c && hersey.oyuncular[sid].c < 1){
-	
-			s.emit("oyunbitti", "");
-			delete hersey.oyuncular[sid];
-		}
+
 		
 	}
 
