@@ -27,7 +27,7 @@ $(document).ready(function(){
 		kaliciNesneler.splice(data.k, 1);
 	});
 	s.on("oyunbitti", function(data){
-		alert(data.mesaj);
+		alert("Oyun Bitti");
 	});
 
 

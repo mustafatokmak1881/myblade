@@ -19,15 +19,15 @@ function kaliciNesneEkle(t,x,y){
 
 
 for (var a=0; a<100; a++){
-	kaliciNesneEkle("g", Math.floor(Math.random() * 10000), Math.floor(Math.random()*10000));
+	kaliciNesneEkle("g", Math.floor(Math.random() * 3000), Math.floor(Math.random()*3000));
 
 }
 for (var a=0; a<100; a++){
-	kaliciNesneEkle("h", Math.floor(Math.random() * 10000), Math.floor(Math.random()*10000));
+	kaliciNesneEkle("h", Math.floor(Math.random() * 3000), Math.floor(Math.random()*3000));
 
 }
 for (var a=0; a<100; a++){
-	kaliciNesneEkle("z", Math.floor(Math.random() * 10000), Math.floor(Math.random()*10000));
+	kaliciNesneEkle("z", Math.floor(Math.random() * 30000), Math.floor(Math.random()*3000));
 }
 
 
@@ -160,6 +160,9 @@ function oyunDongu(){
 				hersey.oyuncular[sid].h = baslangic_hizi;
 
 			}else if(gelenk == 32){
+				if (hersey.oyuncular[sid].c){
+					hersey.oyuncular[sid].c -= 0.1;
+				}
 				hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
 			}
 			
@@ -247,6 +250,13 @@ function oyunDongu(){
 		//fps();
 		//kb(hersey);
 		console.log(hersey);
+
+
+		if (hersey && hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].c && hersey.oyuncular[sid].c < 1){
+	
+			s.emit("oyunbitti", "");
+			delete hersey.oyuncular[sid];
+		}
 		
 	}
 
