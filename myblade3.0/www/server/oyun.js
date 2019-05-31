@@ -9,7 +9,6 @@ const sinir_bitis_X = 1000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 1000;
 
-
 const kaliciNesneler = [];
 
 function kaliciNesneEkle(t,x,y){
@@ -175,10 +174,14 @@ function oyunDongu(){
 				hersey.oyuncular[sid].h = baslangic_hizi;
 
 			}else if(gelenk == 32){
-				if (hersey.oyuncular[sid].c){
+				if (hersey.oyuncular[sid].c && hersey.oyuncular[sid].c > 10){
 					hersey.oyuncular[sid].c -= 0.1;
+					hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
 				}
-				hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
+				else{
+					hersey.oyuncular[sid].h = baslangic_hizi;
+				}
+				
 			}
 			
 
@@ -264,6 +267,7 @@ function oyunDongu(){
 
 		//fps();
 		//kb(hersey);
+		console.clear();
 		console.log(hersey);
 
 
