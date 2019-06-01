@@ -175,7 +175,7 @@ function oyunDongu(){
 					hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
 				}
 				else{
-					hersey.oyuncular[sid].h = baslangic_hizi;
+					//hersey.oyuncular[sid].h = baslangic_hizi;
 				}
 				
 			}
@@ -205,89 +205,54 @@ function oyunDongu(){
 				}
 
 
-				
-if (kaliciNesneler && kaliciNesneler.length>0){
-	var benimX = hersey.oyuncular[sid].x;
-	var benimY = hersey.oyuncular[sid].y;
+
+/* Carpisma Baslangic*/
+							
+			if (kaliciNesneler && kaliciNesneler.length>0){
+				var benimX = hersey.oyuncular[sid].x;
+				var benimY = hersey.oyuncular[sid].y;
+
+				kaliciNesneler.forEach(function(kaliciNesne,k) {
+
+					var ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
+					var ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);
+
+
+
+					if (ben_ve_nesne_farki_X < 36 && ben_ve_nesne_farki_Y <36 && kaliciNesne.t != "z"){
 	
-	kaliciNesneler.forEach(function(kaliciNesne,k) {
 
-		var ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
-		var ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);
-
-
-
-		if (ben_ve_nesne_farki_X < 36 && ben_ve_nesne_farki_Y <36 && kaliciNesne.t != "z"){
-		
-			if (kaliciNesne.t == "g"){
-				hersey.oyuncular[sid].c += 5;
-				c(hersey.oyuncular[sid]);					
-			}
-							
-			if(kaliciNesne.t == "h"){
-				hersey.oyuncular[sid].h += 0.3;
-				c(hersey.oyuncular[sid]);
-			}
-
-
-			kaliciNesneler.splice(k, 1);
-			io.emit("kaliciNesneSil", {
-				k:k
-			});
-
-
-
-		}
-
-
-
-
-	});
-
-
-
-}
-
-
-
-/*
-				if (kaliciNesneler && kaliciNesneler.length>0 && hersey && hersey.oyuncular && hersey.oyuncular[s.id] && hersey.oyuncular[s.id].x && hersey.oyuncular[s.id].y){
-					kaliciNesneler.forEach(function(kaliciNesne,k){
-
-						var benimX = hersey.oyuncular[s.id].x;
-						var benimY = hersey.oyuncular[s.id].y;
-
-						var ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
-						var ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);
-
-						if (ben_ve_nesne_farki_X < 36 && ben_ve_nesne_farki_Y <36 && kaliciNesne.t != "z"){
-		
-							if (kaliciNesne.t == "g"){
-								hersey.oyuncular[s.id].c += 5;
-								c(hersey.oyuncular[s.id]);					
-							}
-							
-							if(kaliciNesne.t == "h"){
-								hersey.oyuncular[s.id].h += 0.3;
-								c(hersey.oyuncular[s.id]);
-							}
-
-
-							kaliciNesneler.splice(k, 1);
-							io.emit("kaliciNesneSil", {
-								k:k
-							});
-
-
-
+						if (kaliciNesne.t == "g"){
+							hersey.oyuncular[sid].c += 5;
+							c(hersey.oyuncular[sid]);					
+						}			
+						else if(kaliciNesne.t == "h"){
+							hersey.oyuncular[sid].h += 3;
+							c(hersey.oyuncular[sid]);
 						}
 
-					});
-				}
 
-*/
+						kaliciNesneler.splice(k, 1);
+						io.emit("kaliciNesneSil", {
+							k:k
+						});
 
-				hersey.oyuncular[sid].a += 1;
+
+
+					}
+
+
+
+
+				});
+
+
+
+			}
+
+/* Carpisma Bitis*/
+
+			hersey.oyuncular[sid].a += 1;
 		}
 		
 
@@ -307,7 +272,7 @@ if (kaliciNesneler && kaliciNesneler.length>0){
 
 		//fps();
 		//kb(hersey);
-		console.clear();
+		
 		console.log(hersey);
 
 
