@@ -158,6 +158,9 @@ function kaliciNesneCiz(kaliciNesneler){
 
 
 function render(data){
+
+
+
 	ctxSabit.clearRect(0,0, myc.width, myc.height);
 	ctx.clearRect(0,0, myc.width, myc.height);
 

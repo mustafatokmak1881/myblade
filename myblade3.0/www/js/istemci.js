@@ -1,6 +1,11 @@
 var asagi_tusu = 1;
 
 
+var suan = new Date().getTime();
+
+	
+
+
 
 
 
@@ -14,7 +19,10 @@ $(document).ready(function(){
 
 
 	s.on("hersey", function(data){
-
+	
+	var simdi = new Date().getTime();
+	console.log("Fark: "+(simdi-suan));
+	suan = simdi;
 		render(data);
 	});	
 

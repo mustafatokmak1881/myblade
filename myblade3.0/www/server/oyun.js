@@ -9,6 +9,8 @@ const sinir_bitis_X = 1000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 1000;
 
+var benimS = "";
+
 const kaliciNesneler = [];
 
 function kaliciNesneEkle(t,x,y){
@@ -86,6 +88,7 @@ function pf(d1){
 
 
 io.on("connection", function(s){
+	benimS = s;
 	ci();
 		s.emit("ilkgiris", {
 			kaliciNesneler: kaliciNesneler
@@ -131,15 +134,7 @@ io.on("connection", function(s){
 	});
 
 
-
-
-
-
-var donguzaman = setInterval(function(){
-
-	oyunDongu();
-
-}, timer);
+});
 
 
 
@@ -148,7 +143,8 @@ var donguzaman = setInterval(function(){
 
 
 
-function oyunDongu(){
+
+function oyunDongu(s){
 
 
 
@@ -279,4 +275,10 @@ function oyunDongu(){
 }
 
 
-});
+
+var donguzaman = setInterval(function(){
+
+	oyunDongu(benimS);
+
+}, timer);
+
