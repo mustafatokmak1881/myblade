@@ -9,7 +9,7 @@ const sinir_bitis_X = 1000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 1000;
 
-var benimS = "";
+
 
 const kaliciNesneler = [];
 
@@ -88,7 +88,7 @@ function pf(d1){
 
 
 io.on("connection", function(s){
-	benimS = s;
+
 	ci();
 		s.emit("ilkgiris", {
 			kaliciNesneler: kaliciNesneler
@@ -144,7 +144,7 @@ io.on("connection", function(s){
 
 
 
-function oyunDongu(s){
+function oyunDongu(){
 
 
 
@@ -206,7 +206,51 @@ function oyunDongu(s){
 
 
 				
+if (kaliciNesneler && kaliciNesneler.length>0){
+	var benimX = hersey.oyuncular[sid].x;
+	var benimY = hersey.oyuncular[sid].y;
+	
+	kaliciNesneler.forEach(function(kaliciNesne,k) {
 
+		var ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
+		var ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);
+
+
+
+		if (ben_ve_nesne_farki_X < 36 && ben_ve_nesne_farki_Y <36 && kaliciNesne.t != "z"){
+		
+			if (kaliciNesne.t == "g"){
+				hersey.oyuncular[sid].c += 5;
+				c(hersey.oyuncular[sid]);					
+			}
+							
+			if(kaliciNesne.t == "h"){
+				hersey.oyuncular[sid].h += 0.3;
+				c(hersey.oyuncular[sid]);
+			}
+
+
+			kaliciNesneler.splice(k, 1);
+			io.emit("kaliciNesneSil", {
+				k:k
+			});
+
+
+
+		}
+
+
+
+
+	});
+
+
+
+}
+
+
+
+/*
 				if (kaliciNesneler && kaliciNesneler.length>0 && hersey && hersey.oyuncular && hersey.oyuncular[s.id] && hersey.oyuncular[s.id].x && hersey.oyuncular[s.id].y){
 					kaliciNesneler.forEach(function(kaliciNesne,k){
 
@@ -241,7 +285,7 @@ function oyunDongu(s){
 					});
 				}
 
-
+*/
 
 				hersey.oyuncular[sid].a += 1;
 		}
@@ -278,7 +322,7 @@ function oyunDongu(s){
 
 var donguzaman = setInterval(function(){
 
-	oyunDongu(benimS);
+	oyunDongu();
 
 }, timer);
 
