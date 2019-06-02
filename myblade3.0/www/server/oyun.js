@@ -97,7 +97,7 @@ io.on("connection", function(s){
 	});
 
 	s.on("tus", function(data){
-			
+		c(data);
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id]){ 
 			hersey.oyuncular[s.id].k = data.keyCode;
 		}
@@ -166,7 +166,7 @@ function oyunDongu(){
 							if(gelenk == 0){
 								hersey.oyuncular[sid].h = baslangic_hizi;
 
-							}else if(gelenk == 32){
+							}else if(gelenk == 97){
 								if (hersey.oyuncular[sid].c && hersey.oyuncular[sid].c > 10){
 									hersey.oyuncular[sid].c -= 0.1;
 									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
@@ -192,9 +192,13 @@ function oyunDongu(){
 									//hersey.oyuncular[sid].r = "b";
 								}
 								else{
-									if (hersey.oyuncular[sid].k == 32){
-										hersey.oyuncular[sid].r = "m";
-
+									if (hersey.oyuncular[sid].k == 97){
+										if (hersey.oyuncular[sid].c > 10){
+											hersey.oyuncular[sid].r = "m";
+										}
+										else{
+											hersey.oyuncular[sid].r = "s";
+										}
 									}
 									else{
 										hersey.oyuncular[sid].r = "s";
@@ -270,7 +274,7 @@ function oyunDongu(){
 		//fps();
 		//kb(hersey);
 		
-		console.log(hersey);
+		//console.log(hersey);
 
 
 
