@@ -1,7 +1,7 @@
 
 
 const timer = 30;
-const baslangic_hizi = 5;
+const baslangic_hizi = 3;
 const ani_hizlanma_katsayisi = 8;
 const baslangic_cani = 10;
 const sinir_baslangic_X = 0;
@@ -19,15 +19,12 @@ function kaliciNesneEkle(t,x,y){
 }
 
 
-for (var a=0; a<100; a++){
-	kaliciNesneEkle("g", Math.floor(Math.random() * 3000), Math.floor(Math.random()*3000));
+for (var a=0; a<250; a++){
+	kaliciNesneEkle("g", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
 
 }
-for (var a=0; a<100; a++){
-	kaliciNesneEkle("h", Math.floor(Math.random() * 3000), Math.floor(Math.random()*3000));
 
-}
-for (var a=0; a<100; a++){
+for (var a=0; a<1000; a++){
 	kaliciNesneEkle("z", Math.floor(Math.random() * 30000), Math.floor(Math.random()*3000));
 }
 
@@ -190,9 +187,9 @@ function oyunDongu(){
 								}
 
 								if (hersey.oyuncular[sid].a < 20){
-									hersey.oyuncular[sid].r = "k";
+									//hersey.oyuncular[sid].r = "k";
 								}else if (hersey.oyuncular[sid].a >= 80 && hersey.oyuncular[sid].a < 120){
-									hersey.oyuncular[sid].r = "b";
+									//hersey.oyuncular[sid].r = "b";
 								}
 								else{
 									if (hersey.oyuncular[sid].k == 32){

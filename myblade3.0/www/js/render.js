@@ -44,7 +44,9 @@ function topac_Ciz(sid,sidBilgi){
 
 	var ortaX = topaci_ekranda_ortala().ortaX;
 	var ortaY = topaci_ekranda_ortala().ortaY;
-
+	var	benimX = sidBilgi.x;
+	var	benimY = sidBilgi.y;
+	var	benimC = sidBilgi.c;
 
 	ctx.shadowOffsetX = 5;
 	ctx.shadowOffsetY = 6;
@@ -56,9 +58,7 @@ function topac_Ciz(sid,sidBilgi){
 		ctx.fillText(sidBilgi.ad, ortaX+40, ortaY-16);
 		ctx.fillStyle = "red";
 
-		benimX = sidBilgi.x;
-		benimY = sidBilgi.y;
-		benimC = sidBilgi.c;
+
 
 
 		if (benimC >= 64){
