@@ -152,105 +152,105 @@ function oyunDongu(){
 		for (var sid in hersey.oyuncular){
 
 
-	if (hersey.oyuncular[sid] && hersey.oyuncular[sid].c && hersey.oyuncular[sid].c < 1){
-		
-		try{
-		
-			io.to(sid).emit("oyunbitti", "");
-			delete hersey.oyuncular[sid];
-			return false;
-		}catch(err){
+					if (hersey.oyuncular[sid] && hersey.oyuncular[sid].c && hersey.oyuncular[sid].c < 1){
+						
+						try{
+						
+							io.to(sid).emit("oyunbitti", "");
+							delete hersey.oyuncular[sid];
+							return false;
+						}catch(err){
 
-		}
-	}
-
-
-			var gelenk = hersey.oyuncular[sid].k;
-			if(gelenk == 0){
-				hersey.oyuncular[sid].h = baslangic_hizi;
-
-			}else if(gelenk == 32){
-				if (hersey.oyuncular[sid].c && hersey.oyuncular[sid].c > 10){
-					hersey.oyuncular[sid].c -= 0.1;
-					hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
-				}
-				else{
-					//hersey.oyuncular[sid].h = baslangic_hizi;
-				}
-				
-			}
-			
-
-
-			hersey.oyuncular[sid].x = pf(hersey.oyuncular[sid].x) + pf(hersey.oyuncular[sid].wx)*pf(hersey.oyuncular[sid].h);
-			hersey.oyuncular[sid].y = pf(hersey.oyuncular[sid].y) + pf(hersey.oyuncular[sid].wy)*pf(hersey.oyuncular[sid].h);
-
-				if (hersey.oyuncular[sid].a>=600){
-					hersey.oyuncular[sid].a = 0; 
-				}
-
-				if (hersey.oyuncular[sid].a < 20){
-					hersey.oyuncular[sid].r = "k";
-				}else if (hersey.oyuncular[sid].a >= 80 && hersey.oyuncular[sid].a < 120){
-					hersey.oyuncular[sid].r = "b";
-				}
-				else{
-					if (hersey.oyuncular[sid].k == 32){
-						hersey.oyuncular[sid].r = "m";
-
-					}
-					else{
-						hersey.oyuncular[sid].r = "s";
-					}
-				}
-
-
-
-/* Carpisma Baslangic*/
-							
-			if (kaliciNesneler && kaliciNesneler.length>0){
-				var benimX = hersey.oyuncular[sid].x;
-				var benimY = hersey.oyuncular[sid].y;
-
-				kaliciNesneler.forEach(function(kaliciNesne,k) {
-
-					var ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
-					var ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);
-
-
-
-					if (ben_ve_nesne_farki_X < 36 && ben_ve_nesne_farki_Y <36 && kaliciNesne.t != "z"){
-	
-
-						if (kaliciNesne.t == "g"){
-							hersey.oyuncular[sid].c += 5;
-							c(hersey.oyuncular[sid]);					
-						}			
-						else if(kaliciNesne.t == "h"){
-							hersey.oyuncular[sid].h += 3;
-							c(hersey.oyuncular[sid]);
 						}
-
-
-						kaliciNesneler.splice(k, 1);
-						io.emit("kaliciNesneSil", {
-							k:k
-						});
-
-
-
 					}
 
 
+							var gelenk = hersey.oyuncular[sid].k;
+							if(gelenk == 0){
+								hersey.oyuncular[sid].h = baslangic_hizi;
+
+							}else if(gelenk == 32){
+								if (hersey.oyuncular[sid].c && hersey.oyuncular[sid].c > 10){
+									hersey.oyuncular[sid].c -= 0.1;
+									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
+								}
+								else{
+									hersey.oyuncular[sid].h = baslangic_hizi;
+								}
+								
+							}
+							
 
 
-				});
+							hersey.oyuncular[sid].x = pf(hersey.oyuncular[sid].x) + pf(hersey.oyuncular[sid].wx)*pf(hersey.oyuncular[sid].h);
+							hersey.oyuncular[sid].y = pf(hersey.oyuncular[sid].y) + pf(hersey.oyuncular[sid].wy)*pf(hersey.oyuncular[sid].h);
+
+								if (hersey.oyuncular[sid].a>=600){
+									hersey.oyuncular[sid].a = 0; 
+								}
+
+								if (hersey.oyuncular[sid].a < 20){
+									hersey.oyuncular[sid].r = "k";
+								}else if (hersey.oyuncular[sid].a >= 80 && hersey.oyuncular[sid].a < 120){
+									hersey.oyuncular[sid].r = "b";
+								}
+								else{
+									if (hersey.oyuncular[sid].k == 32){
+										hersey.oyuncular[sid].r = "m";
+
+									}
+									else{
+										hersey.oyuncular[sid].r = "s";
+									}
+								}
 
 
 
-			}
+				/* Carpisma Baslangic*/
+											
+							if (kaliciNesneler && kaliciNesneler.length>0){
+								var benimX = hersey.oyuncular[sid].x;
+								var benimY = hersey.oyuncular[sid].y;
 
-/* Carpisma Bitis*/
+								kaliciNesneler.forEach(function(kaliciNesne,k) {
+
+									var ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
+									var ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);
+
+
+
+									if (ben_ve_nesne_farki_X < 36 && ben_ve_nesne_farki_Y <36 && kaliciNesne.t != "z"){
+					
+
+										if (kaliciNesne.t == "g"){
+											hersey.oyuncular[sid].c += 5;
+											c(hersey.oyuncular[sid]);					
+										}			
+										else if(kaliciNesne.t == "h"){
+											hersey.oyuncular[sid].h += 3;
+											c(hersey.oyuncular[sid]);
+										}
+
+
+										kaliciNesneler.splice(k, 1);
+										io.emit("kaliciNesneSil", {
+											k:k
+										});
+
+
+
+									}
+
+
+
+
+								});
+
+
+
+							}
+
+				/* Carpisma Bitis*/
 
 			hersey.oyuncular[sid].a += 1;
 		}
