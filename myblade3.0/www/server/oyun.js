@@ -68,7 +68,7 @@ function fps(){
 
 
 function yeniOyuncu(ad){
-	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:""}
+	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"",t:0}
 	o.ad = ad;
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
 	o.y = Math.floor(Math.random() * 300);
@@ -146,7 +146,25 @@ function oyunDongu(){
 
 
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
+		/*			OYUNCULAR DÖNGÜSÜ BAŞLANGIÇ			*/
 		for (var sid in hersey.oyuncular){
+			/*			Kendi kendisine çarpma durumunu engellemek için			*/
+			for (var sid2 in hersey.oyuncular){
+				if (sid2 != sid){
+					var benimX = hersey.oyuncular[sid].x;
+					var benimY = hersey.oyuncular[sid].y;
+
+					var digerX = hersey.oyuncular[sid2].x;
+					var digerY = hersey.oyuncular[sid2].y;
+
+
+
+					var ben_ve_nesne_farki_X = Math.abs(digerX-benimX);
+					var ben_ve_nesne_farki_Y = Math.abs(digerY-benimY);
+
+
+				}
+			}
 
 
 					if (hersey.oyuncular[sid] && hersey.oyuncular[sid].c && hersey.oyuncular[sid].c < 1){
@@ -165,14 +183,21 @@ function oyunDongu(){
 							var gelenk = hersey.oyuncular[sid].k;
 							if(gelenk == 0){
 								hersey.oyuncular[sid].h = baslangic_hizi;
+								hersey.oyuncular[sid].t = 0;
 
 							}else if(gelenk == 97){
 								if (hersey.oyuncular[sid].c && hersey.oyuncular[sid].c > 10){
 									hersey.oyuncular[sid].c -= 0.1;
 									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
+									if (hersey.oyuncular[sid].t == 0){
+										var suan = new Date().getTime();
+										hersey.oyuncular[sid].t = suan;										
+									}
+
 								}
 								else{
 									hersey.oyuncular[sid].h = baslangic_hizi;
+									hersey.oyuncular[sid].t = 0;
 								}
 								
 							}
@@ -255,7 +280,7 @@ function oyunDongu(){
 
 			hersey.oyuncular[sid].a += 1;
 		}
-		
+		/*			OYUNCULAR DÖNGÜSÜ BİTİŞ			*/
 
 
 
