@@ -1,8 +1,8 @@
 
 
 const timer = 30;
-const baslangic_hizi = 3;
-const ani_hizlanma_katsayisi = 8;
+const baslangic_hizi = 4;
+const ani_hizlanma_katsayisi = 13;
 const baslangic_cani = 10;
 const sinir_baslangic_X = 0;
 const sinir_bitis_X = 1000;
@@ -97,7 +97,7 @@ io.on("connection", function(s){
 	});
 
 	s.on("tus", function(data){
-		c(data);
+
 		if (hersey && hersey.oyuncular && hersey.oyuncular[s.id]){ 
 			hersey.oyuncular[s.id].k = data.keyCode;
 		}
@@ -274,7 +274,7 @@ function oyunDongu(){
 		//fps();
 		//kb(hersey);
 		
-		//console.log(hersey);
+		console.log(hersey);
 
 
 
