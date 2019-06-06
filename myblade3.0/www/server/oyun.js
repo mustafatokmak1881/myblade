@@ -66,9 +66,21 @@ function fps(){
 }
 
 
+function wxybul(newx, newy, x, y)
+{
+	var fx = x-newx;
+	var fy = y-newy;
+	var wtoplam = Math.abs(fx)+Math.abs(fy);
+	var wx = (fx/wtoplam)%wtoplam;
+	var wy = (fy/wtoplam)%wtoplam;	
+	var obj = {wx: wx.toFixed(2), wy: wy.toFixed(2)}
+
+	return obj;			
+}
+
 
 function yeniOyuncu(ad){
-	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"",t:0}
+	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"",t:0,f:0,rx:0,ry:0}
 	o.ad = ad;
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
 	o.y = Math.floor(Math.random() * 300);
@@ -148,9 +160,26 @@ function oyunDongu(){
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
 		/*			OYUNCULAR DÖNGÜSÜ BAŞLANGIÇ			*/
 		for (var sid in hersey.oyuncular){
+
+			if (hersey.oyuncular[sid].f > 0){
+				hersey.oyuncular[sid].f -= 1;
+				hersey.oyuncular[sid].x -= (hersey.oyuncular[sid].rx*32);
+				hersey.oyuncular[sid].y -= (hersey.oyuncular[sid].ry*32);
+			}
+			else{
+				hersey.oyuncular[sid].rx = 0;
+				hersey.oyuncular[sid].ry = 0;
+			}
+
 			/*			Kendi kendisine çarpma durumunu engellemek için			*/
 			for (var sid2 in hersey.oyuncular){
 				if (sid2 != sid){
+
+
+
+		
+
+
 					var benimX = hersey.oyuncular[sid].x;
 					var benimY = hersey.oyuncular[sid].y;
 
@@ -161,6 +190,34 @@ function oyunDongu(){
 
 					var ben_ve_nesne_farki_X = Math.abs(digerX-benimX);
 					var ben_ve_nesne_farki_Y = Math.abs(digerY-benimY);
+
+					if (ben_ve_nesne_farki_X < 54 && ben_ve_nesne_farki_Y <54){
+						console.log("Çarpıştı");
+
+						if (hersey.oyuncular[sid].rx == 0 && hersey.oyuncular[sid].ry == 0){
+							var R = wxybul(hersey.oyuncular[sid2].x, hersey.oyuncular[sid2].y, hersey.oyuncular[sid].x, hersey.oyuncular[sid].y);
+							hersey.oyuncular[sid].rx = -1*(R.wx);
+							hersey.oyuncular[sid].ry = -1*(R.wy);
+
+						}
+
+						if (hersey.oyuncular[sid].t == hersey.oyuncular[sid2].t){
+							hersey.oyuncular[sid].f = 5;
+							hersey.oyuncular[sid2].f = 5;
+						}
+						else if(hersey.oyuncular[sid].t < hersey.oyuncular[sid2].t){
+							hersey.oyuncular[sid].f = 20;
+							hersey.oyuncular[sid2].f = 5;
+						}
+						else if(hersey.oyuncular[sid].t > hersey.oyuncular[sid2].t){
+							hersey.oyuncular[sid].f = 5;
+							hersey.oyuncular[sid2].f = 20;
+						}
+		
+					}
+					else{
+						//console.log("--");
+					}
 
 
 				}
@@ -299,7 +356,7 @@ function oyunDongu(){
 		//fps();
 		//kb(hersey);
 		
-		console.log(hersey);
+		//console.log(hersey);
 
 
 

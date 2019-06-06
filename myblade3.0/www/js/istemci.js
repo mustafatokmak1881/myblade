@@ -1,13 +1,5 @@
 var asagi_tusu = 1;
-
-
 var suan = new Date().getTime();
-
-	
-
-
-
-
 
 var s = io.connect("http://localhost:3011");
 //var s = io.connect("http://173.212.232.18:3011");
@@ -21,7 +13,7 @@ $(document).ready(function(){
 	s.on("hersey", function(data){
 	
 	var simdi = new Date().getTime();
-	console.log("Fark: "+(simdi-suan));
+
 	suan = simdi;
 		render(data);
 	});	
@@ -35,7 +27,7 @@ $(document).ready(function(){
 		kaliciNesneler.splice(data.k, 1);
 	});
 	s.on("oyunbitti", function(data){
-		console.log("Oyun bitti ");
+		
 		alert("Oyun Bitti");
 		return false;
 	});
