@@ -213,6 +213,10 @@ function oyunDongu(){
 						var g2 = gucFarki(hersey.oyuncular[sid].c, hersey.oyuncular[sid2].c).g2;
 
 						if (hersey.oyuncular[sid].t == hersey.oyuncular[sid2].t){
+							/*  Çarpışma anında tuş hızlanma devre dışı*/
+							hersey.oyuncular[sid].k = 0;
+							hersey.oyuncular[sid2].k = 0;
+
 							hersey.oyuncular[sid].f = 5;
 							hersey.oyuncular[sid2].f = 5;
 
@@ -222,6 +226,7 @@ function oyunDongu(){
 
 						}
 						else if(hersey.oyuncular[sid].t < hersey.oyuncular[sid2].t){
+							/*  Çarpışma anında tuş hızlanma devre dışı*/
 							hersey.oyuncular[sid].k = 0;
 							hersey.oyuncular[sid2].k = 0;
 
@@ -232,6 +237,7 @@ function oyunDongu(){
 							hersey.oyuncular[sid].c -= g2*10;
 						}
 						else if(hersey.oyuncular[sid].t > hersey.oyuncular[sid2].t){
+							/*  Çarpışma anında tuş hızlanma devre dışı*/
 							hersey.oyuncular[sid].k = 0;
 							hersey.oyuncular[sid2].k = 0;
 
