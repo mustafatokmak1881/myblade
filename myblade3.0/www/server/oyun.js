@@ -19,12 +19,12 @@ function kaliciNesneEkle(t,x,y){
 }
 
 
-for (var a=0; a<250; a++){
+for (var a=0; a<200; a++){
 	kaliciNesneEkle("g", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
 
 }
 
-for (var a=0; a<1000; a++){
+for (var a=0; a<200; a++){
 	kaliciNesneEkle("z", Math.floor(Math.random() * 30000), Math.floor(Math.random()*3000));
 }
 
@@ -78,6 +78,12 @@ function wxybul(newx, newy, x, y)
 	return obj;			
 }
 
+function gucFarki(guc1,guc2){
+	var t = guc1+guc2;
+	var g1 = (guc1/t).toFixed(2);
+	var g2 = (guc2/t).toFixed(2);
+	return {g1:g1, g2: g2}
+}
 
 function yeniOyuncu(ad){
 	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"",t:0,f:0,rx:0,ry:0}
@@ -163,8 +169,8 @@ function oyunDongu(){
 
 			if (hersey.oyuncular[sid].f > 0){
 				hersey.oyuncular[sid].f -= 1;
-				hersey.oyuncular[sid].x -= (hersey.oyuncular[sid].rx*32);
-				hersey.oyuncular[sid].y -= (hersey.oyuncular[sid].ry*32);
+				hersey.oyuncular[sid].x -= (hersey.oyuncular[sid].rx*16);
+				hersey.oyuncular[sid].y -= (hersey.oyuncular[sid].ry*16);
 			}
 			else{
 				hersey.oyuncular[sid].rx = 0;
@@ -201,17 +207,39 @@ function oyunDongu(){
 
 						}
 
+
+							/* Güce göre puan azaltma*/
+						var g1 = gucFarki(hersey.oyuncular[sid].c, hersey.oyuncular[sid2].c).g1;
+						var g2 = gucFarki(hersey.oyuncular[sid].c, hersey.oyuncular[sid2].c).g2;
+
 						if (hersey.oyuncular[sid].t == hersey.oyuncular[sid2].t){
 							hersey.oyuncular[sid].f = 5;
 							hersey.oyuncular[sid2].f = 5;
+
+							/* Güce göre puan azaltma*/
+							hersey.oyuncular[sid2].c -= g1*5;
+							hersey.oyuncular[sid].c -= g2*5;
+
 						}
 						else if(hersey.oyuncular[sid].t < hersey.oyuncular[sid2].t){
-							hersey.oyuncular[sid].f = 20;
-							hersey.oyuncular[sid2].f = 5;
+							hersey.oyuncular[sid].k = 0;
+							hersey.oyuncular[sid2].k = 0;
+
+							hersey.oyuncular[sid].f = 40;
+							hersey.oyuncular[sid2].f = 20;
+
+							hersey.oyuncular[sid2].c -= g1*5;
+							hersey.oyuncular[sid].c -= g2*10;
 						}
 						else if(hersey.oyuncular[sid].t > hersey.oyuncular[sid2].t){
-							hersey.oyuncular[sid].f = 5;
-							hersey.oyuncular[sid2].f = 20;
+							hersey.oyuncular[sid].k = 0;
+							hersey.oyuncular[sid2].k = 0;
+
+							hersey.oyuncular[sid].f = 20;
+							hersey.oyuncular[sid2].f = 40;
+
+							hersey.oyuncular[sid2].c -= g1*10;
+							hersey.oyuncular[sid].c -= g2*5;							
 						}
 		
 					}
@@ -356,7 +384,7 @@ function oyunDongu(){
 		//fps();
 		//kb(hersey);
 		
-		//console.log(hersey);
+		console.log(hersey);
 
 
 
