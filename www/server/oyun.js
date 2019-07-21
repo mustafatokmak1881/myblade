@@ -3,7 +3,7 @@
 const timer = 30;
 const baslangic_hizi = 8;
 const ani_hizlanma_katsayisi = 7;
-const baslangic_cani = 20;
+const baslangic_cani = 100000;
 const sinir_baslangic_X = 0;
 const sinir_bitis_X = 1000;
 const sinir_baslangic_Y = 0;
@@ -262,7 +262,7 @@ function oyunDongu(){
 					var ben_ve_nesne_farki_Y = Math.abs(digerY-benimY);
 
 					if (ben_ve_nesne_farki_X < 54 && ben_ve_nesne_farki_Y <54){
-						console.log("Beybladeler çarpıştı.");
+						console.log("Mybladeler çarpıştı.");
 
 						if (hersey.oyuncular[sid].rx == 0 && hersey.oyuncular[sid].ry == 0){
 							var R = wxybul(hersey.oyuncular[sid2].x, hersey.oyuncular[sid2].y, hersey.oyuncular[sid].x, hersey.oyuncular[sid].y);
