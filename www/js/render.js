@@ -121,10 +121,17 @@ function topac_Ciz(sid,sidBilgi){
 		ctx.fill();
 
 
+
 		ctx.beginPath();
 		ctx.rect(x,y-10, 64,10);
 		ctx.stokeStyle="#ccc";
-		ctx.stroke();		
+		ctx.stroke();	
+
+
+
+
+
+
 	}
 	else{
 		//Güç göstergesi gerçek
@@ -137,10 +144,16 @@ function topac_Ciz(sid,sidBilgi){
 		ctx.beginPath();
 		ctx.rect(x,y-10, 64,10);
 		ctx.stokeStyle="#ccc";
-		ctx.stroke();		
+		ctx.stroke();
+
+
 	}
 
-
+	if (sidBilgi.d>0){
+		ctx.beginPath();
+		ctx.fillText("f" , x, y-40);
+		ctx.fill();
+	}
 
 	ctx.drawImage(topac, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);	
 

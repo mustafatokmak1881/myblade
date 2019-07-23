@@ -306,15 +306,6 @@ function oyunDongu(){
 							hersey.oyuncular[sid].c -= g2*10;
 
 
-							if (hersey.oyuncular[sid].d == 0){
-								hersey.oyuncular[sid].d = 10;
-
-								io.to(sid).emit("tusabas", {
-									tus: "d"
-								});								
-							}
-
-
 						}
 						else if(hersey.oyuncular[sid].t > hersey.oyuncular[sid2].t){
 							/*  Çarpışma anında tuş hızlanma devre dışı*/
@@ -328,19 +319,11 @@ function oyunDongu(){
 							hersey.oyuncular[sid].c += g2*5;
 
 
-							if (hersey.oyuncular[sid2].d == 0){
-								hersey.oyuncular[sid2].d = 10;
-
-								io.to(sid2).emit("tusabas", {
-									tus: "d"
-								});	
-							}
-
 						}
 		
 					}
 					else if(ben_ve_nesne_farki_X < 64 && ben_ve_nesne_farki_Y <64){
-
+						//Burası defans için
 
 
 						if (hersey.oyuncular[sid].t == hersey.oyuncular[sid2].t){
@@ -348,7 +331,7 @@ function oyunDongu(){
 						}
 						else if(hersey.oyuncular[sid].t < hersey.oyuncular[sid2].t){
 							//if (hersey.oyuncular[sid].d == 0){
-								hersey.oyuncular[sid].d = 100;
+								hersey.oyuncular[sid].d = 10;
 
 								io.to(sid).emit("tusabas", {
 									tus: "f"
@@ -359,7 +342,7 @@ function oyunDongu(){
 						}
 						else if(hersey.oyuncular[sid].t > hersey.oyuncular[sid2].t){
 							//if (hersey.oyuncular[sid2].d == 0){
-								hersey.oyuncular[sid2].d = 100;
+								hersey.oyuncular[sid2].d = 10;
 
 								io.to(sid2).emit("tusabas", {
 									tus: "f"
