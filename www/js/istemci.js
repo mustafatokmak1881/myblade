@@ -32,6 +32,10 @@ $(document).ready(function(){
 		return false;
 	});
 
+	s.on("tusabas", function(data){
+		alert(data.tus);
+	});
+
 
 
 

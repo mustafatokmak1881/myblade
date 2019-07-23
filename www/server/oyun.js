@@ -231,6 +231,10 @@ function oyunDongu(){
 		/*			OYUNCULAR DÖNGÜSÜ BAŞLANGIÇ			*/
 		for (var sid in hersey.oyuncular){
 
+			if (hersey.oyuncular[sid].d>0){
+				hersey.oyuncular[sid].d -= 1;
+			}
+
 			if (hersey.oyuncular[sid].f > 0){
 				hersey.oyuncular[sid].f -= 1;
 				hersey.oyuncular[sid].x -= (hersey.oyuncular[sid].rx*16);
@@ -288,6 +292,7 @@ function oyunDongu(){
 							hersey.oyuncular[sid2].c -= g1*5;
 							hersey.oyuncular[sid].c -= g2*5;
 
+
 						}
 						else if(hersey.oyuncular[sid].t < hersey.oyuncular[sid2].t){
 							/*  Çarpışma anında tuş hızlanma devre dışı*/
@@ -299,6 +304,17 @@ function oyunDongu(){
 
 							hersey.oyuncular[sid2].c += g1*5;
 							hersey.oyuncular[sid].c -= g2*10;
+
+
+							if (hersey.oyuncular[sid].d == 0){
+								hersey.oyuncular[sid].d = 10;
+
+								io.to(sid).emit("tusabas", {
+									tus: "d"
+								});								
+							}
+
+
 						}
 						else if(hersey.oyuncular[sid].t > hersey.oyuncular[sid2].t){
 							/*  Çarpışma anında tuş hızlanma devre dışı*/
@@ -309,19 +325,48 @@ function oyunDongu(){
 							hersey.oyuncular[sid2].f = 40;
 
 							hersey.oyuncular[sid2].c -= g1*10;
-							hersey.oyuncular[sid].c += g2*5;							
+							hersey.oyuncular[sid].c += g2*5;
+
+
+							if (hersey.oyuncular[sid2].d == 0){
+								hersey.oyuncular[sid2].d = 10;
+
+								io.to(sid2).emit("tusabas", {
+									tus: "d"
+								});	
+							}
+
 						}
 		
 					}
 					else if(ben_ve_nesne_farki_X < 64 && ben_ve_nesne_farki_Y <64){
 
 
-						if (hersey.oyuncular[sid].d == 0){
-							hersey.oyuncular[sid].d = 100;
-						}
 
-						io.to(sid).emit("defans");
-						io.to(sid2).emit("defans");
+						if (hersey.oyuncular[sid].t == hersey.oyuncular[sid2].t){
+	
+						}
+						else if(hersey.oyuncular[sid].t < hersey.oyuncular[sid2].t){
+							//if (hersey.oyuncular[sid].d == 0){
+								hersey.oyuncular[sid].d = 100;
+
+								io.to(sid).emit("tusabas", {
+									tus: "f"
+								});								
+							//}
+
+
+						}
+						else if(hersey.oyuncular[sid].t > hersey.oyuncular[sid2].t){
+							//if (hersey.oyuncular[sid2].d == 0){
+								hersey.oyuncular[sid2].d = 100;
+
+								io.to(sid2).emit("tusabas", {
+									tus: "f"
+								});	
+							//}
+
+						}
 
 					}
 					else{
