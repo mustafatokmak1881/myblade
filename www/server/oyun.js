@@ -150,7 +150,7 @@ function gucFarki(guc1,guc2){
 }
 
 function yeniOyuncu(ad){
-	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"",t:0,f:0,rx:0,ry:0}
+	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, f:0, rx:0, ry:0, d:0}
 	o.ad = ad;
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
 	o.y = Math.floor(Math.random() * 300);
@@ -312,6 +312,17 @@ function oyunDongu(){
 							hersey.oyuncular[sid].c += g2*5;							
 						}
 		
+					}
+					else if(ben_ve_nesne_farki_X < 64 && ben_ve_nesne_farki_Y <64){
+
+
+						if (hersey.oyuncular[sid].d == 0){
+							hersey.oyuncular[sid].d = 100;
+						}
+
+						io.to(sid).emit("defans");
+						io.to(sid2).emit("defans");
+
 					}
 					else{
 						//console.log("--");
