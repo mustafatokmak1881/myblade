@@ -12,6 +12,19 @@ var ctxSabit = mycSabit.getContext("2d");
 mycSabit.width = window.innerWidth;
 mycSabit.height = window.innerHeight;
 
+
+
+var mycTuslar = document.getElementById("mycTuslar");
+var ctxTuslar = mycTuslar.getContext("2d");
+mycTuslar.width = window.innerWidth;
+mycTuslar.height = window.innerHeight;
+
+ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
+ctxTuslar.fillStyle = "grey";
+ctxTuslar.font = "16px Arial";
+ctxTuslar.fillText("W", mycTuslar.width/2, mycTuslar.height-20);
+
+
 ctx.fillStyle = "blue";
 ctx.fillRect(0,0, myc.width, myc.height);
 
@@ -67,7 +80,17 @@ function topac_Ciz(sid,sidBilgi){
 		ctx.fillText(sidBilgi.ad, ortaX+40, ortaY-16);
 		ctx.fillStyle = "red";
 
-
+		if (sidBilgi.t > 0){
+			ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
+			ctxTuslar.fillStyle = "grey";
+			ctxTuslar.font = "20px Arial";
+			ctxTuslar.fillText("Q", mycTuslar.width/2-(10), mycTuslar.height-20);	
+		}else{
+			ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
+			ctxTuslar.fillStyle = "darkorange";
+			ctxTuslar.font = "20px Arial";
+			ctxTuslar.fillText("Q", mycTuslar.width/2-(10), mycTuslar.height-20);			
+		}
 
 
 		if (benimC >= 64){
