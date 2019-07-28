@@ -3,12 +3,12 @@
 const timer = 30;
 const baslangic_hizi = 8;
 const ani_hizlanma_katsayisi = 7;
-const baslangic_cani = 100000;
+const baslangic_cani = 30000;
 const sinir_baslangic_X = 0;
 const sinir_bitis_X = 1000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 1000;
-
+const botsayisi = 5;
 
 
 const rboy = 488;
@@ -23,10 +23,18 @@ function kaliciNesneEkle(t,x,y){
 }
 
 
-for (var a=0; a<500; a++){
+for (var a=0; a<200; a++){
 	kaliciNesneEkle("g", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
 
 }
+
+
+for (var a=0; a<200; a++){
+	kaliciNesneEkle("b", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
+}
+
+
+
 
 
 function zeminikapla(){
@@ -166,6 +174,20 @@ function pf(d1){
 
 
 
+
+//Bot ekle
+function botolustur(d){
+	for (let i=0; i<d; i++){
+		hersey.oyuncular["bot"+i] = yeniOyuncu("BOT"+i);
+	}
+}
+
+
+botolustur(botsayisi);
+
+
+
+
 io.on("connection", function(s){
 
 	ci();
@@ -285,8 +307,8 @@ function oyunDongu(){
 							hersey.oyuncular[sid].k = 0;
 							hersey.oyuncular[sid2].k = 0;
 
-							hersey.oyuncular[sid].f = 5;
-							hersey.oyuncular[sid2].f = 5;
+							hersey.oyuncular[sid].f = 50;
+							hersey.oyuncular[sid2].f = 50;
 
 							/* Güce göre puan azaltma*/
 							hersey.oyuncular[sid2].c -= g1*5;
@@ -445,6 +467,10 @@ function oyunDongu(){
 										if (kaliciNesne.t == "g"){
 											hersey.oyuncular[sid].c += 5;
 											c(hersey.oyuncular[sid]);					
+										}
+										else if(kaliciNesne.t == "b"){
+											delete hersey.oyuncular[sid];
+											io.to(sid).emit("oyunbitti", "");
 										}			
 										else if(kaliciNesne.t == "h"){
 											hersey.oyuncular[sid].h += 3;
@@ -472,7 +498,9 @@ function oyunDongu(){
 
 				/* Carpisma Bitis*/
 
-			hersey.oyuncular[sid].a += 1;
+			if (hersey && hersey.oyuncular && hersey.oyuncular[sid]){
+				hersey.oyuncular[sid].a += 1;
+			}
 		}
 		/*			OYUNCULAR DÖNGÜSÜ BİTİŞ			*/
 

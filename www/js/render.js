@@ -34,7 +34,8 @@ var gucRes = new Image();
 gucRes.src = "res/guc.png";
 var hizRes = new Image();
 hizRes.src = "res/karakter.png";
-
+var bombaRes = new Image();
+bombaRes.src = "res/bomb.png";
 
 
 
@@ -56,9 +57,9 @@ function topac_Ciz(sid,sidBilgi){
 	var	benimY = sidBilgi.y;
 	var	benimC = sidBilgi.c;
 
-	ctx.shadowOffsetX = 5;
-	ctx.shadowOffsetY = 6;
-	ctx.shadowBlur = 6;
+	ctx.shadowOffsetX = 10;
+	ctx.shadowOffsetY = 15;
+	ctx.shadowBlur = 10;
 	ctx.font = "12px Arial";
 	if (sid && sid == s.id){
 		ctx.shadowColor = "black";
@@ -195,6 +196,13 @@ function kaliciNesneCiz(kaliciNesneler){
 
 		if (t == "g"){
 			ctxSabit.drawImage(gucRes, 0,0, gucRes.width, gucRes.height, x+farkX, y+farkY, gucRes.width, gucRes.height);
+		}
+		else if (t == "b"){
+			ctxSabit.drawImage(bombaRes,0,0,bombaRes.width, bombaRes.height, x+farkX, y+farkY, bombaRes.width, bombaRes.height);
+			ctxSabit.shadowColor = "black";
+			ctxSabit.shadowBlur = 15;
+			ctxSabit.shadowOffsetX = 10;
+			ctxSabit.shadowOffsetY = 15;
 		}
 		else if(t == "h"){
 			ctxSabit.drawImage(hizRes, 0,0, hizRes.width, hizRes.height, x+farkX, y+farkY, hizRes.width, hizRes.height);		
