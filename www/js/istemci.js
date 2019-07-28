@@ -1,8 +1,8 @@
 var asagi_tusu = 1;
 var suan = new Date().getTime();
 
-var s = io.connect("http://localhost:3011");
-//var s = io.connect("http://173.212.232.18:3011");
+//var s = io.connect("http://localhost:3011");
+var s = io.connect("http://173.212.232.18:3011");
 
 $(document).ready(function(){
 

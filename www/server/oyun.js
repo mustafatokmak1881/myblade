@@ -9,6 +9,8 @@ const sinir_bitis_X = 1000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 1000;
 const botsayisi = 5;
+const haritaSinirX = 3400;
+const haritaSinirY = 2900;
 
 
 const rboy = 488;
@@ -186,7 +188,7 @@ function botolustur(d){
 }
 
 
-//botolustur(botsayisi);
+botolustur(botsayisi);
 
 
 
@@ -405,10 +407,18 @@ function oyunDongu(){
 
 							}
 							
-
-
-							hersey.oyuncular[sid].x = pf(hersey.oyuncular[sid].x) + pf(hersey.oyuncular[sid].wx)*pf(hersey.oyuncular[sid].h);
-							hersey.oyuncular[sid].y = pf(hersey.oyuncular[sid].y) + pf(hersey.oyuncular[sid].wy)*pf(hersey.oyuncular[sid].h);
+							var yeniposX = pf(hersey.oyuncular[sid].x) + pf(hersey.oyuncular[sid].wx)*pf(hersey.oyuncular[sid].h);
+							var yeniposY = pf(hersey.oyuncular[sid].y) + pf(hersey.oyuncular[sid].wy)*pf(hersey.oyuncular[sid].h);
+							if (yeniposX >= 0 && yeniposX <= haritaSinirX && yeniposY>=0 && yeniposY < haritaSinirY){
+								hersey.oyuncular[sid].x = yeniposX;
+								hersey.oyuncular[sid].y = yeniposY;
+							}
+							else{
+	
+								
+				
+						
+							}
 
 
 
@@ -442,7 +452,7 @@ function oyunDongu(){
 
 				/* Carpisma Baslangic*/
 											
-							if (kaliciNesneler && kaliciNesneler.length>0){
+							if (kaliciNesneler && kaliciNesneler.length>0 && hersey.oyuncular[sid] && hersey.oyuncular[sid].x && hersey.oyuncular[sid].y){
 								var benimX = hersey.oyuncular[sid].x;
 								var benimY = hersey.oyuncular[sid].y;
 
