@@ -22,14 +22,14 @@ function kaliciNesneEkle(t,x,y){
 	kaliciNesneler.push(o);
 }
 
-
+/*
 for (var a=0; a<200; a++){
 	kaliciNesneEkle("g", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
 
 }
+*/
 
-
-for (var a=0; a<200; a++){
+for (var a=0; a<20; a++){
 	kaliciNesneEkle("b", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
 }
 
@@ -158,7 +158,7 @@ function gucFarki(guc1,guc2){
 }
 
 function yeniOyuncu(ad){
-	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, f:0, rx:0, ry:0, d:0}
+	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, u:0, f:0, rx:0, ry:0, d:0}
 	o.ad = ad;
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
 	o.y = Math.floor(Math.random() * 300);
@@ -173,7 +173,7 @@ function pf(d1){
 
 
 
-
+/*
 
 //Bot ekle
 function botolustur(d){
@@ -185,7 +185,7 @@ function botolustur(d){
 
 botolustur(botsayisi);
 
-
+*/
 
 
 io.on("connection", function(s){
@@ -252,6 +252,23 @@ function oyunDongu(){
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
 		/*			OYUNCULAR DÖNGÜSÜ BAŞLANGIÇ			*/
 		for (var sid in hersey.oyuncular){
+
+			// A tuşu ile ilgili
+			if (hersey && hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].t){
+				hersey.oyuncular[sid].t -= 1;
+			}
+			if (hersey && hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].u){
+				hersey.oyuncular[sid].u -= 1;
+				if (hersey.oyuncular[sid].u>0){
+					
+				}
+				else{
+					hersey.oyuncular[sid].r = "s";
+					hersey.oyuncular[sid].h = baslangic_hizi;
+				}
+			}
+
+
 
 			if (hersey.oyuncular[sid].d>0){
 				hersey.oyuncular[sid].d -= 1;
@@ -396,26 +413,18 @@ function oyunDongu(){
 					}
 
 
-							var gelenk = hersey.oyuncular[sid].k;
-							if(gelenk == 0){
-								hersey.oyuncular[sid].h = baslangic_hizi;
-								hersey.oyuncular[sid].t = 0;
+							var k = hersey.oyuncular[sid].k;
 
-							}else if(gelenk == 97){
-								if (hersey.oyuncular[sid].c && hersey.oyuncular[sid].c > 10){
-									hersey.oyuncular[sid].c -= 0.1;
-									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
-									if (hersey.oyuncular[sid].t == 0){
-										var suan = new Date().getTime();
-										hersey.oyuncular[sid].t = suan;										
-									}
+							if(k == 97){
 
+								if (hersey.oyuncular[sid].t == 0){
+									hersey.oyuncular[sid].t = 100;
+									hersey.oyuncular[sid].u = 20;
+									hersey.oyuncular[sid].r = "m";
+ 									hersey.oyuncular[sid].h = baslangic_hizi*8;
+									
 								}
-								else{
-									hersey.oyuncular[sid].h = baslangic_hizi;
-									hersey.oyuncular[sid].t = 0;
-								}
-								
+
 							}
 							
 
@@ -423,6 +432,11 @@ function oyunDongu(){
 							hersey.oyuncular[sid].x = pf(hersey.oyuncular[sid].x) + pf(hersey.oyuncular[sid].wx)*pf(hersey.oyuncular[sid].h);
 							hersey.oyuncular[sid].y = pf(hersey.oyuncular[sid].y) + pf(hersey.oyuncular[sid].wy)*pf(hersey.oyuncular[sid].h);
 
+
+
+
+
+/*
 								if (hersey.oyuncular[sid].a>=600){
 									hersey.oyuncular[sid].a = 0; 
 								}
@@ -446,7 +460,7 @@ function oyunDongu(){
 									}
 								}
 
-
+*/
 
 				/* Carpisma Baslangic*/
 											
