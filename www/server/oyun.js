@@ -3,7 +3,7 @@
 const timer = 30;
 const baslangic_hizi = 8;
 const ani_hizlanma_katsayisi = 7;
-const baslangic_cani = 200;
+const baslangic_cani = 50;
 const sinir_baslangic_X = 0;
 const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
@@ -24,21 +24,21 @@ function kaliciNesneEkle(t,x,y){
 	kaliciNesneler.push(o);
 }
 
-/*
+
 for (var a=0; a<200; a++){
 	kaliciNesneEkle("g", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
 
 }
-*/
 
 
 
-/*
-for (var a=0; a<20; a++){
+
+
+for (var a=0; a<10; a++){
 	kaliciNesneEkle("b", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
 }
 
-*/
+
 
 
 
@@ -462,7 +462,7 @@ function oyunDongu(){
 					
 
 										if (kaliciNesne.t == "g"){
-											hersey.oyuncular[sid].c += 5;
+											hersey.oyuncular[sid].c += 1;
 											c(hersey.oyuncular[sid]);					
 										}
 										else if(kaliciNesne.t == "b"){
@@ -470,7 +470,7 @@ function oyunDongu(){
 											io.to(sid).emit("oyunbitti", "");
 										}			
 										else if(kaliciNesne.t == "h"){
-											hersey.oyuncular[sid].h += 3;
+											hersey.oyuncular[sid].h += 1;
 											c(hersey.oyuncular[sid]);
 										}
 
