@@ -3,11 +3,11 @@
 const timer = 30;
 const baslangic_hizi = 8;
 const ani_hizlanma_katsayisi = 7;
-const baslangic_cani = 70;
+const baslangic_cani = 200;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 1000;
+const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y = 1000;
+const sinir_bitis_Y = 2000;
 const botsayisi = 5;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
@@ -409,16 +409,11 @@ function oyunDongu(){
 							
 							var yeniposX = pf(hersey.oyuncular[sid].x) + pf(hersey.oyuncular[sid].wx)*pf(hersey.oyuncular[sid].h);
 							var yeniposY = pf(hersey.oyuncular[sid].y) + pf(hersey.oyuncular[sid].wy)*pf(hersey.oyuncular[sid].h);
-							if (yeniposX >= 0 && yeniposX <= haritaSinirX && yeniposY>=0 && yeniposY < haritaSinirY){
+							//if (yeniposX >= 0 && yeniposX <= haritaSinirX && yeniposY>=0 && yeniposY < haritaSinirY){
 								hersey.oyuncular[sid].x = yeniposX;
 								hersey.oyuncular[sid].y = yeniposY;
-							}
-							else{
+							//}
 	
-								
-				
-						
-							}
 
 
 

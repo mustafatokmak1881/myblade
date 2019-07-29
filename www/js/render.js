@@ -50,7 +50,26 @@ hizRes.src = "res/karakter.png";
 var bombaRes = new Image();
 bombaRes.src = "res/bomb.png";
 
+function drawRotated(degrees){
 
+
+    // save the unrotated context of the canvas so we can restore it later
+    // the alternative is to untranslate & unrotate after drawing
+
+
+    // move to the center of the canvas
+    ctx.translate(myc.width/2,myc.height/2);
+
+    // rotate the canvas to the specified degrees
+    ctx.rotate(degrees*Math.PI/180);
+
+    // draw the image
+    // since the context is rotated, the image will be rotated also
+    ctx.drawImage(topac,-topac.width/2,-topac.width/2);
+
+    // we’re done with the rotating so restore the unrotated context
+
+}
 
 function topaci_ekranda_ortala(){
 	//var ortaX = Math.floor((myc.width/2)-(topac.width/2));
@@ -179,7 +198,22 @@ function topac_Ciz(sid,sidBilgi){
 		ctx.fill();
 	}
 
-	ctx.drawImage(topac, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);	
+
+var aci = (sidBilgi.a*60)%360;
+c(aci);
+//drawRotated(aci);
+
+	ctx.drawImage(topac, x,y, topac.width, topac.height);
+
+
+/*
+	ctx.rotate((Math.PI/180)*25);
+
+	ctx.translate(20, 20);
+
+*/
+
+	//ctx.drawImage(topac, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);	
 
 }
 
@@ -239,6 +273,7 @@ function render(data){
 
 	ctxSabit.clearRect(0,0, myc.width, myc.height);
 	ctx.clearRect(0,0, myc.width, myc.height);
+
 
 	kaliciNesneCiz(kaliciNesneler);	
 
