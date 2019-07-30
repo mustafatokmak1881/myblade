@@ -27,7 +27,7 @@ $(document).ready(function(){
 		kaliciNesneler.splice(data.k, 1);
 	});
 	s.on("oyunbitti", function(data){
-		$(".isimsor").fadeIn(1500);
+		$(".isimsor").fadeIn(2500);
 	});
 
 	s.on("tusabas", function(data){
