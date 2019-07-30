@@ -27,9 +27,7 @@ $(document).ready(function(){
 		kaliciNesneler.splice(data.k, 1);
 	});
 	s.on("oyunbitti", function(data){
-		
-		alert("Oyun Bitti");
-		return false;
+		$(".isimsor").fadeIn(1500);
 	});
 
 	s.on("tusabas", function(data){

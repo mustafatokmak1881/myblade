@@ -34,7 +34,7 @@ for (var a=0; a<200; a++){
 
 
 
-for (var a=0; a<10; a++){
+for (var a=0; a<100; a++){
 	kaliciNesneEkle("b", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
 }
 
