@@ -29,9 +29,43 @@ ctx.fillStyle = "blue";
 ctx.fillRect(0,0, myc.width, myc.height);
 
 
-
 var topac = new Image();
-topac.src = "res/topac2.png";
+topac.src = "res/topac.png";
+
+var topac0 = new Image();
+topac0.src = "res/topac0.png";
+
+var topac1 = new Image();
+topac1.src = "res/topac1.png";
+
+var topac2 = new Image();
+topac2.src = "res/topac2.png";
+
+var topac3 = new Image();
+topac3.src = "res/topac3.png";
+
+var topac4 = new Image();
+topac4.src = "res/topac4.png";
+
+
+
+/*
+var topac5 = new Image();
+topac5.src = "res/topac5.png";
+
+var topac6 = new Image();
+topac6.src = "res/topac6.png";
+
+var topac7 = new Image();
+topac7.src = "res/topac7.png";
+
+var topac8 = new Image();
+topac8.src = "res/topac8.png";
+
+var topac9 = new Image();
+topac9.src = "res/topac9.png";
+
+*/
 
 
 var zeminRes = new Image();
@@ -50,26 +84,7 @@ hizRes.src = "res/karakter.png";
 var bombaRes = new Image();
 bombaRes.src = "res/bomb.png";
 
-function drawRotated(degrees){
 
-
-    // save the unrotated context of the canvas so we can restore it later
-    // the alternative is to untranslate & unrotate after drawing
-
-
-    // move to the center of the canvas
-    ctx.translate(myc.width/2,myc.height/2);
-
-    // rotate the canvas to the specified degrees
-    ctx.rotate(degrees*Math.PI/180);
-
-    // draw the image
-    // since the context is rotated, the image will be rotated also
-    ctx.drawImage(topac,-topac.width/2,-topac.width/2);
-
-    // we’re done with the rotating so restore the unrotated context
-
-}
 
 function topaci_ekranda_ortala(){
 	//var ortaX = Math.floor((myc.width/2)-(topac.width/2));
@@ -199,8 +214,7 @@ function topac_Ciz(sid,sidBilgi){
 	}
 
 
-var aci = (sidBilgi.a*60)%360;
-c(aci);
+
 //drawRotated(aci);
 
 	ctx.drawImage(topac, x,y, topac.width, topac.height);

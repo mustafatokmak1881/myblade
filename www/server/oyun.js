@@ -163,10 +163,11 @@ function gucFarki(guc1,guc2){
 }
 
 function yeniOyuncu(ad){
-	var o = {ad: "", x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, u:0, f:0, rx:0, ry:0, d:0}
+	var o = {ad: "", b:0, x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, u:0, f:0, rx:0, ry:0}
 	o.ad = ad;
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
 	o.y = Math.floor(Math.random() * 300);
+	o.b = Math.floor(Math.random()*10);
 	return o;
 }
 
@@ -275,9 +276,6 @@ function oyunDongu(){
 
 
 
-			if (hersey.oyuncular[sid].d>0){
-				hersey.oyuncular[sid].d -= 1;
-			}
 
 			if (hersey.oyuncular[sid].f > 0){
 				hersey.oyuncular[sid].f -= 1;
