@@ -11,7 +11,7 @@ const sinir_bitis_Y = 2000;
 const botsayisi = 5;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
-
+const bicimsayisi = 3;
 
 const rboy = 488;
 const yboy = 293;
@@ -167,7 +167,7 @@ function yeniOyuncu(ad){
 	o.ad = ad;
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
 	o.y = Math.floor(Math.random() * 300);
-	o.b = Math.floor(Math.random()*10);
+	o.b = Math.floor(Math.random()*bicimsayisi);
 	return o;
 }
 
@@ -460,7 +460,7 @@ function oyunDongu(){
 					
 
 										if (kaliciNesne.t == "g"){
-											hersey.oyuncular[sid].c += 1;
+											hersey.oyuncular[sid].c += 2;
 											c(hersey.oyuncular[sid]);					
 										}
 										else if(kaliciNesne.t == "b"){

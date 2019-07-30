@@ -47,9 +47,6 @@ topac3.src = "res/topac3.png";
 var topac4 = new Image();
 topac4.src = "res/topac4.png";
 
-
-
-/*
 var topac5 = new Image();
 topac5.src = "res/topac5.png";
 
@@ -65,7 +62,7 @@ topac8.src = "res/topac8.png";
 var topac9 = new Image();
 topac9.src = "res/topac9.png";
 
-*/
+
 
 
 var zeminRes = new Image();
@@ -217,7 +214,8 @@ function topac_Ciz(sid,sidBilgi){
 
 //drawRotated(aci);
 
-	ctx.drawImage(topac, x,y, topac.width, topac.height);
+tipeGoreTopac(sidBilgi,x,y);
+	//ctx.drawImage(topac, x,y, topac.width, topac.height);
 
 
 /*
@@ -231,6 +229,41 @@ function topac_Ciz(sid,sidBilgi){
 
 }
 
+
+
+function tipeGoreTopac(sidBilgi,x,y){
+	if (sidBilgi.b == 0){
+		ctx.drawImage(topac0, x,y, topac.width, topac.height);
+	}
+	else if (sidBilgi.b == 1){
+		ctx.drawImage(topac1, x,y, topac.width, topac.height);
+	}
+	else if (sidBilgi.b == 2){
+		ctx.drawImage(topac2, x,y, topac.width, topac.height);
+	}
+	else if (sidBilgi.b == 3){
+		ctx.drawImage(topac3, x,y, topac.width, topac.height);
+	}
+	else if (sidBilgi.b == 4){
+		ctx.drawImage(topac4, x,y, topac.width, topac.height);
+	}
+	else if (sidBilgi.b == 5){
+		ctx.drawImage(topac5, x,y, topac.width, topac.height);
+	}
+	else if (sidBilgi.b == 6){
+		ctx.drawImage(topac6, x,y, topac.width, topac.height);
+	}
+	else if (sidBilgi.b == 7){
+		ctx.drawImage(topac7, x,y, topac.width, topac.height);
+	}
+	else if (sidBilgi.b == 8){
+		ctx.drawImage(topac8, x,y, topac.width, topac.height);
+	}
+	else if (sidBilgi.b == 9){
+		ctx.drawImage(topac9, x,y, topac.width, topac.height);
+	}
+
+}
 
 function kaliciNesneCiz(kaliciNesneler){
 
