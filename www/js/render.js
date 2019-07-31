@@ -20,12 +20,14 @@ mycTuslar.width = window.innerWidth;
 mycTuslar.height = window.innerHeight;
 
 ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
+
 ctxTuslar.fillStyle = "grey";
 ctxTuslar.font = "16px Arial";
-ctxTuslar.fillText("W", mycTuslar.width/2, mycTuslar.height-20);
+ctxTuslar.fillText("Q", mycTuslar.width/2, mycTuslar.height-20);
 
 
-ctx.fillStyle = "blue";
+
+ctx.fillStyle = "black";
 ctx.fillRect(0,0, myc.width, myc.height);
 
 
@@ -118,8 +120,13 @@ function topac_Ciz(sid,sidBilgi){
 			ctxTuslar.fillText("Q", mycTuslar.width/2-(10), mycTuslar.height-20);	
 		}else{
 			ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
-			ctxTuslar.fillStyle = "darkorange";
-			ctxTuslar.font = "20px Arial";
+
+ctxTuslar.beginPath();
+ctxTuslar.fillStyle = "darkorange";
+ctxTuslar.arc(mycTuslar.width/2-(1), mycTuslar.height-29, 16,0, Math.PI*2);
+ctxTuslar.fill();
+			ctxTuslar.fillStyle = "white";
+			ctxTuslar.font = "24px Arial";
 			ctxTuslar.fillText("Q", mycTuslar.width/2-(10), mycTuslar.height-20);			
 		}
 
