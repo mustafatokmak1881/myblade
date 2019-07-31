@@ -4,6 +4,12 @@ var suan = new Date().getTime();
 var s = io.connect("http://localhost:3011");
 //var s = io.connect("http://173.212.232.18:3011");
 
+
+function kaliciNesneEkle(t,x,y){
+	var o = {t:t, x:x, y:y}
+	kaliciNesneler.push(o);
+}
+
 $(document).ready(function(){
 
 	$(".isimsor").fadeIn(1500);
@@ -26,6 +32,12 @@ $(document).ready(function(){
 	s.on("kaliciNesneSil", function(data){
 		kaliciNesneler.splice(data.k, 1);
 	});
+
+	s.on("kaliciNesneEkle", function(data){
+		kaliciNesneEkle(data.t,data.x,data.y);
+	});
+
+
 	s.on("oyunbitti", function(data){
 		$(".isimsor").fadeIn(2500);
 	});

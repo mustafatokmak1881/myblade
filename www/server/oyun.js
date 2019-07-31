@@ -5,9 +5,9 @@ const baslangic_hizi = 8;
 const ani_hizlanma_katsayisi = 7;
 const baslangic_cani = 50;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 2000;
+const sinir_bitis_X = 600;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y = 2000;
+const sinir_bitis_Y = 600;
 const botsayisi = 5;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
@@ -25,20 +25,20 @@ function kaliciNesneEkle(t,x,y){
 }
 
 
-for (var a=0; a<200; a++){
-	kaliciNesneEkle("g", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
+for (var a=0; a<2; a++){
+	kaliciNesneEkle("g", Math.floor(Math.random() * sinir_bitis_X), Math.floor(Math.random()*sinir_bitis_Y));
 
 }
 
 
 
 
-
-for (var a=0; a<100; a++){
-	kaliciNesneEkle("b", Math.floor(Math.random() * 5000), Math.floor(Math.random()*5000));
+/*
+for (var a=0; a<10; a++){
+	kaliciNesneEkle("b", Math.floor(Math.random() * sinir_bitis_X), Math.floor(Math.random()*sinir_bitis_Y));
 }
 
-
+*/
 
 
 
@@ -461,7 +461,14 @@ function oyunDongu(){
 
 										if (kaliciNesne.t == "g"){
 											hersey.oyuncular[sid].c += 2;
-											c(hersey.oyuncular[sid]);					
+											var knX = Math.floor(Math.random() * sinir_bitis_X);
+											var knY = Math.floor(Math.random()*sinir_bitis_Y);
+											kaliciNesneEkle("g", knX, knY);
+											io.emit("kaliciNesneEkle",{
+												t:"g",
+												x:knX,
+												y:knY
+											});				
 										}
 										else if(kaliciNesne.t == "b"){
 											delete hersey.oyuncular[sid];
@@ -469,7 +476,7 @@ function oyunDongu(){
 										}			
 										else if(kaliciNesne.t == "h"){
 											hersey.oyuncular[sid].h += 1;
-											c(hersey.oyuncular[sid]);
+											
 										}
 
 

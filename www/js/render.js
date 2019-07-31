@@ -121,10 +121,11 @@ function topac_Ciz(sid,sidBilgi){
 		}else{
 			ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
 
-ctxTuslar.beginPath();
-ctxTuslar.fillStyle = "darkorange";
-ctxTuslar.arc(mycTuslar.width/2-(1), mycTuslar.height-29, 16,0, Math.PI*2);
-ctxTuslar.fill();
+			ctxTuslar.beginPath();
+			ctxTuslar.fillStyle = "#2b7205";
+			ctxTuslar.arc(mycTuslar.width/2-(1), mycTuslar.height-29, 16,0, Math.PI*2);
+			ctxTuslar.fill();
+
 			ctxTuslar.fillStyle = "white";
 			ctxTuslar.font = "24px Arial";
 			ctxTuslar.fillText("Q", mycTuslar.width/2-(10), mycTuslar.height-20);			
