@@ -8,7 +8,7 @@ const sinir_baslangic_X = 0;
 const sinir_bitis_X = 600;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 600;
-const botsayisi = 5;
+const botsayisi = 2;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 3;
@@ -471,14 +471,19 @@ function oyunDongu(){
 													t:"g",
 													x:knX,
 													y:knY
-												});													
+												});
+
+
+
+												kaliciNesneler.splice(k, 1);
+												io.emit("kaliciNesneSil", {
+													k:k
+												});
+
 											}
 			
-											
-											kaliciNesneler.splice(k, 1);
-											io.emit("kaliciNesneSil", {
-												k:k
-											});
+
+
 										}
 										else if(kaliciNesne.t == "b"){
 											delete hersey.oyuncular[sid];
