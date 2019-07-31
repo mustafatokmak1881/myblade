@@ -3,12 +3,12 @@
 const timer = 30;
 const baslangic_hizi = 8;
 const ani_hizlanma_katsayisi = 7;
-const baslangic_cani = 64;
+const baslangic_cani = 40;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 600;
+const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y = 600;
-const botsayisi = 2;
+const sinir_bitis_Y = 2000;
+const botsayisi = 1;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 3;
@@ -25,7 +25,7 @@ function kaliciNesneEkle(t,x,y){
 }
 
 
-for (var a=0; a<2; a++){
+for (var a=0; a<50; a++){
 	kaliciNesneEkle("g", Math.floor(Math.random() * sinir_bitis_X), Math.floor(Math.random()*sinir_bitis_Y));
 
 }
@@ -33,12 +33,12 @@ for (var a=0; a<2; a++){
 
 
 
-/*
+
 for (var a=0; a<10; a++){
 	kaliciNesneEkle("b", Math.floor(Math.random() * sinir_bitis_X), Math.floor(Math.random()*sinir_bitis_Y));
 }
 
-*/
+
 
 
 
