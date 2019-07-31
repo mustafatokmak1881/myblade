@@ -3,7 +3,7 @@
 const timer = 30;
 const baslangic_hizi = 8;
 const ani_hizlanma_katsayisi = 7;
-const baslangic_cani = 50;
+const baslangic_cani = 64;
 const sinir_baslangic_X = 0;
 const sinir_bitis_X = 600;
 const sinir_baslangic_Y = 0;
@@ -460,15 +460,25 @@ function oyunDongu(){
 					
 
 										if (kaliciNesne.t == "g"){
-											hersey.oyuncular[sid].c += 2;
-											var knX = Math.floor(Math.random() * sinir_bitis_X);
-											var knY = Math.floor(Math.random()*sinir_bitis_Y);
-											kaliciNesneEkle("g", knX, knY);
-											io.emit("kaliciNesneEkle",{
-												t:"g",
-												x:knX,
-												y:knY
-											});				
+
+
+											if (hersey.oyuncular[sid].c < 64){
+												hersey.oyuncular[sid].c += 2;
+												var knX = Math.floor(Math.random() * sinir_bitis_X);
+												var knY = Math.floor(Math.random()*sinir_bitis_Y);
+												kaliciNesneEkle("g", knX, knY);
+												io.emit("kaliciNesneEkle",{
+													t:"g",
+													x:knX,
+													y:knY
+												});													
+											}
+			
+											
+											kaliciNesneler.splice(k, 1);
+											io.emit("kaliciNesneSil", {
+												k:k
+											});
 										}
 										else if(kaliciNesne.t == "b"){
 											delete hersey.oyuncular[sid];
@@ -480,10 +490,6 @@ function oyunDongu(){
 										}
 
 
-										kaliciNesneler.splice(k, 1);
-										io.emit("kaliciNesneSil", {
-											k:k
-										});
 
 
 
