@@ -1,7 +1,4 @@
 
-
-
-
 var myc = document.getElementById("myc");
 var ctx = myc.getContext("2d");
 myc.width = window.innerWidth;
@@ -268,10 +265,8 @@ function tipeGoreTopac(sidBilgi,x,y){
 	else if (sidBilgi.b == 9){
 		ctx.drawImage(topac9, x,y, topac.width, topac.height);
 	}
-	var suan = new Date().getTime();
-	var puan = Math.floor((suan-sidBilgi.p)/100);
 
-	c(sidBilgi.ad+": "+puan);
+
 }
 
 function kaliciNesneCiz(kaliciNesneler){
@@ -342,11 +337,13 @@ function kaliciNesneCiz(kaliciNesneler){
 
 function render(data){
 
+
 	ctxSabit.clearRect(0,0, myc.width, myc.height);
 	ctx.clearRect(0,0, myc.width, myc.height);
 
 
 	kaliciNesneCiz(kaliciNesneler);	
+
 
 	if (data && data.oyuncular){
 
@@ -356,7 +353,16 @@ function render(data){
 			});
 		}
 
+	/*
+
+		Object.keys(data.oyuncular).sort(function(a,b){
+			let suan = new Date().getTime();
+			let p = Math.floor((suan-data.oyuncular[a].p)/100);
+			c(data.oyuncular[a].ad+": "+p);
+		});
+	*/
 		for (sid in data.oyuncular){
+
 			topac_Ciz(sid, data.oyuncular[sid]);
 		}
 		
