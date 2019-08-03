@@ -8,7 +8,7 @@ const sinir_baslangic_X = 0;
 const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2000;
-const botsayisi = 5;
+const botsayisi = 2;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -16,17 +16,32 @@ const bicimsayisi = 9;
 const rboy = 488;
 const yboy = 293;
 
+const bomba_sayisi = 1;
+const guc_sayisi = 1;
 
 const kaliciNesneler = [];
 
-function kaliciNesneEkle(t,x,y){
-	var o = {t:t, x:x, y:y}
-	kaliciNesneler.push(o);
+function kaliciNesneEkle(t,x,y,x2=false,y2=false){
+	if (x2 && y2){
+		var o = {t:t, x:x, y:y, x2:x2, y2:y2}
+		kaliciNesneler.push(o);
+	}
+	else{
+		var o = {t:t, x:x, y:y}
+		kaliciNesneler.push(o);
+	}
+
 }
+
+var sinir_ekle=()=>{
+	kaliciNesneEkle("s",0,0,1000,1000);
+}
+
+sinir_ekle();
 
 var guc_ekle=()=>{
 
-	for (var a=0; a<100; a++){
+	for (var a=0; a<guc_sayisi; a++){
 	kaliciNesneEkle("g", Math.floor(Math.random() * sinir_bitis_X), Math.floor(Math.random()*sinir_bitis_Y));
 
 	}
@@ -37,7 +52,7 @@ guc_ekle();
 
 
 var bomba_ekle=()=>{
-	for (var a=0; a<30; a++){
+	for (var a=0; a<bomba_sayisi; a++){
 	kaliciNesneEkle("b", Math.floor(Math.random() * sinir_bitis_X), Math.floor(Math.random()*sinir_bitis_Y));
 	}
 }
@@ -47,7 +62,7 @@ bomba_ekle();
 
 
 
-function zeminikapla(){
+var zeminikapla=()=>{
 
 	for (let b=0; b<10; b++){
 		kaliciNesneEkle("y", yboy*b,0);

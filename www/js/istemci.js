@@ -27,6 +27,7 @@ $(document).ready(function(){
 	s.on("ilkgiris", function(data){
 		kaliciNesneler = data.kaliciNesneler;
 		render(kaliciNesneler);
+		c(kaliciNesneler);
 	});
 
 	s.on("kaliciNesneSil", function(data){

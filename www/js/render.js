@@ -303,9 +303,22 @@ function kaliciNesneCiz(kaliciNesneler){
 		var x = kaliciNesneler[n].x;
 		var y = kaliciNesneler[n].y;
 		var t = kaliciNesneler[n].t;
+		var x2 = "";
+		var y2 = "";
+		if (kaliciNesneler[n].x2 && kaliciNesneler[n].y2){
+			x2 = kaliciNesneler[n].x2;
+			y2 = kaliciNesneler[n].y2;
+		}
 
 		if (t == "g"){
 			ctxSabit.drawImage(gucRes, 0,0, gucRes.width, gucRes.height, x+farkX, y+farkY, gucRes.width, gucRes.height);
+		}
+		else if (t == "s"){
+			ctxSabit.beginPath();
+			ctxSabit.moveTo(x+farkX,y+farkY);
+			ctxSabit.lineTo(x2+farkX,y2+farkY);
+			ctxSabit.strokeStyle = "white";
+			ctxSabit.stroke();
 		}
 		else if (t == "b"){
 			ctxSabit.drawImage(bombaRes,0,0,bombaRes.width, bombaRes.height, x+farkX, y+farkY, bombaRes.width, bombaRes.height);
