@@ -318,8 +318,8 @@ function kaliciNesneCiz(kaliciNesneler){
 
 
 			ctxSabit.beginPath();
-			ctxSabit.strokeStyle = "white";
-			ctxSabit.rect(x, y, x2+farkX, y2+farkY);
+			ctxSabit.fillStyle = "#191919";
+			ctxSabit.rect(x+farkX, y+farkY, x2, y2);
 			ctxSabit.fill();
 		}
 		else if (t == "b"){

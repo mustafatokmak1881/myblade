@@ -5,10 +5,10 @@ const baslangic_hizi = 8;
 const ani_hizlanma_katsayisi = 7;
 const baslangic_cani = 400;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 100;
+const sinir_bitis_X = 1000;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y = 100;
-const botsayisi = 2;
+const sinir_bitis_Y = 1000;
+const botsayisi = 3;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -16,8 +16,8 @@ const bicimsayisi = 9;
 const rboy = 488;
 const yboy = 293;
 
-const bomba_sayisi = 1;
-const guc_sayisi = 1;
+const bomba_sayisi = 14;
+const guc_sayisi = 14;
 
 const kaliciNesneler = [];
 
@@ -34,7 +34,7 @@ function kaliciNesneEkle(t,x,y,x2=false,y2=false){
 }
 
 var sinir_ekle=()=>{
-	kaliciNesneEkle("s",sinir_baslangic_X,sinir_baslangic_Y,sinir_bitis_X,0);
+	kaliciNesneEkle("s",sinir_baslangic_X,sinir_baslangic_Y,sinir_bitis_X,sinir_bitis_Y);
 }
 
 sinir_ekle();
