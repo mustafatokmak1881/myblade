@@ -8,6 +8,7 @@ const sinir_baslangic_X = 0;
 const sinir_bitis_X = 1000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 1000;
+const sinir_icfark= 64;
 const botsayisi = 3;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
@@ -278,6 +279,20 @@ function oyunDongu(){
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
 		/*			OYUNCULAR DÖNGÜSÜ BAŞLANGIÇ			*/
 		for (var sid in hersey.oyuncular){
+			if (hersey.oyuncular[sid] && hersey.oyuncular[sid].x && hersey.oyuncular[sid].y){
+				if (hersey.oyuncular[sid].x >= sinir_baslangic_X-sinir_icfark && hersey.oyuncular[sid].x <= sinir_bitis_X+0 && hersey.oyuncular[sid].y >= sinir_baslangic_Y-sinir_icfark && hersey.oyuncular[sid].y <= sinir_bitis_Y+0){
+				}
+				else{
+						try{
+						
+							io.to(sid).emit("oyunbitti", "");
+							delete hersey.oyuncular[sid];
+							return false;
+						}catch(err){
+
+						}					
+				}
+			}
 
 			// A tuşu ile ilgili
 			if (hersey && hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].t){
@@ -297,14 +312,16 @@ function oyunDongu(){
 
 
 
-			if (hersey.oyuncular[sid].f > 0){
+			if (hersey.oyuncular[sid] && hersey.oyuncular[sid].f && hersey.oyuncular[sid].f > 0){
 				hersey.oyuncular[sid].f -= 1;
 				hersey.oyuncular[sid].x -= (hersey.oyuncular[sid].rx*16);
 				hersey.oyuncular[sid].y -= (hersey.oyuncular[sid].ry*16);
 			}
 			else{
-				hersey.oyuncular[sid].rx = 0;
-				hersey.oyuncular[sid].ry = 0;
+				if (hersey.oyuncular[sid] && hersey.oyuncular[sid].rx){
+					hersey.oyuncular[sid].rx = 0;
+					hersey.oyuncular[sid].ry = 0;
+				}
 			}
 
 			/*			Kendi kendisine çarpma durumunu engellemek için			*/
