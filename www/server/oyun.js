@@ -3,15 +3,15 @@
 const timer = 30;
 const baslangic_hizi = 8;
 const ani_hizlanma_katsayisi = 7;
-const baslangic_cani = 40;
+const baslangic_cani = 400;
 const sinir_baslangic_X = 0;
 const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2000;
-const botsayisi = 4;
+const botsayisi = 5;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
-const bicimsayisi = 3;
+const bicimsayisi = 9;
 
 const rboy = 488;
 const yboy = 293;
@@ -24,20 +24,25 @@ function kaliciNesneEkle(t,x,y){
 	kaliciNesneler.push(o);
 }
 
+var guc_ekle=()=>{
 
-for (var a=0; a<50; a++){
+	for (var a=0; a<100; a++){
 	kaliciNesneEkle("g", Math.floor(Math.random() * sinir_bitis_X), Math.floor(Math.random()*sinir_bitis_Y));
 
+	}
 }
 
+guc_ekle();
 
 
 
-
-for (var a=0; a<10; a++){
+var bomba_ekle=()=>{
+	for (var a=0; a<30; a++){
 	kaliciNesneEkle("b", Math.floor(Math.random() * sinir_bitis_X), Math.floor(Math.random()*sinir_bitis_Y));
+	}
 }
 
+bomba_ekle();
 
 
 
@@ -51,7 +56,7 @@ function zeminikapla(){
 		}
 	}
 }
-zeminikapla();
+//zeminikapla();
 
 function yolyap(){
 
@@ -92,7 +97,7 @@ function yolyap(){
 
 }
 
-yolyap();
+//yolyap();
 
 
 
@@ -163,7 +168,7 @@ function gucFarki(guc1,guc2){
 }
 
 function yeniOyuncu(ad){
-	var o = {ad: "", b:0, x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, u:0, f:0, rx:0, ry:0}
+	var o = {ad: "", b:0, x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, u:0, f:0, rx:0, ry:0, l:1}
 	o.ad = ad;
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
 	o.y = Math.floor(Math.random() * 300);
@@ -462,7 +467,7 @@ function oyunDongu(){
 										if (kaliciNesne.t == "g"){
 
 
-											if (hersey.oyuncular[sid].c < 64){
+											if (hersey.oyuncular[sid] && hersey.oyuncular[sid].c && hersey.oyuncular[sid].c < 64){
 												hersey.oyuncular[sid].c += 2;
 												var knX = Math.floor(Math.random() * sinir_bitis_X);
 												var knY = Math.floor(Math.random()*sinir_bitis_Y);

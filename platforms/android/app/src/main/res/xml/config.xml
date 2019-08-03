@@ -21,4 +21,10 @@
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="android-build-tool" value="ant|gradle" />
+    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-maxSdkVersion" value="26" />
+    <preference name="android-targetSdkVersion" value="26" />
+    <preference name="android-installLocation" value="auto" />
+    <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
 </widget>

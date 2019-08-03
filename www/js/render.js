@@ -13,7 +13,6 @@ mycSabit.width = window.innerWidth;
 mycSabit.height = window.innerHeight;
 
 
-
 var mycTuslar = document.getElementById("mycTuslar");
 var ctxTuslar = mycTuslar.getContext("2d");
 mycTuslar.width = window.innerWidth;
@@ -27,8 +26,7 @@ ctxTuslar.fillText("Q", mycTuslar.width/2, mycTuslar.height-20);
 
 
 
-ctx.fillStyle = "black";
-ctx.fillRect(0,0, myc.width, myc.height);
+
 
 
 var topac = new Image();
@@ -88,8 +86,8 @@ bombaRes.src = "res/bomb.png";
 function topaci_ekranda_ortala(){
 	//var ortaX = Math.floor((myc.width/2)-(topac.width/2));
 	//var ortaY = Math.floor((myc.height/2)-(topac.height/2));
-	var ortaX = Math.floor((myc.width/2));
-	var ortaY = Math.floor((myc.height/2));	
+	var ortaX = Math.floor((myc.width/2)-(topac.width/2));
+	var ortaY = Math.floor((myc.height/2)-(topac.width/2));	
 	return {ortaX: ortaX, ortaY: ortaY}
 }
 
@@ -122,7 +120,7 @@ function topac_Ciz(sid,sidBilgi){
 			ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
 
 			ctxTuslar.beginPath();
-			ctxTuslar.fillStyle = "#2b7205";
+			ctxTuslar.fillStyle = "darkred";
 			ctxTuslar.arc(mycTuslar.width/2-(1), mycTuslar.height-29, 16,0, Math.PI*2);
 			ctxTuslar.fill();
 
