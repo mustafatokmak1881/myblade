@@ -435,7 +435,7 @@ function oyunDongu(){
 
 								if (hersey.oyuncular[sid].t == 0){
 									hersey.oyuncular[sid].t = 50;
-									hersey.oyuncular[sid].u = 10;
+									hersey.oyuncular[sid].u = 5;
 									hersey.oyuncular[sid].r = "m";
  									hersey.oyuncular[sid].h = baslangic_hizi*8;
 									

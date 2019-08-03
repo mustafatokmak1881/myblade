@@ -120,7 +120,7 @@ function topac_Ciz(sid,sidBilgi){
 			ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
 
 			ctxTuslar.beginPath();
-			ctxTuslar.fillStyle = "darkred";
+			ctxTuslar.fillStyle = "darkgreen";
 			ctxTuslar.arc(mycTuslar.width/2-(1), mycTuslar.height-29, 16,0, Math.PI*2);
 			ctxTuslar.fill();
 
