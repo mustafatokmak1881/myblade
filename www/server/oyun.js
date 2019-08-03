@@ -5,9 +5,9 @@ const baslangic_hizi = 8;
 const ani_hizlanma_katsayisi = 7;
 const baslangic_cani = 400;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 2000;
+const sinir_bitis_X = 100;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y = 2000;
+const sinir_bitis_Y = 100;
 const botsayisi = 2;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
@@ -34,7 +34,7 @@ function kaliciNesneEkle(t,x,y,x2=false,y2=false){
 }
 
 var sinir_ekle=()=>{
-	kaliciNesneEkle("s",0,0,1000,1000);
+	kaliciNesneEkle("s",sinir_baslangic_X,sinir_baslangic_Y,sinir_bitis_X,0);
 }
 
 sinir_ekle();
