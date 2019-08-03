@@ -268,7 +268,10 @@ function tipeGoreTopac(sidBilgi,x,y){
 	else if (sidBilgi.b == 9){
 		ctx.drawImage(topac9, x,y, topac.width, topac.height);
 	}
+	var suan = new Date().getTime();
+	var puan = Math.floor((suan-sidBilgi.p)/100);
 
+	c(sidBilgi.ad+": "+puan);
 }
 
 function kaliciNesneCiz(kaliciNesneler){

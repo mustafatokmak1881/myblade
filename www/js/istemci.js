@@ -17,10 +17,6 @@ $(document).ready(function(){
 
 
 	s.on("hersey", function(data){
-	
-	var simdi = new Date().getTime();
-
-	suan = simdi;
 		render(data);
 	});	
 
