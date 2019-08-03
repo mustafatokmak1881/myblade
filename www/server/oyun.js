@@ -1,7 +1,7 @@
 
 
-const timer = 30;
-const baslangic_hizi = 8;
+const timer = 60;
+const baslangic_hizi = 16;
 const ani_hizlanma_katsayisi = 7;
 const baslangic_cani = 40;
 const sinir_baslangic_X = 0;
@@ -184,7 +184,8 @@ function gucFarki(guc1,guc2){
 }
 
 function yeniOyuncu(ad){
-	var o = {ad: "", b:0, x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, u:0, f:0, rx:0, ry:0, l:1}
+	var p = new Date().getTime();
+	var o = {ad: "", b:0, x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, u:0, f:0, rx:0, ry:0, p:p}
 	o.ad = ad;
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
 	o.y = Math.floor(Math.random() * 300);
