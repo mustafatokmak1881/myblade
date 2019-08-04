@@ -9,7 +9,7 @@ const sinir_bitis_X = 1000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 1000;
 const sinir_icfark= 64;
-const botsayisi = 4;
+const botsayisi = 1;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -17,8 +17,8 @@ const bicimsayisi = 9;
 const rboy = 488;
 const yboy = 293;
 
-const bomba_sayisi = 14;
-const guc_sayisi = 14;
+const bomba_sayisi = 5;
+const guc_sayisi = 5;
 
 const kaliciNesneler = [];
 
@@ -315,8 +315,8 @@ function oyunDongu(){
 
 			if (hersey.oyuncular[sid] && hersey.oyuncular[sid].f && hersey.oyuncular[sid].f > 0){
 				hersey.oyuncular[sid].f -= 1;
-				hersey.oyuncular[sid].x -= (hersey.oyuncular[sid].rx*16);
-				hersey.oyuncular[sid].y -= (hersey.oyuncular[sid].ry*16);
+				hersey.oyuncular[sid].x -= (hersey.oyuncular[sid].rx*baslangic_hizi*2);
+				hersey.oyuncular[sid].y -= (hersey.oyuncular[sid].ry*baslangic_hizi*2);
 			}
 			else{
 				if (hersey.oyuncular[sid] && hersey.oyuncular[sid].rx){
