@@ -115,14 +115,9 @@ window.addEventListener("touchstart", function(e){
 	}
 	doubletouch++;
 
-
-
-
-	
 		let suan = new Date().getTime();
 		let fark = suan-doubletouchZaman;
-		c(fark);
-		if (fark <= 600){
+		if (fark <= 200){
 			
 
 			if (asagi_tusu == 1){
@@ -132,14 +127,8 @@ window.addEventListener("touchstart", function(e){
 			}	
 			asagi_tusu = 0;	
 
-
-			if (doubletouch == 2){
-				c("doubletouch == 2");
-			}else if (doubletouch==1){
-				c("doubletouch == 1");
-			}
 		}else{
-			c("yok");
+			
 			let suan = new Date().getTime();
 			doubletouchZaman = suan;
 		}
