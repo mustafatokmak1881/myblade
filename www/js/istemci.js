@@ -2,8 +2,9 @@ var asagi_tusu = 1;
 var suan = new Date().getTime();
 var doubletouch = 0;
 var doubletouchZaman = 0;
-var s = io.connect("http://localhost:3011");
-//var s = io.connect("http://95.173.182.15:3011");
+
+//var s = io.connect("http://localhost:3011");
+var s = io.connect("http://95.173.182.15:3011");
 
 
 function kaliciNesneEkle(t,x,y){
@@ -115,15 +116,23 @@ window.addEventListener("touchstart", function(e){
 	doubletouch++;
 
 
-	c("touchstart");
-	c(doubletouch);
+
 
 	
 		let suan = new Date().getTime();
 		let fark = suan-doubletouchZaman;
 		c(fark);
 		if (fark <= 600){
-			c("Çift tık");
+			
+
+			if (asagi_tusu == 1){
+				s.emit("tus", {
+					keyCode: 113
+				});
+			}	
+			asagi_tusu = 0;	
+
+
 			if (doubletouch == 2){
 				c("doubletouch == 2");
 			}else if (doubletouch==1){

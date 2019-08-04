@@ -174,14 +174,14 @@ function topac_Ciz(sid,sidBilgi){
 	if (benimC > 64){
 
 		ctx.beginPath();
-		ctx.rect(x, y-10, 64, 10);
+		ctx.rect(x+7, y-10, 64, 10);
 		ctx.fillStyle = "yellow";
 		ctx.fill();
 
 
 
 		ctx.beginPath();
-		ctx.rect(x,y-10, 64,10);
+		ctx.rect(x+7,y-10, 64,10);
 		ctx.stokeStyle="#ccc";
 		ctx.stroke();	
 
@@ -194,13 +194,13 @@ function topac_Ciz(sid,sidBilgi){
 	else{
 		//Güç göstergesi gerçek
 		ctx.beginPath();
-		ctx.rect(x, y-10, benimC, 10);
+		ctx.rect(x+7, y-10, benimC, 10);
 		ctx.fillStyle = "yellow";
 		ctx.fill();
 
 		//Güç Göstergesi Dış Çerçeve
 		ctx.beginPath();
-		ctx.rect(x,y-10, 64,10);
+		ctx.rect(x+7,y-10, 64,10);
 		ctx.stokeStyle="#ccc";
 		ctx.stroke();
 
