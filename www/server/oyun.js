@@ -1,15 +1,15 @@
 
 
 const timer = 60;
-const baslangic_hizi = 16;
-const ani_hizlanma_katsayisi = 7;
+const baslangic_hizi = 12;
+const ani_hizlanma_katsayisi = 5;
 const baslangic_cani = 32;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 900;
+const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y = 900;
+const sinir_bitis_Y = 2000;
 const sinir_icfark= 64;
-const botsayisi = 1;
+const botsayisi = 4;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -17,8 +17,8 @@ const bicimsayisi = 9;
 const rboy = 488;
 const yboy = 293;
 
-const bomba_sayisi = 5;
-const guc_sayisi = 5;
+const bomba_sayisi = 40;
+const guc_sayisi = 100;
 
 const kaliciNesneler = [];
 
@@ -294,6 +294,12 @@ function oyunDongu(){
 						}					
 				}
 			}
+			if (hersey.oyuncular[sid] && hersey.oyuncular[sid].f>0){
+				hersey.oyuncular[sid].r = "k";
+			}
+			else{
+				hersey.oyuncular[sid].r = "s";
+			}
 
 			// A tuşu ile ilgili
 			if (hersey && hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].t){
@@ -302,7 +308,7 @@ function oyunDongu(){
 			if (hersey && hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].u){
 				hersey.oyuncular[sid].u -= 1;
 				if (hersey.oyuncular[sid].u>0){
-					
+					hersey.oyuncular[sid].r = "m";
 				}
 				else{
 					hersey.oyuncular[sid].r = "s";
@@ -435,9 +441,9 @@ function oyunDongu(){
 
 								if (hersey.oyuncular[sid].t == 0){
 									hersey.oyuncular[sid].t = 50;
-									hersey.oyuncular[sid].u = 3;
+									hersey.oyuncular[sid].u = 10;
 									hersey.oyuncular[sid].r = "m";
- 									hersey.oyuncular[sid].h = baslangic_hizi*8;
+ 									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
 									
 								}
 

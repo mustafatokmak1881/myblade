@@ -98,10 +98,11 @@ function topac_Ciz(sid,sidBilgi){
 	var	benimY = sidBilgi.y;
 	var	benimC = sidBilgi.c;
 
-	ctx.shadowOffsetX = 10;
-	ctx.shadowOffsetY = 15;
-	ctx.shadowBlur = 10;
+	ctx.shadowOffsetX = 1;
+	ctx.shadowOffsetY = 1;
+	ctx.shadowBlur = 35;
 	ctx.font = "12px Arial";
+	
 	if (sid && sid == s.id){
 		ctx.shadowColor = "black";
 		//ctx.font = "12px Arial";
@@ -150,11 +151,27 @@ function topac_Ciz(sid,sidBilgi){
 
 	if (sidBilgi.r == "k"){	
 		ctx.shadowColor="red";
-		ctx.shadowBlur = 6;
+		/*
+		ctx.shadowBlur = 5;
+		ctx.shadowOffsetX = 5;
+		ctx.shadowOffsetY = 5;
+		*/
+	}
+	else if (sidBilgi.r =="g"){
+		ctx.shadowColor="grey";
+		/*
+		ctx.shadowBlur = 5;
+		ctx.shadowOffsetX = 5;
+		ctx.shadowOffsetY = 5;
+		*/	
 	}
 	else if(sidBilgi.r == "b"){
 		ctx.shadowColor = "white";
-		ctx.shadowBlur = 6;
+		/*
+		ctx.shadowBlur = 5;
+		ctx.shadowOffsetX = 5;
+		ctx.shadowOffsetY = 5;
+		*/
 	}
 	else{
 
@@ -174,15 +191,15 @@ function topac_Ciz(sid,sidBilgi){
 	if (benimC > 64){
 
 		ctx.beginPath();
-		ctx.rect(x+7, y-10, 64, 10);
-		ctx.fillStyle = "yellow";
+		ctx.rect(x, y-10, 64, 10);
+		ctx.fillStyle = "lightgreen";
 		ctx.fill();
 
 
 
 		ctx.beginPath();
-		ctx.rect(x+7,y-10, 64,10);
-		ctx.stokeStyle="#ccc";
+		ctx.rect(x,y-10, 64,10);
+		ctx.strokeStyle="lightgreen";
 		ctx.stroke();	
 
 
@@ -194,14 +211,14 @@ function topac_Ciz(sid,sidBilgi){
 	else{
 		//Güç göstergesi gerçek
 		ctx.beginPath();
-		ctx.rect(x+7, y-10, benimC, 10);
-		ctx.fillStyle = "yellow";
+		ctx.rect(x, y-10, benimC, 10);
+		ctx.fillStyle = "lightgreen";
 		ctx.fill();
 
 		//Güç Göstergesi Dış Çerçeve
 		ctx.beginPath();
-		ctx.rect(x+7,y-10, 64,10);
-		ctx.stokeStyle="#ccc";
+		ctx.rect(x,y-10, 64,10);
+		ctx.strokeStyle="lightgreen";
 		ctx.stroke();
 
 
