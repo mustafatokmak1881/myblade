@@ -394,9 +394,8 @@ function render(data){
 	
 	
 		for (sid in data.oyuncular){
-			
-			let suan = new Date().getTime();
-			let puan = Math.floor((suan - (data.oyuncular[sid].p))/10000);
+		
+			let puan = Math.floor((data.sunucusaati - (data.oyuncular[sid].p))/10000);
 			//let puan = (data.oyuncular[sid].y);
 
 			puanlar.push(puan);
@@ -420,22 +419,23 @@ ctxPuanlar.fillStyle = "white";
 		puanlar.sort(function(a,b){
 			return b-a;
 		});
-		ctxPuanlar.fillText("LEADERS:", 30, puanlarY-30);
+		ctxPuanlar.fillText("LEADERS:  "+"(online:"+Object.keys(data.oyuncular).length+")", 30, puanlarY-35);
 
 		puanlar.forEach(function(v,k){
+
 			if (k<=7){
 
 				c(advepuan[v]+": "+v);
-				ctxPuanlar.fillText((k+1)+"      "+advepuan[v]+"      "+v.toFixed(0), 30, puanlarY);
+				ctxPuanlar.fillText((k+1)+"      "+advepuan[v].substr(0,10)+"      "+v.toFixed(0), 30, puanlarY);
 				puanlarY+=30;
 
 			}
 
 		});
 		
-		ctxPuanArkaplan.fillStyle = "rgb(156,156,156,0.2)";
+		ctxPuanArkaplan.fillStyle = "rgb(0,0,0,0.3)";
 
-		ctxPuanArkaplan.rect(0, 10, 200, 200);
+		ctxPuanArkaplan.rect(0, 10, 220, 280);
 	
 		ctxPuanArkaplan.fill();
 

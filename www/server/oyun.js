@@ -9,7 +9,7 @@ const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2000;
 const sinir_icfark= 64;
-const botsayisi = 5;
+const botsayisi = 70;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -131,7 +131,8 @@ for (var a=0; a<500; a++){
 
 const hersey = {
 	oyuncular: {},
-	nesne: []
+	nesne: [],
+	sunucusaati: 0
 }
 
 
@@ -188,7 +189,7 @@ function yeniOyuncu(ad){
 	var o = {ad: "", b:0, x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, u:0, f:0, rx:0, ry:0, p:p}
 	o.ad = ad;
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
-	o.y = Math.floor(Math.random() * 300);
+	o.y = Math.floor(Math.random(sinir_baslangic_Y) * sinir_bitis_Y);
 	o.b = Math.floor(Math.random()*bicimsayisi);
 	return o;
 }
@@ -274,8 +275,8 @@ io.on("connection", function(s){
 
 
 function oyunDongu(){
-
-
+	let sunucusaati = new Date().getTime();
+	hersey.sunucusaati = sunucusaati;
 
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
 		/*			OYUNCULAR DÖNGÜSÜ BAŞLANGIÇ			*/
