@@ -15,6 +15,7 @@ var ctxTuslar = mycTuslar.getContext("2d");
 mycTuslar.width = window.innerWidth;
 mycTuslar.height = window.innerHeight;
 
+
 ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
 
 ctxTuslar.fillStyle = "grey";
@@ -102,7 +103,7 @@ function topac_Ciz(sid,sidBilgi){
 	ctx.shadowOffsetY = 1;
 	ctx.shadowBlur = 35;
 	ctx.font = "12px Arial";
-	
+
 	if (sid && sid == s.id){
 		ctx.shadowColor = "black";
 		//ctx.font = "12px Arial";
@@ -355,11 +356,14 @@ function kaliciNesneCiz(kaliciNesneler){
 function render(data){
 
 
-	ctxSabit.clearRect(0,0, myc.width, myc.height);
+	ctxSabit.clearRect(0,0, mycSabit.width, mycSabit.height);
 	ctx.clearRect(0,0, myc.width, myc.height);
 
 
 	kaliciNesneCiz(kaliciNesneler);	
+
+	let advepuan = {};
+	let puanlar = [];
 
 
 	if (data && data.oyuncular){
@@ -370,18 +374,37 @@ function render(data){
 			});
 		}
 
-	/*
-
-		Object.keys(data.oyuncular).sort(function(a,b){
-			let suan = new Date().getTime();
-			let p = Math.floor((suan-data.oyuncular[a].p)/100);
-			c(data.oyuncular[a].ad+": "+p);
-		});
-	*/
+	
+	
 		for (sid in data.oyuncular){
+			
+			let suan = new Date().getTime();
+			let puan = (suan - data.oyuncular[sid].p);
+			puanlar.push(puan);
+			advepuan[puan] = data.oyuncular[sid].ad;
 
 			topac_Ciz(sid, data.oyuncular[sid]);
 		}
+		
+ctxSabit.fillStyle = "grey";
+ctxSabit.font = "16px Arial";
+ctxSabit.fillText("Q", mycTuslar.width/2, mycTuslar.height-20);
+
+/*
+		ctx.rect(0, 0, 200, 200);
+		
+		ctx.fillText("heyy", 30,50);
+		ctx.fill();
+
+
+		puanlar.forEach(function(v,k){
+	
+			c(advepuan[v]+ ": "+v);
+
+			ctxSabit.fillText(advepuan[v]+ ": "+v, 0,0);
+			
+		});
+*/
 		
 	}
 
