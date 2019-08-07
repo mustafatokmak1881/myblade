@@ -15,10 +15,17 @@ var ctxTuslar = mycTuslar.getContext("2d");
 mycTuslar.width = window.innerWidth;
 mycTuslar.height = window.innerHeight;
 
+
+
 var mycPuanlar = document.getElementById("mycPuanlar");
 var ctxPuanlar = mycPuanlar.getContext("2d");
 mycPuanlar.width = window.innerWidth;
 mycPuanlar.height = window.innerHeight;
+
+var mycPuanArkaplan = document.getElementById("mycPuanArkaplan");
+var ctxPuanArkaplan = mycPuanArkaplan.getContext("2d");
+mycPuanArkaplan.width = window.innerWidth;
+mycPuanArkaplan.height = window.innerHeight;
 
 
 
@@ -364,6 +371,8 @@ function kaliciNesneCiz(kaliciNesneler){
 function render(data){
 
 	ctxPuanlar.clearRect(0,0,mycPuanlar.width, mycPuanlar.height);
+	ctxPuanArkaplan.clearRect(0,0, mycPuanArkaplan.width, mycPuanArkaplan.height);
+
 	ctxSabit.clearRect(0,0, mycSabit.width, mycSabit.height);
 	ctx.clearRect(0,0, myc.width, myc.height);
 
@@ -401,25 +410,34 @@ function render(data){
 		
 
 ctxPuanlar.font = "16px Arial";
-//ctxPuanlar.fillStyle = "white";
+ctxPuanlar.fillStyle = "white";
+
+
 //ctxPuanlar.fillText("Qdfsfsdfsd", 30,30);
 
 
-		puanlarY = 30;
+		puanlarY = 60;
 		puanlar.sort(function(a,b){
 			return b-a;
 		});
+		ctxPuanlar.fillText("LEADERS:", 30, puanlarY-30);
+
 		puanlar.forEach(function(v,k){
-	
-			c(advepuan[v]+ ": "+v);
-			ctxPuanlar.fillText(k+" "+advepuan[v]+" "+v.toFixed(0), 30,puanlarY);
-			puanlarY+=30;
+			if (k<=7){
+
+				c(advepuan[v]+": "+v);
+				ctxPuanlar.fillText((k+1)+"      "+advepuan[v]+"      "+v.toFixed(0), 30, puanlarY);
+				puanlarY+=30;
+
+			}
+
 		});
 		
+		ctxPuanArkaplan.fillStyle = "rgb(156,156,156,0.2)";
 
-		ctx.rect(0, 0, 200, 200);
-		ctx.fill();
-		ctxPuanlar.fill();
+		ctxPuanArkaplan.rect(0, 10, 200, 200);
+	
+		ctxPuanArkaplan.fill();
 
 
 		
