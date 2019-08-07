@@ -15,6 +15,14 @@ var ctxTuslar = mycTuslar.getContext("2d");
 mycTuslar.width = window.innerWidth;
 mycTuslar.height = window.innerHeight;
 
+var mycPuanlar = document.getElementById("mycPuanlar");
+var ctxPuanlar = mycPuanlar.getContext("2d");
+mycPuanlar.width = window.innerWidth;
+mycPuanlar.height = window.innerHeight;
+
+
+
+
 
 ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
 
@@ -355,7 +363,7 @@ function kaliciNesneCiz(kaliciNesneler){
 
 function render(data){
 
-
+	ctxPuanlar.clearRect(0,0,mycPuanlar.width, mycPuanlar.height);
 	ctxSabit.clearRect(0,0, mycSabit.width, mycSabit.height);
 	ctx.clearRect(0,0, myc.width, myc.height);
 
@@ -379,32 +387,41 @@ function render(data){
 		for (sid in data.oyuncular){
 			
 			let suan = new Date().getTime();
-			let puan = (suan - data.oyuncular[sid].p);
+			let puan = Math.floor((suan - (data.oyuncular[sid].p))/10000);
+			//let puan = (data.oyuncular[sid].y);
+
 			puanlar.push(puan);
 			advepuan[puan] = data.oyuncular[sid].ad;
 
 			topac_Ciz(sid, data.oyuncular[sid]);
 		}
+	
+
+
 		
-ctxSabit.fillStyle = "grey";
-ctxSabit.font = "16px Arial";
-ctxSabit.fillText("Q", mycTuslar.width/2, mycTuslar.height-20);
 
-/*
-		ctx.rect(0, 0, 200, 200);
-		
-		ctx.fillText("heyy", 30,50);
-		ctx.fill();
+ctxPuanlar.font = "16px Arial";
+//ctxPuanlar.fillStyle = "white";
+//ctxPuanlar.fillText("Qdfsfsdfsd", 30,30);
 
 
+		puanlarY = 30;
+		puanlar.sort(function(a,b){
+			return b-a;
+		});
 		puanlar.forEach(function(v,k){
 	
 			c(advepuan[v]+ ": "+v);
-
-			ctxSabit.fillText(advepuan[v]+ ": "+v, 0,0);
-			
+			ctxPuanlar.fillText(k+" "+advepuan[v]+" "+v.toFixed(0), 30,puanlarY);
+			puanlarY+=30;
 		});
-*/
+		
+
+		ctx.rect(0, 0, 200, 200);
+		ctx.fill();
+		ctxPuanlar.fill();
+
+
 		
 	}
 

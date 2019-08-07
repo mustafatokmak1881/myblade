@@ -1,6 +1,6 @@
 
 
-const timer = 1000;
+const timer = 60;
 const baslangic_hizi = 12;
 const ani_hizlanma_katsayisi = 5;
 const baslangic_cani = 32;
@@ -9,7 +9,7 @@ const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2000;
 const sinir_icfark= 64;
-const botsayisi = 2;
+const botsayisi = 5;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -508,6 +508,7 @@ function oyunDongu(){
 
 											if (hersey.oyuncular[sid] && hersey.oyuncular[sid].c && hersey.oyuncular[sid].c < 64){
 												hersey.oyuncular[sid].c += 2;
+												hersey.oyuncular[sid].p -= 5000;
 												var knX = Math.floor(Math.random() * sinir_bitis_X);
 												var knY = Math.floor(Math.random()*sinir_bitis_Y);
 												kaliciNesneEkle("g", knX, knY);
