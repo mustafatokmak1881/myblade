@@ -419,14 +419,15 @@ ctxPuanlar.fillStyle = "white";
 		puanlar.sort(function(a,b){
 			return b-a;
 		});
-		ctxPuanlar.fillText("LEADERS:  "+"(online:"+Object.keys(data.oyuncular).length+")", 30, puanlarY-35);
+		ctxPuanlar.fillText("LEADERS:  "+"(online:"+Object.keys(data.oyuncular).length+")", window.innerWidth-200, puanlarY-35);
 
+		let ksayisi = 7;
 		puanlar.forEach(function(v,k){
 
-			if (k<=7){
+			if (k<=ksayisi){
 
 				c(advepuan[v]+": "+v);
-				ctxPuanlar.fillText((k+1)+"      "+advepuan[v].substr(0,10)+"      "+v.toFixed(0), 30, puanlarY);
+				ctxPuanlar.fillText((k+1)+"      "+advepuan[v].substr(0,10)+"      "+v.toFixed(0), window.innerWidth-200, puanlarY);
 				puanlarY+=30;
 
 			}
@@ -435,7 +436,7 @@ ctxPuanlar.fillStyle = "white";
 		
 		ctxPuanArkaplan.fillStyle = "rgb(0,0,0,0.3)";
 
-		ctxPuanArkaplan.rect(0, 10, 220, 280);
+		ctxPuanArkaplan.rect(window.innerWidth-220, 10, 220, 280);
 	
 		ctxPuanArkaplan.fill();
 

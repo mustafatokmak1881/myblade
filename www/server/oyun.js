@@ -9,7 +9,7 @@ const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2000;
 const sinir_icfark= 64;
-const botsayisi = 70;
+const botsayisi = 0;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -17,7 +17,7 @@ const bicimsayisi = 9;
 const rboy = 488;
 const yboy = 293;
 
-const bomba_sayisi = 40;
+const bomba_sayisi = 10;
 const guc_sayisi = 100;
 
 const kaliciNesneler = [];
