@@ -99,8 +99,8 @@ bombaRes.src = "res/bomb.png";
 function topaci_ekranda_ortala(){
 	//var ortaX = Math.floor((myc.width/2)-(topac.width/2));
 	//var ortaY = Math.floor((myc.height/2)-(topac.height/2));
-	var ortaX = Math.floor((myc.width/2)-(topac.width/2));
-	var ortaY = Math.floor((myc.height/2)-(topac.width/2));	
+	var ortaX = Math.floor((myc.width/2)-((topac.width/7)/2));
+	var ortaY = Math.floor((myc.height/2)-(topac.height/2));	
 	return {ortaX: ortaX, ortaY: ortaY}
 }
 
@@ -251,7 +251,7 @@ function topac_Ciz(sid,sidBilgi){
 //drawRotated(aci);
 
 tipeGoreTopac(sidBilgi,x,y);
-	//ctx.drawImage(topac, x,y, topac.width, topac.height);
+	//ctx.drawImage(topac, x,y, topac.width/7, topac.height);
 
 
 /*
@@ -261,7 +261,7 @@ tipeGoreTopac(sidBilgi,x,y);
 
 */
 
-	//ctx.drawImage(topac, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);	
+	//ctx.drawImage(topac, (topac.width/7)*((sidBilgi.a)%7), 0, (topac.width/7), topac.height, x, y, (topac.width/7), topac.height);	
 
 }
 
@@ -269,38 +269,39 @@ tipeGoreTopac(sidBilgi,x,y);
 
 function tipeGoreTopac(sidBilgi,x,y){
 	if (sidBilgi.b == 0){
-		ctx.drawImage(topac0, x,y, topac.width, topac.height);
+		ctx.drawImage(topac0, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
 	}
 	else if (sidBilgi.b == 1){
-		ctx.drawImage(topac1, x,y, topac.width, topac.height);
+		ctx.drawImage(topac1, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
 	}
 	else if (sidBilgi.b == 2){
-		ctx.drawImage(topac2, x,y, topac.width, topac.height);
+		ctx.drawImage(topac2, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
 	}
 	else if (sidBilgi.b == 3){
-		ctx.drawImage(topac3, x,y, topac.width, topac.height);
+		ctx.drawImage(topac3, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
 	}
 	else if (sidBilgi.b == 4){
-		ctx.drawImage(topac4, x,y, topac.width, topac.height);
+		ctx.drawImage(topac4, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
 	}
 	else if (sidBilgi.b == 5){
-		ctx.drawImage(topac5, x,y, topac.width, topac.height);
+		ctx.drawImage(topac5, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
 	}
 	else if (sidBilgi.b == 6){
-		ctx.drawImage(topac6, x,y, topac.width, topac.height);
+		ctx.drawImage(topac6, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
 	}
 	else if (sidBilgi.b == 7){
-		ctx.drawImage(topac7, x,y, topac.width, topac.height);
+		ctx.drawImage(topac7, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
 	}
 	else if (sidBilgi.b == 8){
-		ctx.drawImage(topac8, x,y, topac.width, topac.height);
+		ctx.drawImage(topac8, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
 	}
 	else if (sidBilgi.b == 9){
-		ctx.drawImage(topac9, x,y, topac.width, topac.height);
+		ctx.drawImage(topac9, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
 	}
-
-
 }
+
+
+
 
 function kaliciNesneCiz(kaliciNesneler){
 
@@ -395,7 +396,7 @@ function render(data){
 	
 		for (sid in data.oyuncular){
 		
-			let puan = Math.floor((data.sunucusaati - (data.oyuncular[sid].p))/10000);
+			let puan = (data.sunucusaati - (data.oyuncular[sid].p));
 			//let puan = (data.oyuncular[sid].y);
 
 			puanlar.push(puan);
@@ -427,7 +428,7 @@ ctxPuanlar.fillStyle = "white";
 			if (k<=ksayisi){
 
 				c(advepuan[v]+": "+v);
-				ctxPuanlar.fillText((k+1)+"      "+advepuan[v].substr(0,10)+"      "+v.toFixed(0), window.innerWidth-200, puanlarY);
+				ctxPuanlar.fillText((k+1)+"      "+advepuan[v].substr(0,10)+"      "+Math.floor(v/1000).toFixed(0), window.innerWidth-200, puanlarY);
 				puanlarY+=30;
 
 			}

@@ -5,11 +5,11 @@ const baslangic_hizi = 12;
 const ani_hizlanma_katsayisi = 5;
 const baslangic_cani = 32;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 2000;
+const sinir_bitis_X = 1500;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y = 2000;
+const sinir_bitis_Y = 1500;
 const sinir_icfark= 64;
-const botsayisi = 5;
+const botsayisi = 0;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -17,7 +17,7 @@ const bicimsayisi = 9;
 const rboy = 488;
 const yboy = 293;
 
-const bomba_sayisi = 10;
+const bomba_sayisi = 4;
 const guc_sayisi = 100;
 
 const kaliciNesneler = [];
@@ -191,6 +191,8 @@ function yeniOyuncu(ad){
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
 	o.y = Math.floor(Math.random(sinir_baslangic_Y) * sinir_bitis_Y);
 	o.b = Math.floor(Math.random()*bicimsayisi);
+	
+
 	return o;
 }
 
@@ -581,7 +583,10 @@ function oyunDongu(){
 
 
 		*/
-		io.emit("hersey", hersey);
+		if (Object.keys(hersey.oyuncular).length>0 || hersey.nesne.length>0){
+			io.emit("hersey", hersey);
+		}
+		
 
 		//fps();
 		//kb(hersey);
