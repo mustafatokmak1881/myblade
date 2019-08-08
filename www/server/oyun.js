@@ -9,7 +9,7 @@ const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2000;
 const sinir_icfark= 64;
-const botsayisi = 0;
+const botsayisi = 20;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -226,7 +226,7 @@ io.on("connection", function(s){
 
 
 	s.on("ilkgiris", function(data){
-		hersey.oyuncular[s.id] = yeniOyuncu(data.ad);
+		hersey.oyuncular[s.id] = yeniOyuncu(data.ad.substr(0,10));
 	});
 
 	s.on("tus", function(data){
@@ -372,14 +372,18 @@ function oyunDongu(){
 							hersey.oyuncular[sid].k = 0;
 							hersey.oyuncular[sid2].k = 0;
 
-							hersey.oyuncular[sid].f = 10;
-							hersey.oyuncular[sid2].f = 10;
+							hersey.oyuncular[sid].f = 5;
+							hersey.oyuncular[sid2].f = 5;
+
+
 
 							/* Güce göre puan azaltma*/
 							hersey.oyuncular[sid2].c -= g1*5;
 							hersey.oyuncular[sid].c -= g2*5;
 
 
+							/* Puan artıyor */
+							hersey.oyuncular[sid].p -= 40000;
 						}
 						else if(hersey.oyuncular[sid].u < hersey.oyuncular[sid2].u){
 							/*  Çarpışma anında tuş hızlanma devre dışı*/
@@ -387,8 +391,8 @@ function oyunDongu(){
 							hersey.oyuncular[sid2].k = 0;
 							hersey.oyuncular[sid].h = baslangic_hizi;
 
-							hersey.oyuncular[sid].f = 80;
-							hersey.oyuncular[sid2].f = 40;
+							hersey.oyuncular[sid].f = 40;
+							hersey.oyuncular[sid2].f = 20;
 
 							hersey.oyuncular[sid2].c += g1*5;
 							hersey.oyuncular[sid].c -= g2*10;
@@ -401,11 +405,13 @@ function oyunDongu(){
 							hersey.oyuncular[sid2].k = 0;
 							hersey.oyuncular[sid].h = baslangic_hizi;
 
-							hersey.oyuncular[sid].f = 40;
-							hersey.oyuncular[sid2].f = 80;
+							hersey.oyuncular[sid].f = 20;
+							hersey.oyuncular[sid2].f = 40;
 
 							hersey.oyuncular[sid2].c -= g1*10;
 							hersey.oyuncular[sid].c += g2*5;
+
+							hersey.oyuncular[sid].p -= 80000;
 
 
 						}
