@@ -122,7 +122,7 @@ function topac_Ciz(sid,sidBilgi){
 	if (sid && sid == s.id){
 		ctx.shadowColor = "black";
 		//ctx.font = "12px Arial";
-		ctx.fillText(sidBilgi.ad, ortaX+40, ortaY-16);
+		ctx.fillText(sidBilgi.ad, ortaX+0, ortaY-16);
 		ctx.fillStyle = "red";
 
 		if (sidBilgi.t > 0){
@@ -158,7 +158,7 @@ function topac_Ciz(sid,sidBilgi){
 	else{
 		ctx.shadowColor = "black";
 		//ctx.font = "12px Arial";
-		ctx.fillText(sidBilgi.ad, sidBilgi.x+farkX+40, sidBilgi.y+farkY-16);
+		ctx.fillText(sidBilgi.ad, sidBilgi.x+farkX+0, sidBilgi.y+farkY-16);
 		ctx.fillStyle = "green";
 		x = sidBilgi.x+farkX;
 		y = sidBilgi.y+farkY;

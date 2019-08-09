@@ -9,7 +9,7 @@ const sinir_bitis_X = 1500;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 1500;
 const sinir_icfark= 64;
-const botsayisi = 0;
+const botsayisi = 10;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -566,7 +566,13 @@ function oyunDongu(){
 				/* Carpisma Bitis*/
 
 			if (hersey && hersey.oyuncular && hersey.oyuncular[sid]){
-				hersey.oyuncular[sid].a += 1;
+				if (hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].u>0){
+					hersey.oyuncular[sid].a += 2;
+				}
+				else{
+					hersey.oyuncular[sid].a += 1;
+				}
+				
 			}
 		}
 		/*			OYUNCULAR DÖNGÜSÜ BİTİŞ			*/
