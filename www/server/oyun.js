@@ -5,11 +5,11 @@ const baslangic_hizi = 12;
 const ani_hizlanma_katsayisi = 5;
 const baslangic_cani = 32;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 1500;
+const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y = 1500;
+const sinir_bitis_Y = 2000;
 const sinir_icfark= 64;
-const botsayisi = 10;
+const botsayisi = 3;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -228,7 +228,7 @@ io.on("connection", function(s){
 
 
 	s.on("ilkgiris", function(data){
-		hersey.oyuncular[s.id] = yeniOyuncu(data.ad.substr(0,10));
+		hersey.oyuncular[s.id] = yeniOyuncu(data.ad.substr(0,50));
 	});
 
 	s.on("tus", function(data){
@@ -567,7 +567,7 @@ function oyunDongu(){
 
 			if (hersey && hersey.oyuncular && hersey.oyuncular[sid]){
 				if (hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].u>0){
-					hersey.oyuncular[sid].a += 2;
+					hersey.oyuncular[sid].a += 6;
 				}
 				else{
 					hersey.oyuncular[sid].a += 1;
