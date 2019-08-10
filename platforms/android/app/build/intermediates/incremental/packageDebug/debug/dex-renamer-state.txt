@@ -1,0 +1,4 @@
+#Sat Aug 10 00:37:16 EET 2019
+base.0=C\:\\xampp2\\htdocs\\myblade\\myblade3.0\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex

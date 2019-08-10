@@ -1,48 +1,69 @@
 
 
-const timer = 30;
-const baslangic_hizi = 8;
-const ani_hizlanma_katsayisi = 7;
-const baslangic_cani = 40;
+const timer = 60;
+const baslangic_hizi = 12;
+const ani_hizlanma_katsayisi = 5;
+const baslangic_cani = 32;
 const sinir_baslangic_X = 0;
 const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2000;
-const botsayisi = 4;
+const sinir_icfark= 64;
+const botsayisi = 3;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
-const bicimsayisi = 3;
+const bicimsayisi = 9;
 
 const rboy = 488;
 const yboy = 293;
 
+const bomba_sayisi = 4;
+const guc_sayisi = 100;
 
 const kaliciNesneler = [];
 
-function kaliciNesneEkle(t,x,y){
-	var o = {t:t, x:x, y:y}
-	kaliciNesneler.push(o);
+function kaliciNesneEkle(t,x,y,x2=false,y2=false){
+	if (x2 && y2){
+		var o = {t:t, x:x, y:y, x2:x2, y2:y2}
+		kaliciNesneler.push(o);
+	}
+	else{
+		var o = {t:t, x:x, y:y}
+		kaliciNesneler.push(o);
+	}
+
 }
 
+var sinir_ekle=()=>{
+	kaliciNesneEkle("s",sinir_baslangic_X,sinir_baslangic_Y,sinir_bitis_X,sinir_bitis_Y);
+}
 
-for (var a=0; a<50; a++){
+sinir_ekle();
+
+var guc_ekle=()=>{
+
+	for (var a=0; a<guc_sayisi; a++){
 	kaliciNesneEkle("g", Math.floor(Math.random() * sinir_bitis_X), Math.floor(Math.random()*sinir_bitis_Y));
 
+	}
 }
 
+guc_ekle();
 
 
 
-
-for (var a=0; a<10; a++){
+var bomba_ekle=()=>{
+	for (var a=0; a<bomba_sayisi; a++){
 	kaliciNesneEkle("b", Math.floor(Math.random() * sinir_bitis_X), Math.floor(Math.random()*sinir_bitis_Y));
+	}
 }
 
+bomba_ekle();
 
 
 
 
-function zeminikapla(){
+var zeminikapla=()=>{
 
 	for (let b=0; b<10; b++){
 		kaliciNesneEkle("y", yboy*b,0);
@@ -51,7 +72,7 @@ function zeminikapla(){
 		}
 	}
 }
-zeminikapla();
+//zeminikapla();
 
 function yolyap(){
 
@@ -92,7 +113,7 @@ function yolyap(){
 
 }
 
-yolyap();
+//yolyap();
 
 
 
@@ -110,7 +131,8 @@ for (var a=0; a<500; a++){
 
 const hersey = {
 	oyuncular: {},
-	nesne: []
+	nesne: [],
+	sunucusaati: 0
 }
 
 
@@ -163,11 +185,14 @@ function gucFarki(guc1,guc2){
 }
 
 function yeniOyuncu(ad){
-	var o = {ad: "", b:0, x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, u:0, f:0, rx:0, ry:0}
+	var p = new Date().getTime();
+	var o = {ad: "", b:0, x:0, y:0, k:0, a:0, wx:0, wy:0, h:baslangic_hizi, c:baslangic_cani, r:"", t:0, u:0, f:0, rx:0, ry:0, p:p}
 	o.ad = ad;
 	o.x = Math.floor(Math.random(sinir_baslangic_X) * sinir_bitis_X);
-	o.y = Math.floor(Math.random() * 300);
+	o.y = Math.floor(Math.random(sinir_baslangic_Y) * sinir_bitis_Y);
 	o.b = Math.floor(Math.random()*bicimsayisi);
+	
+
 	return o;
 }
 
@@ -203,7 +228,7 @@ io.on("connection", function(s){
 
 
 	s.on("ilkgiris", function(data){
-		hersey.oyuncular[s.id] = yeniOyuncu(data.ad);
+		hersey.oyuncular[s.id] = yeniOyuncu(data.ad.substr(0,50));
 	});
 
 	s.on("tus", function(data){
@@ -252,12 +277,32 @@ io.on("connection", function(s){
 
 
 function oyunDongu(){
-
-
+	let sunucusaati = new Date().getTime();
+	hersey.sunucusaati = sunucusaati;
 
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
 		/*			OYUNCULAR DÖNGÜSÜ BAŞLANGIÇ			*/
 		for (var sid in hersey.oyuncular){
+			if (hersey.oyuncular[sid] && hersey.oyuncular[sid].x && hersey.oyuncular[sid].y){
+				if (hersey.oyuncular[sid].x >= sinir_baslangic_X-sinir_icfark && hersey.oyuncular[sid].x <= sinir_bitis_X+0 && hersey.oyuncular[sid].y >= sinir_baslangic_Y-sinir_icfark && hersey.oyuncular[sid].y <= sinir_bitis_Y+0){
+				}
+				else{
+						try{
+						
+							io.to(sid).emit("oyunbitti", "");
+							delete hersey.oyuncular[sid];
+							return false;
+						}catch(err){
+
+						}					
+				}
+			}
+			if (hersey.oyuncular[sid] && hersey.oyuncular[sid].f>0){
+				hersey.oyuncular[sid].r = "k";
+			}
+			else{
+				hersey.oyuncular[sid].r = "s";
+			}
 
 			// A tuşu ile ilgili
 			if (hersey && hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].t){
@@ -266,7 +311,7 @@ function oyunDongu(){
 			if (hersey && hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].u){
 				hersey.oyuncular[sid].u -= 1;
 				if (hersey.oyuncular[sid].u>0){
-					
+					hersey.oyuncular[sid].r = "m";
 				}
 				else{
 					hersey.oyuncular[sid].r = "s";
@@ -277,14 +322,16 @@ function oyunDongu(){
 
 
 
-			if (hersey.oyuncular[sid].f > 0){
+			if (hersey.oyuncular[sid] && hersey.oyuncular[sid].f && hersey.oyuncular[sid].f > 0){
 				hersey.oyuncular[sid].f -= 1;
-				hersey.oyuncular[sid].x -= (hersey.oyuncular[sid].rx*16);
-				hersey.oyuncular[sid].y -= (hersey.oyuncular[sid].ry*16);
+				hersey.oyuncular[sid].x -= (hersey.oyuncular[sid].rx*baslangic_hizi*2);
+				hersey.oyuncular[sid].y -= (hersey.oyuncular[sid].ry*baslangic_hizi*2);
 			}
 			else{
-				hersey.oyuncular[sid].rx = 0;
-				hersey.oyuncular[sid].ry = 0;
+				if (hersey.oyuncular[sid] && hersey.oyuncular[sid].rx){
+					hersey.oyuncular[sid].rx = 0;
+					hersey.oyuncular[sid].ry = 0;
+				}
 			}
 
 			/*			Kendi kendisine çarpma durumunu engellemek için			*/
@@ -327,14 +374,18 @@ function oyunDongu(){
 							hersey.oyuncular[sid].k = 0;
 							hersey.oyuncular[sid2].k = 0;
 
-							hersey.oyuncular[sid].f = 10;
-							hersey.oyuncular[sid2].f = 10;
+							hersey.oyuncular[sid].f = 5;
+							hersey.oyuncular[sid2].f = 5;
+
+
 
 							/* Güce göre puan azaltma*/
 							hersey.oyuncular[sid2].c -= g1*5;
 							hersey.oyuncular[sid].c -= g2*5;
 
 
+							/* Puan artıyor */
+							hersey.oyuncular[sid].p -= 40000;
 						}
 						else if(hersey.oyuncular[sid].u < hersey.oyuncular[sid2].u){
 							/*  Çarpışma anında tuş hızlanma devre dışı*/
@@ -342,8 +393,8 @@ function oyunDongu(){
 							hersey.oyuncular[sid2].k = 0;
 							hersey.oyuncular[sid].h = baslangic_hizi;
 
-							hersey.oyuncular[sid].f = 80;
-							hersey.oyuncular[sid2].f = 40;
+							hersey.oyuncular[sid].f = 40;
+							hersey.oyuncular[sid2].f = 20;
 
 							hersey.oyuncular[sid2].c += g1*5;
 							hersey.oyuncular[sid].c -= g2*10;
@@ -356,11 +407,13 @@ function oyunDongu(){
 							hersey.oyuncular[sid2].k = 0;
 							hersey.oyuncular[sid].h = baslangic_hizi;
 
-							hersey.oyuncular[sid].f = 40;
-							hersey.oyuncular[sid2].f = 80;
+							hersey.oyuncular[sid].f = 20;
+							hersey.oyuncular[sid2].f = 40;
 
 							hersey.oyuncular[sid2].c -= g1*10;
 							hersey.oyuncular[sid].c += g2*5;
+
+							hersey.oyuncular[sid].p -= 80000;
 
 
 						}
@@ -399,7 +452,7 @@ function oyunDongu(){
 									hersey.oyuncular[sid].t = 50;
 									hersey.oyuncular[sid].u = 10;
 									hersey.oyuncular[sid].r = "m";
- 									hersey.oyuncular[sid].h = baslangic_hizi*8;
+ 									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
 									
 								}
 
@@ -462,8 +515,9 @@ function oyunDongu(){
 										if (kaliciNesne.t == "g"){
 
 
-											if (hersey.oyuncular[sid].c < 64){
+											if (hersey.oyuncular[sid] && hersey.oyuncular[sid].c && hersey.oyuncular[sid].c < 64){
 												hersey.oyuncular[sid].c += 2;
+												hersey.oyuncular[sid].p -= 5000;
 												var knX = Math.floor(Math.random() * sinir_bitis_X);
 												var knY = Math.floor(Math.random()*sinir_bitis_Y);
 												kaliciNesneEkle("g", knX, knY);
@@ -512,7 +566,13 @@ function oyunDongu(){
 				/* Carpisma Bitis*/
 
 			if (hersey && hersey.oyuncular && hersey.oyuncular[sid]){
-				hersey.oyuncular[sid].a += 1;
+				if (hersey.oyuncular && hersey.oyuncular[sid] && hersey.oyuncular[sid].u>0){
+					hersey.oyuncular[sid].a += 6;
+				}
+				else{
+					hersey.oyuncular[sid].a += 1;
+				}
+				
 			}
 		}
 		/*			OYUNCULAR DÖNGÜSÜ BİTİŞ			*/
@@ -529,7 +589,10 @@ function oyunDongu(){
 
 
 		*/
-		io.emit("hersey", hersey);
+		if (Object.keys(hersey.oyuncular).length>0 || hersey.nesne.length>0){
+			io.emit("hersey", hersey);
+		}
+		
 
 		//fps();
 		//kb(hersey);

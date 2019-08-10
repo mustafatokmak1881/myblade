@@ -1,8 +1,10 @@
 var asagi_tusu = 1;
 var suan = new Date().getTime();
+var doubletouch = 0;
+var doubletouchZaman = 0;
 
-var s = io.connect("http://localhost:3011");
-//var s = io.connect("http://173.212.232.18:3011");
+//var s = io.connect("http://localhost:3011");
+var s = io.connect("http://95.173.182.15:3011");
 
 
 function kaliciNesneEkle(t,x,y){
@@ -17,16 +19,13 @@ $(document).ready(function(){
 
 
 	s.on("hersey", function(data){
-	
-	var simdi = new Date().getTime();
-
-	suan = simdi;
 		render(data);
 	});	
 
 	s.on("ilkgiris", function(data){
 		kaliciNesneler = data.kaliciNesneler;
 		render(kaliciNesneler);
+
 	});
 
 	s.on("kaliciNesneSil", function(data){
@@ -43,7 +42,7 @@ $(document).ready(function(){
 	});
 
 	s.on("tusabas", function(data){
-		alert(data.tus);
+		//alert(data.tus);
 	});
 
 
@@ -87,14 +86,57 @@ window.addEventListener("keypress", function(e){
 	asagi_tusu = 0;		
 
 });
-
-
 window.addEventListener("keyup", function(e){
 	s.emit("tus", {
 		keyCode: 0
 	});
 	asagi_tusu = 1;		
 });
+
+window.addEventListener("mousedown", function(e){
+	if (asagi_tusu == 1 && e.which == 1){
+		s.emit("tus", {
+			keyCode: 113
+		});
+	}	
+	asagi_tusu = 0;	
+});
+window.addEventListener("mouseup", function(e){
+	s.emit("tus", {
+		keyCode: 0
+	});
+	asagi_tusu = 1;		
+});
+window.addEventListener("touchstart", function(e){
+	if (doubletouch == 0){
+		let suan = new Date().getTime();
+		doubletouchZaman = suan;
+
+	}
+	doubletouch++;
+
+		let suan = new Date().getTime();
+		let fark = suan-doubletouchZaman;
+		if (fark <= 200){
+			
+
+			if (asagi_tusu == 1){
+				s.emit("tus", {
+					keyCode: 113
+				});
+			}	
+			asagi_tusu = 0;	
+
+		}else{
+			
+			let suan = new Date().getTime();
+			doubletouchZaman = suan;
+		}
+	
+});
+
+
+
 
 window.addEventListener("touchmove",function(e){
 	var x = parseInt(e.changedTouches[0].clientX);
@@ -126,7 +168,14 @@ window.addEventListener("mousemove", function(e){
 });
 
 window.addEventListener("resize", function(e){
+
 	myc.width = window.innerWidth;
 	myc.height = window.innerHeight;
+
+	mycSabit.width = window.innerWidth;
+	mycSabit.height = window.innerHeight;
+
+	mycTuslar.width = window.innerWidth;
+	mycTuslar.height = window.innerHeight;
 
 });
