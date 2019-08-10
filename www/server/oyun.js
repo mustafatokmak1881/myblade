@@ -9,7 +9,7 @@ const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2000;
 const sinir_icfark= 64;
-const botsayisi = 3;
+const botsayisi = 30;
 const haritaSinirX = 3400;
 const haritaSinirY = 2900;
 const bicimsayisi = 9;
@@ -205,6 +205,51 @@ function pf(d1){
 
 
 
+function botAI_rastgele_yon_ver(sid){
+	let rastX = Math.floor(Math.random(sinir_baslangic_X)*sinir_bitis_X);
+	let rastY = Math.floor(Math.random(sinir_baslangic_Y)*sinir_bitis_Y);
+	let o = wxybul(rastX, rastY, hersey.oyuncular[sid].x, hersey.oyuncular[sid].y);	
+	return o;
+}
+
+
+function botAI(sid, sid2){
+	if (sid.indexOf("bot")>-1){
+		
+	
+			if (hersey.oyuncular[sid].x <= sinir_baslangic_X){
+				hersey.oyuncular[sid].wx = Math.abs(botAI_rastgele_yon_ver(sid).wx);
+			}
+			if (hersey.oyuncular[sid].x >= sinir_bitis_X-100){
+				hersey.oyuncular[sid].wx = Math.abs(botAI_rastgele_yon_ver(sid).wx)*-1;
+			}
+			if (hersey.oyuncular[sid].y <= sinir_baslangic_Y){
+				hersey.oyuncular[sid].wy = Math.abs(botAI_rastgele_yon_ver(sid).wy);
+			}
+			if (hersey.oyuncular[sid].y >= sinir_bitis_Y-100){
+				hersey.oyuncular[sid].wy = Math.abs(botAI_rastgele_yon_ver(sid).wy)*-1;
+			}
+
+
+		if (hersey.oyuncular[sid].wx == 0 && hersey.oyuncular[sid].wy == 0){
+
+
+
+				hersey.oyuncular[sid].wx = botAI_rastgele_yon_ver(sid).wx;
+				hersey.oyuncular[sid].wy = botAI_rastgele_yon_ver(sid).wy;
+
+
+		}
+
+
+
+	}
+
+}
+
+
+
+
 
 //Bot ekle
 function botolustur(d){
@@ -267,9 +312,6 @@ io.on("connection", function(s){
 
 
 });
-
-
-
 
 
 
@@ -353,6 +395,11 @@ function oyunDongu(){
 
 					var ben_ve_nesne_farki_X = Math.abs(digerX-benimX);
 					var ben_ve_nesne_farki_Y = Math.abs(digerY-benimY);
+
+
+
+					botAI(sid, sid2);
+
 
 					if (ben_ve_nesne_farki_X < 54 && ben_ve_nesne_farki_Y <54){
 						console.log("Mybladeler çarpıştı.");
@@ -597,7 +644,7 @@ function oyunDongu(){
 		//fps();
 		//kb(hersey);
 		
-		console.log(hersey);
+		
 
 
 
