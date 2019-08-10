@@ -17,9 +17,10 @@ const bicimsayisi = 9;
 const rboy = 488;
 const yboy = 293;
 
-const bomba_sayisi = 4;
+const bomba_sayisi = 30;
 const guc_sayisi = 100;
-const yon_degisim_modu = 37;
+const yon_degisim_modu = 107;
+
 const botAI_isimler = [
 	"Ayşegül",
 	"Elif46",
@@ -228,6 +229,78 @@ function pf(d1){
 
 
 
+function botAIBombaKacis(sid){
+							if (kaliciNesneler && kaliciNesneler.length>0 && hersey.oyuncular[sid] && hersey.oyuncular[sid].x && hersey.oyuncular[sid].y){
+								var benimX = hersey.oyuncular[sid].x;
+								var benimY = hersey.oyuncular[sid].y;
+
+								kaliciNesneler.forEach(function(kaliciNesne,k) {
+
+									var ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
+									var ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);
+
+
+
+									if (ben_ve_nesne_farki_X < 100 && ben_ve_nesne_farki_Y < 100 && kaliciNesne.t != "z" && kaliciNesne.t != "r" && kaliciNesne.t != "y")
+									{
+
+										if (kaliciNesne.t == "g"){
+											let o = wxybul(kaliciNesne.x, kaliciNesne.y, benimX, benimY);
+											hersey.oyuncular[sid].wx = o.wx;
+											hersey.oyuncular[sid].wy = o.wy;
+
+										}
+
+
+
+
+										if (ben_ve_nesne_farki_X < 64 && ben_ve_nesne_farki_Y < 64){
+						
+
+				
+											if(kaliciNesne.t == "b"){
+												let fx = kaliciNesne.x-benimX;
+												let fy = kaliciNesne.y-benimY;
+
+												if (fx<0){
+													hersey.oyuncular[sid].wx = Math.abs(botAI_rastgele_yon_ver(sid).wx);
+
+												}
+												else{
+													hersey.oyuncular[sid].wx = Math.abs(botAI_rastgele_yon_ver(sid).wx)*-1;
+												}
+
+												if (fy<0){
+													hersey.oyuncular[sid].wy = Math.abs(botAI_rastgele_yon_ver(sid).wy);
+
+												}
+												else{
+													hersey.oyuncular[sid].wy = Math.abs(botAI_rastgele_yon_ver(sid).wy)*-1;
+												}
+
+
+
+											}												
+											else if(kaliciNesne.t == "h"){
+											
+												
+											}
+
+										}
+
+
+									}
+
+
+
+
+								});
+
+
+
+							}	
+}
+
 
 function botAI_rastgele_yon_ver(sid){
 	let rastX = Math.floor(Math.random(sinir_baslangic_X)*sinir_bitis_X);
@@ -269,12 +342,19 @@ function botAI(sid, sid2){
 		if (hersey.oyuncular[sid].wx == 0 && hersey.oyuncular[sid].wy == 0){
 
 
-
 				hersey.oyuncular[sid].wx = botAI_rastgele_yon_ver(sid).wx;
 				hersey.oyuncular[sid].wy = botAI_rastgele_yon_ver(sid).wy;
 
 
 		}
+
+
+
+		botAIBombaKacis(sid);
+
+
+
+
 
 
 
