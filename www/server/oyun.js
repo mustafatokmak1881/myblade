@@ -240,7 +240,7 @@ function botAI_rastgele_yon_ver(sid){
 function botAI(sid, sid2){
 	if (sid.indexOf("bot")>-1){
 		
-	
+		//Sınırlara gelince uzaklaş.
 		if (hersey.oyuncular[sid].x <= sinir_baslangic_X+10){
 			hersey.oyuncular[sid].wx = Math.abs(botAI_rastgele_yon_ver(sid).wx);
 		}
@@ -257,8 +257,9 @@ function botAI(sid, sid2){
 
 
 
-		let suan = new Date().getTime();
 
+		//Rastgele durumlarda yön değiştir.
+		let suan = new Date().getTime();
 		if (suan%yon_degisim_modu == 1){
 
 			hersey.oyuncular[sid].wx = botAI_rastgele_yon_ver(sid).wx;
