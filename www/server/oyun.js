@@ -19,7 +19,31 @@ const yboy = 293;
 
 const bomba_sayisi = 4;
 const guc_sayisi = 100;
-
+const yon_degisim_modu = 37;
+const botAI_isimler = [
+	"Ayşegül",
+	"Elif46",
+	"Mahmut",
+	"Senelerce",
+	"Youtube delisi",
+	"manyak bu io",
+	"Şeref",
+	"Sajal",
+	"Rahul",
+	"Eljif",
+	"Natalia",
+	"I love you",
+	"Dennis",
+	"Ebu",
+	"Tarık",
+	"Lewis",
+	"Max",
+	"Lovest",
+	"LongerMan",
+	"Catwomen",
+	"wc",
+	"xmen"
+];
 const kaliciNesneler = [];
 
 function kaliciNesneEkle(t,x,y,x2=false,y2=false){
@@ -217,19 +241,29 @@ function botAI(sid, sid2){
 	if (sid.indexOf("bot")>-1){
 		
 	
-			if (hersey.oyuncular[sid].x <= sinir_baslangic_X){
-				hersey.oyuncular[sid].wx = Math.abs(botAI_rastgele_yon_ver(sid).wx);
-			}
-			if (hersey.oyuncular[sid].x >= sinir_bitis_X-100){
-				hersey.oyuncular[sid].wx = Math.abs(botAI_rastgele_yon_ver(sid).wx)*-1;
-			}
-			if (hersey.oyuncular[sid].y <= sinir_baslangic_Y){
-				hersey.oyuncular[sid].wy = Math.abs(botAI_rastgele_yon_ver(sid).wy);
-			}
-			if (hersey.oyuncular[sid].y >= sinir_bitis_Y-100){
-				hersey.oyuncular[sid].wy = Math.abs(botAI_rastgele_yon_ver(sid).wy)*-1;
-			}
+		if (hersey.oyuncular[sid].x <= sinir_baslangic_X+10){
+			hersey.oyuncular[sid].wx = Math.abs(botAI_rastgele_yon_ver(sid).wx);
+		}
+		if (hersey.oyuncular[sid].x >= sinir_bitis_X-100){
+			hersey.oyuncular[sid].wx = Math.abs(botAI_rastgele_yon_ver(sid).wx)*-1;
+		}
+		if (hersey.oyuncular[sid].y <= sinir_baslangic_Y){
+			hersey.oyuncular[sid].wy = Math.abs(botAI_rastgele_yon_ver(sid).wy);
+		}
+		if (hersey.oyuncular[sid].y >= sinir_bitis_Y-100){
+			hersey.oyuncular[sid].wy = Math.abs(botAI_rastgele_yon_ver(sid).wy)*-1;
+		}
 
+
+
+
+		let suan = new Date().getTime();
+
+		if (suan%yon_degisim_modu == 1){
+
+			hersey.oyuncular[sid].wx = botAI_rastgele_yon_ver(sid).wx;
+			hersey.oyuncular[sid].wy = botAI_rastgele_yon_ver(sid).wy;				
+		}
 
 		if (hersey.oyuncular[sid].wx == 0 && hersey.oyuncular[sid].wy == 0){
 
@@ -254,7 +288,8 @@ function botAI(sid, sid2){
 //Bot ekle
 function botolustur(d){
 	for (let i=0; i<d; i++){
-		hersey.oyuncular["bot"+i] = yeniOyuncu("BOT"+i);
+		let rastgele_isim = Math.floor(Math.random()*botAI_isimler.length-1);
+		hersey.oyuncular["bot"+i] = yeniOyuncu(botAI_isimler[rastgele_isim]);
 	}
 }
 
