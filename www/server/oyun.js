@@ -3,14 +3,14 @@
 const timer = 60;
 const baslangic_hizi = 12;
 const ani_hizlanma_katsayisi = 5;
-const baslangic_cani = 32;
+const baslangic_cani = 55;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 2000;
+const sinir_bitis_X = 1500;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y = 2000;
-const sinir_icfark= 64;
-const botsayisi = 9;
-const bot_alt_limiti = 5;
+const sinir_bitis_Y = 1500;
+const sinir_icfark= 55;
+const botsayisi = 50;
+const bot_alt_limiti = 6;
 
 const bicimsayisi = 9;
 
@@ -18,8 +18,8 @@ const rboy = 488;
 const yboy = 293;
 
 const bomba_sayisi = 4;
-const guc_sayisi = 100;
-const yon_degisim_modu = 179179179;
+const guc_sayisi = 50;
+const yon_degisim_modu = 57;
 
 const botAI_isimler = [
 	"Ayşegül",
@@ -328,6 +328,15 @@ function pf(d1){
 }
 
 
+function hizlan(sid,o){
+
+	hersey.oyuncular[sid].t = 50;
+	hersey.oyuncular[sid].u = 10;
+	hersey.oyuncular[sid].r = "m";
+	hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
+	hersey.oyuncular[sid].wx = o.wx*-1;
+	hersey.oyuncular[sid].wy = o.wy*-1;	
+}
 
 function botAIBombaKacis(sid, sid2){
 							if (kaliciNesneler && kaliciNesneler.length>0 && hersey.oyuncular[sid] && hersey.oyuncular[sid].x && hersey.oyuncular[sid].y){
@@ -375,7 +384,7 @@ function botAIBombaKacis(sid, sid2){
 											else{
 
 												if (kaliciNesne.t == "g"){
-
+													/* Güce ihtiyac varsa güce doğru git*/
 													if (hersey.oyuncular[sid].c<60){
 														let o = wxybul(kaliciNesne.x, kaliciNesne.y, benimX, benimY);
 														hersey.oyuncular[sid].wx = o.wx*-1;
@@ -392,36 +401,33 @@ function botAIBombaKacis(sid, sid2){
 
 											if (ben_ve_nesne_farki_X < 200  && ben_ve_nesne_farki_Y < 200){
 
+												/*  Benim canım onunkinden azsa hızlı vuruş yap */
 												let o = wxybul(hersey.oyuncular[sid2].x, hersey.oyuncular[sid2].y, benimX, benimY);
-												if (hersey.oyuncular[sid].c >= hersey.oyuncular[sid2].c){
-													
-													hersey.oyuncular[sid].wx = o.wx*-1;
-													hersey.oyuncular[sid].wy = o.wy*-1;														
-												}
-												else{
-	
+												if (hersey.oyuncular[sid].c < hersey.oyuncular[sid2].c && hersey.oyuncular[sid2].t == 0){
 
+													let suan = new Date().getTime();
+													let rast = Math.floor(Math.random()*10);
+													if (suan%yon_degisim_modu==rast && hersey.oyuncular[sid].t == 0){
 
-													if (hersey.oyuncular[sid].t == 0){
-														hersey.oyuncular[sid].wx = o.wx*-1;
-														hersey.oyuncular[sid].wy = o.wy*-1;
-
-														hersey.oyuncular[sid].t = 50;
-														hersey.oyuncular[sid].u = 10;
-														hersey.oyuncular[sid].r = "m";
-					 									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
-														
+														hizlan(sid,o);
 													}
 													else{
-														hersey.oyuncular[sid].wx = o.wx;
-														hersey.oyuncular[sid].wy = o.wy;
-
-														hersey.oyuncular[sid].t = 50;
-														hersey.oyuncular[sid].u = 10;
-														hersey.oyuncular[sid].r = "m";
-					 									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;																												
+														hersey.oyuncular[sid].wx = o.wx*-1;
+														hersey.oyuncular[sid].wy = o.wy*-1;	
 													}
 
+												}
+												else{
+													let suan = new Date().getTime();
+													let rast = Math.floor(Math.random()*10);
+													if (suan%yon_degisim_modu==rast && hersey.oyuncular[sid].t == 0){
+
+														hizlan(sid,o);
+													}
+													else{
+														hersey.oyuncular[sid].wx = o.wx*-1;
+														hersey.oyuncular[sid].wy = o.wy*-1;	
+													}
 
 												}
 
