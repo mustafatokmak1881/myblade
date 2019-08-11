@@ -10,7 +10,7 @@ const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 1500;
 const sinir_icfark= 55;
 const botsayisi = 50;
-const bot_alt_limiti = 6;
+const bot_alt_limiti = 5;
 
 const bicimsayisi = 9;
 
@@ -422,7 +422,7 @@ function botAIBombaKacis(sid, sid2){
 													let rast = Math.floor(Math.random()*10);
 													if (suan%yon_degisim_modu==rast && hersey.oyuncular[sid].t == 0){
 
-														hizlan(sid,o);
+														//hizlan(sid,o);
 													}
 													else{
 														hersey.oyuncular[sid].wx = o.wx*-1;
@@ -517,7 +517,7 @@ function botAI(sid, sid2){
 //Bot ekle
 function botolustur(d){
 	//for (let i=0; i<d; i++){
-		let rastgele_isim = Math.floor(Math.random()*botAI_isimler.length-2);
+		let rastgele_isim = Math.floor(Math.random()*(botAI_isimler.length-2));
 		hersey.oyuncular["bot"+Math.floor(Math.random()* 1000000000)] = yeniOyuncu(botAI_isimler[rastgele_isim]);
 	//}
 }

@@ -3,8 +3,8 @@ var suan = new Date().getTime();
 var doubletouch = 0;
 var doubletouchZaman = 0;
 
-var s = io.connect("http://localhost:3011");
-//var s = io.connect("http://95.173.182.15:3011");
+//var s = io.connect("http://localhost:3011");
+var s = io.connect("http://95.173.182.15:3011");
 
 
 function kaliciNesneEkle(t,x,y){
