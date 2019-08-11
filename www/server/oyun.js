@@ -387,11 +387,48 @@ function botAIBombaKacis(sid, sid2){
 									else{
 											let benimX = hersey.oyuncular[sid].x;
 											let benimY = hersey.oyuncular[sid].y;
+											let ben_ve_nesne_farki_X = Math.abs(hersey.oyuncular[sid2].x-benimX);
+											let ben_ve_nesne_farki_Y = Math.abs(hersey.oyuncular[sid2].y-benimY);
 
-							
+											if (ben_ve_nesne_farki_X < 200  && ben_ve_nesne_farki_Y < 200){
 
-											let ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
-											let ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);										
+												let o = wxybul(hersey.oyuncular[sid2].x, hersey.oyuncular[sid2].y, benimX, benimY);
+												if (hersey.oyuncular[sid].c >= hersey.oyuncular[sid2].c){
+													
+													hersey.oyuncular[sid].wx = o.wx*-1;
+													hersey.oyuncular[sid].wy = o.wy*-1;														
+												}
+												else{
+	
+
+
+													if (hersey.oyuncular[sid].t == 0){
+														hersey.oyuncular[sid].wx = o.wx*-1;
+														hersey.oyuncular[sid].wy = o.wy*-1;
+
+														hersey.oyuncular[sid].t = 50;
+														hersey.oyuncular[sid].u = 10;
+														hersey.oyuncular[sid].r = "m";
+					 									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
+														
+													}
+													else{
+														hersey.oyuncular[sid].wx = o.wx;
+														hersey.oyuncular[sid].wy = o.wy;
+
+														hersey.oyuncular[sid].t = 50;
+														hersey.oyuncular[sid].u = 10;
+														hersey.oyuncular[sid].r = "m";
+					 									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;																												
+													}
+
+
+												}
+
+											}
+
+
+
 									}
 								});
 							}
