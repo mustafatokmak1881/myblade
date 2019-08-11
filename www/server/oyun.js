@@ -9,17 +9,17 @@ const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2000;
 const sinir_icfark= 64;
-const botsayisi = 30;
-const haritaSinirX = 3400;
-const haritaSinirY = 2900;
+const botsayisi = 9;
+const bot_alt_limiti = 5;
+
 const bicimsayisi = 9;
 
 const rboy = 488;
 const yboy = 293;
 
-const bomba_sayisi = 30;
+const bomba_sayisi = 4;
 const guc_sayisi = 100;
-const yon_degisim_modu = 107;
+const yon_degisim_modu = 179179179;
 
 const botAI_isimler = [
 	"Ayşegül",
@@ -43,7 +43,107 @@ const botAI_isimler = [
 	"LongerMan",
 	"Catwomen",
 	"wc",
-	"xmen"
+	"xmen",
+	"Americaller",
+	"ArsenalMagic",
+	"AspStacey",
+	"Axondsca",
+	"Ballisman",
+	"BeastLife",
+	"Bigglipson",
+	"BoardinSkate",
+	"BoboCetic",
+	"BraceSublime",
+	"Branner",
+	"Bunkslank",
+	"CaptainBloom",
+	"ChampMs",
+	"ChariSuave",
+	"Chatell",
+	"ChatGrant",
+	"Chemelec",
+	"Cnidasite",
+	"Coterweb",
+	"CriticSmooth",
+	"Depargo",
+	"Devexsoft",
+	"Diddybion",
+	"Dioceryal",
+	"Dispate",
+	"DoggGeneral",
+	"Dragonemco",
+	"Dramanderan",
+	"DrBall",
+	"Elementosco",
+	"Envisymee",
+	"Faitheredba",
+	"Feeditat",
+	"Fireeranco",
+	"FluentHeadlines",
+	"Forbustanc",
+	"ForCrescent",
+	"Fullyleweek",
+	"Globsezw",
+	"GreyEvents",
+	"Gurlycoedba",
+	"Healtorld",
+	"HipurHonda",
+	"Hotellife",
+	"Instantia",
+	"InstantMedia",
+	"Joshersity",
+	"LandKenji",
+	"Lifeldhuss",
+	"Lilleca",
+	"MercySummer",
+	"Microtec",
+	"Mseroffcor",
+	"Mudlasman",
+	"Nelcode",
+	"Noemitter",
+	"Passiontr",
+	"Peatearchsc",
+	"PhobicHot",
+	"Pictomyra",
+	"Pincherhiki",
+	"Pinital",
+	"Polator",
+	"Prophecyte",
+	"PunkTips",
+	"QuayleInterior",
+	"Qvistaril",
+	"Rackend",
+	"Remeitti",
+	"Renoverma",
+	"Reportelha",
+	"Rightowthmi",
+	"Sadoanti",
+	"Sarylace",
+	"SeenSweetie",
+	"SereneHot",
+	"Seveston",
+	"Shortharsto",
+	"Simonixem",
+	"SkateUn",
+	"Slayliangu",
+	"Snarplan",
+	"Snoopenda",
+	"SolomonSra",
+	"SportyEssence",
+	"Steensiacyc",
+	"Stottle",
+	"Studentrav",
+	"Studientec",
+	"Surrealsk",
+	"Suruffipro",
+	"Symarvus",
+	"Synchrockli",
+	"TaintedSpin",
+	"TaruSosa",
+	"Teklynd",
+	"Theevilanyt",
+	"TimeRoach",
+	"Trimbleneon"
 ];
 const kaliciNesneler = [];
 
@@ -229,35 +329,22 @@ function pf(d1){
 
 
 
-function botAIBombaKacis(sid){
+function botAIBombaKacis(sid, sid2){
 							if (kaliciNesneler && kaliciNesneler.length>0 && hersey.oyuncular[sid] && hersey.oyuncular[sid].x && hersey.oyuncular[sid].y){
-								var benimX = hersey.oyuncular[sid].x;
-								var benimY = hersey.oyuncular[sid].y;
+								let benimX = hersey.oyuncular[sid].x;
+								let benimY = hersey.oyuncular[sid].y;
 
 								kaliciNesneler.forEach(function(kaliciNesne,k) {
 
-									var ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
-									var ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);
+									let ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
+									let ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);
 
 
 
 									if (ben_ve_nesne_farki_X < 100 && ben_ve_nesne_farki_Y < 100 && kaliciNesne.t != "z" && kaliciNesne.t != "r" && kaliciNesne.t != "y")
 									{
 
-										if (kaliciNesne.t == "g"){
-											let o = wxybul(kaliciNesne.x, kaliciNesne.y, benimX, benimY);
-											hersey.oyuncular[sid].wx = o.wx;
-											hersey.oyuncular[sid].wy = o.wy;
 
-										}
-
-
-
-
-										if (ben_ve_nesne_farki_X < 64 && ben_ve_nesne_farki_Y < 64){
-						
-
-				
 											if(kaliciNesne.t == "b"){
 												let fx = kaliciNesne.x-benimX;
 												let fy = kaliciNesne.y-benimY;
@@ -285,21 +372,40 @@ function botAIBombaKacis(sid){
 											
 												
 											}
+											else{
 
-										}
+												if (kaliciNesne.t == "g"){
 
-
+													if (hersey.oyuncular[sid].c<60){
+														let o = wxybul(kaliciNesne.x, kaliciNesne.y, benimX, benimY);
+														hersey.oyuncular[sid].wx = o.wx*-1;
+														hersey.oyuncular[sid].wy = o.wy*-1;														
+													}
+												}												
+											}
 									}
+									else{
+											let benimX = hersey.oyuncular[sid].x;
+											let benimY = hersey.oyuncular[sid].y;
 
+							
 
-
-
+											let ben_ve_nesne_farki_X = Math.abs(kaliciNesne.x-benimX);
+											let ben_ve_nesne_farki_Y = Math.abs(kaliciNesne.y-benimY);										
+									}
 								});
+							}
 
 
-
-							}	
 }
+
+
+
+
+
+
+
+
 
 
 function botAI_rastgele_yon_ver(sid){
@@ -350,8 +456,7 @@ function botAI(sid, sid2){
 
 
 
-		botAIBombaKacis(sid);
-
+		botAIBombaKacis(sid, sid2);
 
 
 
@@ -368,14 +473,14 @@ function botAI(sid, sid2){
 
 //Bot ekle
 function botolustur(d){
-	for (let i=0; i<d; i++){
-		let rastgele_isim = Math.floor(Math.random()*botAI_isimler.length-1);
-		hersey.oyuncular["bot"+i] = yeniOyuncu(botAI_isimler[rastgele_isim]);
-	}
+	//for (let i=0; i<d; i++){
+		let rastgele_isim = Math.floor(Math.random()*botAI_isimler.length-2);
+		hersey.oyuncular["bot"+Math.floor(Math.random()* 1000000000)] = yeniOyuncu(botAI_isimler[rastgele_isim]);
+	//}
 }
 
 
-botolustur(botsayisi);
+//botolustur(botsayisi);
 
 
 
@@ -439,6 +544,14 @@ function oyunDongu(){
 	hersey.sunucusaati = sunucusaati;
 
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
+
+		/* Botsayısı 10'dan az ise oluştur */
+		if (Object.keys(hersey.oyuncular).length < bot_alt_limiti){
+			botolustur(1);
+		}
+
+
+
 		/*			OYUNCULAR DÖNGÜSÜ BAŞLANGIÇ			*/
 		for (var sid in hersey.oyuncular){
 			if (hersey.oyuncular[sid] && hersey.oyuncular[sid].x && hersey.oyuncular[sid].y){
@@ -756,9 +869,9 @@ function oyunDongu(){
 			io.emit("hersey", hersey);
 		}
 		
-
-		//fps();
-		//kb(hersey);
+		c(hersey);
+		fps();
+		kb(hersey);
 		
 		
 
