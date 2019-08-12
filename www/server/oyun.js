@@ -5,9 +5,9 @@ const baslangic_hizi = 12;
 const ani_hizlanma_katsayisi = 5;
 const baslangic_cani = 55;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 1500;
+const sinir_bitis_X = 2000;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y = 1500;
+const sinir_bitis_Y =2000;
 const sinir_icfark= 55;
 const botsayisi = 50;
 const bot_alt_limiti = 5;
@@ -17,8 +17,8 @@ const bicimsayisi = 9;
 const rboy = 488;
 const yboy = 293;
 
-const bomba_sayisi = 4;
-const guc_sayisi = 50;
+const bomba_sayisi = 14;
+const guc_sayisi = 35;
 const yon_degisim_modu = 57;
 
 const botAI_isimler = [
@@ -84,66 +84,7 @@ const botAI_isimler = [
 	"ForCrescent",
 	"Fullyleweek",
 	"Globsezw",
-	"GreyEvents",
-	"Gurlycoedba",
-	"Healtorld",
-	"HipurHonda",
-	"Hotellife",
-	"Instantia",
-	"InstantMedia",
-	"Joshersity",
-	"LandKenji",
-	"Lifeldhuss",
-	"Lilleca",
-	"MercySummer",
-	"Microtec",
-	"Mseroffcor",
-	"Mudlasman",
-	"Nelcode",
-	"Noemitter",
-	"Passiontr",
-	"Peatearchsc",
-	"PhobicHot",
-	"Pictomyra",
-	"Pincherhiki",
-	"Pinital",
-	"Polator",
-	"Prophecyte",
-	"PunkTips",
-	"QuayleInterior",
-	"Qvistaril",
-	"Rackend",
-	"Remeitti",
-	"Renoverma",
-	"Reportelha",
-	"Rightowthmi",
-	"Sadoanti",
-	"Sarylace",
-	"SeenSweetie",
-	"SereneHot",
-	"Seveston",
-	"Shortharsto",
-	"Simonixem",
-	"SkateUn",
-	"Slayliangu",
-	"Snarplan",
-	"Snoopenda",
-	"SolomonSra",
-	"SportyEssence",
-	"Steensiacyc",
-	"Stottle",
-	"Studentrav",
-	"Studientec",
-	"Surrealsk",
-	"Suruffipro",
-	"Symarvus",
-	"Synchrockli",
-	"TaintedSpin",
-	"TaruSosa",
-	"Teklynd",
-	"Theevilanyt",
-	"TimeRoach",
-	"Trimbleneon"
+	"GreyEvents"
 ];
 const kaliciNesneler = [];
 
@@ -330,7 +271,7 @@ function pf(d1){
 
 function hizlan(sid,o){
 
-	hersey.oyuncular[sid].t = 50;
+	hersey.oyuncular[sid].t = 100;
 	hersey.oyuncular[sid].u = 10;
 	hersey.oyuncular[sid].r = "m";
 	hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
@@ -422,7 +363,7 @@ function botAIBombaKacis(sid, sid2){
 													let rast = Math.floor(Math.random()*10);
 													if (suan%yon_degisim_modu==rast && hersey.oyuncular[sid].t == 0){
 
-														//hizlan(sid,o);
+														hizlan(sid,o);
 													}
 													else{
 														hersey.oyuncular[sid].wx = o.wx*-1;
@@ -768,7 +709,7 @@ function oyunDongu(){
 							if(k == 113){
 
 								if (hersey.oyuncular[sid].t == 0){
-									hersey.oyuncular[sid].t = 50;
+									hersey.oyuncular[sid].t = 100;
 									hersey.oyuncular[sid].u = 10;
 									hersey.oyuncular[sid].r = "m";
  									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
