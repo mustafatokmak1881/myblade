@@ -5,22 +5,23 @@ const baslangic_hizi = 12;
 const ani_hizlanma_katsayisi = 5;
 const baslangic_cani = 55;
 const sinir_baslangic_X = 0;
-const sinir_bitis_X = 2000;
+const sinir_bitis_X = 3000;
 const sinir_baslangic_Y = 0;
-const sinir_bitis_Y =2000;
+const sinir_bitis_Y =3000;
 const sinir_icfark= 55;
 const botsayisi = 50;
-const bot_alt_limiti = 5;
+const bot_alt_limiti = 12;
 
 const bicimsayisi = 9;
 
 const rboy = 488;
 const yboy = 293;
 
-const bomba_sayisi = 14;
-const guc_sayisi = 35;
+const bomba_sayisi = 27;
+const guc_sayisi = 150;
 const yon_degisim_modu = 57;
-
+const baslangic_t = 100;
+/*
 const botAI_isimler = [
 	"Ayşegül",
 	"Elif46",
@@ -86,6 +87,106 @@ const botAI_isimler = [
 	"Globsezw",
 	"GreyEvents"
 ];
+
+*/
+
+
+const botAI_isimler = [
+	"Ayşegül",
+	"Elif46",
+	"Mahmut",
+	"Senelerce",
+	"Youtube delisi",
+	"manyak bu io",
+	"Şeref",
+	"Sajal",
+	"Rahul",
+	"Eljif",
+	"Natalia",
+	"I love you",
+	"Dennis",
+	"Ebu",
+	"Tarık",
+	"Lewis",
+	"Max",
+	"Lovest",
+	"LongerMan",
+	"Catwomen",
+	"wc",
+	"xmen",
+	"ahmet",
+	"ali",
+	"akif",
+	"türk gücü",
+	"deli adam",
+	"kara",
+	"deliyurek",
+	"polat",
+	"emre mor",
+	"messi",
+	"barca",
+	"xx",
+	"XxX",
+	"ccc",
+	"hakki",
+	"Ayşegül",
+	"Pelin",
+	"iremsulu köfte",
+	"jelibon",
+	"sakız",
+	"naneli sakız",
+	"katmer",
+	"einstein",
+	"bacanak",
+	"anonim",
+	"belkis",
+	"aykiz",
+	"hadi deli oğlan",
+	"hadiseli",
+	"can38",
+	"007",
+	"Kod adı adsız",
+	"nazan",
+	"io sever",
+	"android",
+	"tekir",
+	"köfteci",
+	"lale",
+	"konyalı",
+	"Dadaş",
+	"kız",
+	"vay canına",
+	"delimanyak",
+	"youtuber",
+	"sibermanyak",
+	"deli",
+	"manyak",
+	"delikanlı kız",
+	"fareli köy",
+	"Ronaldo",
+	"Ronaldinho",
+	"Real Sivas",
+	"Villareal",
+	"Beşiktaşk",
+	"cimbom",
+	"fener",
+	"fenerli",
+	"çaydanlık",
+	"laz uşağı",
+	"sarı lacivert",
+	"bayrak",
+	"beni sev",
+	"dokunma yanarsın",
+	"acı bana",
+	"oyun kaç kaç",
+	"sinek",
+	"seni sinek gibi avlıcam"
+
+];
+
+
+
+
 const kaliciNesneler = [];
 
 function kaliciNesneEkle(t,x,y,x2=false,y2=false){
@@ -271,7 +372,7 @@ function pf(d1){
 
 function hizlan(sid,o){
 
-	hersey.oyuncular[sid].t = 100;
+	hersey.oyuncular[sid].t = baslangic_t;
 	hersey.oyuncular[sid].u = 10;
 	hersey.oyuncular[sid].r = "m";
 	hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
@@ -353,8 +454,14 @@ function botAIBombaKacis(sid, sid2){
 														hizlan(sid,o);
 													}
 													else{
-														hersey.oyuncular[sid].wx = o.wx*-1;
-														hersey.oyuncular[sid].wy = o.wy*-1;	
+
+														if (hersey.oyuncular[sid].c < 30){
+															hersey.oyuncular[sid].wx = o.wx;
+															hersey.oyuncular[sid].wy = o.wy;	
+														}else{
+															hersey.oyuncular[sid].wx = o.wx*-1;
+															hersey.oyuncular[sid].wy = o.wy*-1;	
+														}
 													}
 
 												}
@@ -366,8 +473,13 @@ function botAIBombaKacis(sid, sid2){
 														hizlan(sid,o);
 													}
 													else{
-														hersey.oyuncular[sid].wx = o.wx*-1;
-														hersey.oyuncular[sid].wy = o.wy*-1;	
+														if (hersey.oyuncular[sid].c < 30){
+															hersey.oyuncular[sid].wx = o.wx;
+															hersey.oyuncular[sid].wy = o.wy;	
+														}else{
+															hersey.oyuncular[sid].wx = o.wx*-1;
+															hersey.oyuncular[sid].wy = o.wy*-1;	
+														}
 													}
 
 												}
@@ -530,7 +642,8 @@ function oyunDongu(){
 	if (hersey && hersey.oyuncular && Object.keys(hersey).length >0){
 
 		/* Botsayısı 10'dan az ise oluştur */
-		if (Object.keys(hersey.oyuncular).length < bot_alt_limiti){
+		let suan = new Date().getTime();
+		if (Object.keys(hersey.oyuncular).length < bot_alt_limiti && suan%yon_degisim_modu == 1){
 			botolustur(1);
 		}
 
@@ -653,8 +766,8 @@ function oyunDongu(){
 							hersey.oyuncular[sid2].k = 0;
 							hersey.oyuncular[sid].h = baslangic_hizi;
 
-							hersey.oyuncular[sid].f = 40;
-							hersey.oyuncular[sid2].f = 20;
+							hersey.oyuncular[sid].f = 20;
+							hersey.oyuncular[sid2].f = 10;
 
 							hersey.oyuncular[sid2].c += g1*5;
 							hersey.oyuncular[sid].c -= g2*10;
@@ -667,8 +780,8 @@ function oyunDongu(){
 							hersey.oyuncular[sid2].k = 0;
 							hersey.oyuncular[sid].h = baslangic_hizi;
 
-							hersey.oyuncular[sid].f = 20;
-							hersey.oyuncular[sid2].f = 40;
+							hersey.oyuncular[sid].f = 10;
+							hersey.oyuncular[sid2].f = 20;
 
 							hersey.oyuncular[sid2].c -= g1*10;
 							hersey.oyuncular[sid].c += g2*5;
@@ -709,7 +822,7 @@ function oyunDongu(){
 							if(k == 113){
 
 								if (hersey.oyuncular[sid].t == 0){
-									hersey.oyuncular[sid].t = 100;
+									hersey.oyuncular[sid].t = baslangic_t;
 									hersey.oyuncular[sid].u = 10;
 									hersey.oyuncular[sid].r = "m";
  									hersey.oyuncular[sid].h = baslangic_hizi*ani_hizlanma_katsayisi;
@@ -853,9 +966,10 @@ function oyunDongu(){
 			io.emit("hersey", hersey);
 		}
 		
-		c(hersey);
-		fps();
+	
+		//fps();
 		kb(hersey);
+		ci();
 		
 		
 
