@@ -19,3 +19,8 @@ var farkX = 0; //Benim X kordinatım ile ekranın tam ortasındaki X koordinatı
 var farkY = 0; //Benim Y kordinatım ile ekranın tam ortasındaki Y koordinatının farkı
 var wx = 0;
 var wy = 0;
+
+
+if ( localStorage.getItem("ad") ){
+	$(".ad").val( localStorage.getItem("ad") );
+}
