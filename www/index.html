@@ -1,15 +1,15 @@
 ﻿<!DOCTYPE html>
 <html style="margin:0 auto; overflow:hidden; font-family: Verdana; min-width:100%">
 <head>
-  <title>shutandrun.io</title>
+  <title>shutandrun.space</title>
   <meta name="viewport" content="minimal-ui, user-scalable=no, initial-scale=0.7, maximum-scale=0.7, width=device-width" />
   <meta name="description" content="The hit, break, smash game! Play with millions of players around the world and skirmish the other gamer!" />
   <meta property="og:description" content="The hit, break, smash game! Play with millions of players around the world and skirmish the other gamer!" />
-  <meta name="keywords" content="shotandrunio, shutandrun, io, hit, break, smash, ufo, alien, game, io game, games, web game, html5, fun, flash, shutandrun.io">
+  <meta name="keywords" content="shotandrunio, shotandrun, io, hit, break, smash, ufo, alien, game, io game, games, web game, html5, fun, flash, shutandrun.space">
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="shutandrun.io" />
-  <meta property="og:url" content="http://shutandrun.io/" />
-  <meta property="og:site_name" content="shutandrun.io" />
+  <meta property="og:title" content="shutandrun.space" />
+  <meta property="og:url" content="http://shutandrun.space/" />
+  <meta property="og:site_name" content="shutandrun.space" />
   <meta property="og:image" content="splash.png" />
   <link rel="image_src" href="splash.png" />
   <link rel='icon' href='favicon.png'>
@@ -26,8 +26,8 @@
 		height:30px; width:300px; font-weight:700; font-size:18px; border-radius:10px; color:#3f423f; text-align:center;
 	}
 </style>
-	<script src="js/fonksiyonlar.js"></script>
 	<script src="js/jquery.js"></script>
+	<script src="js/fonksiyonlar.js"></script>
 	<script src="js/socket.io.js"></script>
 
 
@@ -44,16 +44,16 @@
 			<center>
 				<div style="position: absolute; top:0px; left:0px; display: none; z-index: 10; width:101%; background-color: rgba(22, 28, 34, 0.9);" class="isimsor">
 
-					<div style="font-size:50px; color: white; margin-top: 5em; font-weight:700; color:#438664;">Shotandrun.IO</div>
+					<div style="font-size:50px; color: white; margin-top: 5em; font-weight:700; color:#438664;">shutandrun.space</div>
 					<div style="font-size:18px; color:orange; margin-top:20px; font-weight:700">Hit, break, smash !</div>
 					<div style="margin-top:20px;"><input class="ad" type="text"></div>
 					<div style="margin-top:20px;">
 						<button class="baslabtn" type="submit">PLAY</button>
 					</div>
 
-					<div style="font-size:18px; color:white; margin-top:16px; font-weight:700;">Escape the blackhole, pick the power and smash others !</div>
+					<div style="font-size:18px; color:white; margin-top:16px; font-weight:700;">Escape the bomb, pick the power and smash others !</div>
 			
-					<div style="font-size:18px; color:white; margin-top:50px; font-weight:700;">Press <span style="color:orange">Q</span> or <span style="color:orange">RIGHT CLICK</span> for speed on BROWSER</div>
+					<div style="font-size:18px; color:white; margin-top:50px; font-weight:700;">Press <span style="color:orange">Q</span> or <span style="color:orange">LEFT CLICK</span> for speed on BROWSER</div>
 					<div style="font-size:18px; color:white; margin-top:10px; font-weight:700;"><span style="color:orange">DOUBLE TOUCH</span> for speed on MOBILE</div>
 
 
@@ -68,7 +68,7 @@
 
 
 
-<!-- 				<label>shotandrun.IO</label>
+<!-- 				<label>shutandrun.space</label>
 				<input class="ad" type="text">
 				<input class="baslabtn" type="submit" value="Start">
  -->
@@ -79,5 +79,14 @@
 
 </body>
 </html>
+	<script>
+		
+	if ( localStorage.getItem("ad") ){
+
+		$(".ad").val( localStorage.getItem("ad") );
+		$(".ad").val( localStorage.getItem("ad") )
+	}
+		
+	</script>
 	<script src="js/render.js"></script>
 	<script src="js/istemci.js"></script>
