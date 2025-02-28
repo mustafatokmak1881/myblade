@@ -304,7 +304,7 @@ const hersey = {
 
 
 
-const io = require("socket.io").listen(3011);
+const io = require("socket.io")(3011);
 c("*:3011 portu dinlemede");
 
 function c(d){
