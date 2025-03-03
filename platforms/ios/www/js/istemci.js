@@ -4,7 +4,7 @@ var doubletouch = 0;
 var doubletouchZaman = 0;
 
 //var s = io.connect("http://localhost:3011");
-var s = io.connect("http://74.122.101.8:3011");
+var s = io.connect("http://10.10.192.28:3011");
 
 
 function kaliciNesneEkle(t,x,y){
