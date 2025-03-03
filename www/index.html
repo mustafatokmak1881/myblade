@@ -2,7 +2,7 @@
 <html style="margin:0 auto; overflow:hidden; font-family: Verdana; min-width:100%">
 <head>
   <title>shutandrun.space</title>
-  <meta name="viewport" content="minimal-ui, user-scalable=no, initial-scale=0.7, maximum-scale=0.7, width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="description" content="The hit, break, smash game! Play with millions of players around the world and skirmish the other gamer!" />
   <meta property="og:description" content="The hit, break, smash game! Play with millions of players around the world and skirmish the other gamer!" />
   <meta name="keywords" content="shotandrunio, shotandrun, io, hit, break, smash, ufo, alien, game, io game, games, web game, html5, fun, flash, shutandrun.space">
@@ -20,17 +20,15 @@
 		font-size:20px;border:1px solid #ccc;
 	}
 	.baslabtn{
-		width:100px; height:50px; border-radius:20px; font-weight:700; background-color:#438664; color:#fff; font-size: 16px
+		width:150px; height:60px; border-radius:20px; font-weight:700; background-color:#438664; color:#fff; font-size: 20px;
 	}
 	.ad{
-		height:30px; width:300px; font-weight:700; font-size:18px; border-radius:10px; color:#3f423f; text-align:center;
+		height:40px; width:300px; font-weight:700; font-size:24px; border-radius:10px; color:#3f423f; text-align:center;
 	}
 </style>
 	<script src="js/jquery.js"></script>
 	<script src="js/fonksiyonlar.js"></script>
 	<script src="js/socket.io.js"></script>
-
-
 </head>
 <body>
 	<div class="anaDiv" style="position: relative; width: 100%; height: 100%; left:0px; top:0px;">
@@ -40,53 +38,28 @@
 		<canvas style="position: absolute; left:0px; top:0px; background-color: transparent; cursor:pointer; z-index: 8" id="mycPuanArkaplan">Tarayıcı Canvas'ı desteklemiyor.</canvas>
 		<canvas style="position: absolute; left:0px; top:0px; background-color: transparent; cursor:pointer; z-index: 9" id="mycPuanlar">Tarayıcı Canvas'ı desteklemiyor.</canvas>
 
-
-			<center>
-				<div style="position: absolute; top:0px; left:0px; display: none; z-index: 10; width:101%; background-color: rgba(22, 28, 34, 0.9);" class="isimsor">
-
-					<div style="font-size:50px; color: white; margin-top: 5em; font-weight:700; color:#438664;">shutandrun.space</div>
-					<div style="font-size:18px; color:orange; margin-top:20px; font-weight:700">Hit, break, smash !</div>
-					<div style="margin-top:20px;"><input class="ad" type="text"></div>
-					<div style="margin-top:20px;">
-						<button class="baslabtn" type="submit">PLAY</button>
-					</div>
-
-					<div style="font-size:18px; color:white; margin-top:16px; font-weight:700;">Escape the bomb, pick the power and smash others !</div>
-			
-					<div style="font-size:18px; color:white; margin-top:50px; font-weight:700;">Press <span style="color:orange">Q</span> or <span style="color:orange">LEFT CLICK</span> for speed on BROWSER</div>
-					<div style="font-size:18px; color:white; margin-top:10px; font-weight:700;"><span style="color:orange">DOUBLE TOUCH</span> for speed on MOBILE</div>
-
-
-
-
-					<div style="font-size:18px; color:white; margin-top:20px; font-weight:700;; margin-bottom:6000000px;"></div>
-					
-
-				</div>	
-
-			</center>	
-
-
-
-<!-- 				<label>shutandrun.space</label>
-				<input class="ad" type="text">
-				<input class="baslabtn" type="submit" value="Start">
- -->
-			
-		
+		<center>
+			<div style="position: absolute; top:0px; left:0px; display: none; z-index: 10; width:101%; background-color: rgba(22, 28, 34, 0.9);" class="isimsor">
+				<div style="font-size:50px; color: white; margin-top: 5em; font-weight:700; color:#438664;">shutandrun.space</div>
+				<div style="font-size:18px; color:orange; margin-top:20px; font-weight:700">Hit, break, smash !</div>
+				<div style="margin-top:20px;"><input class="ad" type="text"></div>
+				<div style="margin-top:20px;">
+					<button class="baslabtn" type="submit">PLAY</button>
+				</div>
+				<div style="font-size:18px; color:white; margin-top:16px; font-weight:700;">Escape the bomb, pick the power and smash others !</div>
+				<div style="font-size:18px; color:white; margin-top:50px; font-weight:700;">Press <span style="color:orange">Q</span> or <span style="color:orange">LEFT CLICK</span> for speed on BROWSER</div>
+				<div style="font-size:18px; color:white; margin-top:10px; font-weight:700;"><span style="color:orange">DOUBLE TOUCH</span> for speed on MOBILE</div>
+				<div style="font-size:18px; color:white; margin-top:20px; font-weight:700;; margin-bottom:6000000px;"></div>
+			</div>	
+		</center>	
 	</div>
-
-
 </body>
 </html>
-	<script>
-		
+<script>
 	if ( localStorage.getItem("ad") ){
-
 		$(".ad").val( localStorage.getItem("ad") );
 		$(".ad").val( localStorage.getItem("ad") )
 	}
-		
-	</script>
-	<script src="js/render.js"></script>
-	<script src="js/istemci.js"></script>
+</script>
+<script src="js/render.js"></script>
+<script src="js/istemci.js"></script>
