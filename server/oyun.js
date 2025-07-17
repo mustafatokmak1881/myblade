@@ -10,7 +10,7 @@ const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2500;
 const sinir_icfark= 55;
 const botsayisi = 0;
-const bot_alt_limiti = 7;
+const bot_alt_limiti = 1;
 
 const bicimsayisi = 9;
 
