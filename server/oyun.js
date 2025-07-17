@@ -9,7 +9,7 @@ const sinir_bitis_X = 2500;
 const sinir_baslangic_Y = 0;
 const sinir_bitis_Y = 2500;
 const sinir_icfark= 55;
-const botsayisi = 50;
+const botsayisi = 0;
 const bot_alt_limiti = 7;
 
 const bicimsayisi = 9;
@@ -297,8 +297,23 @@ const hersey = {
 
 
 
-const io = require("socket.io").listen(3011);
-c("*:3011 portu dinlemede");
+const express = require("express");
+const app = express();
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
+
+// Statik dosyaları serve et
+app.use(express.static(__dirname + "/../"));
+
+// Ana sayfa route'u
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + "/../index.html");
+});
+
+server.listen(3011, function() {
+    c("*:3011 portu dinlemede");
+    c("HTML dosyası http://localhost:3011 adresinden erişilebilir");
+});
 
 function c(d){
 	console.log(d);
