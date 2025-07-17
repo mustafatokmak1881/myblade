@@ -84,13 +84,36 @@ window.addEventListener("mousedown", function(e){
 	}	
 	asagi_tusu = 0;	
 });
+
 window.addEventListener("mouseup", function(e){
 	s.emit("tus", {
 		keyCode: 0
 	});
 	asagi_tusu = 1;		
 });
+
+// Mobil touch end event'i
+window.addEventListener("touchend", function(e){
+	// Input alanlarına dokunulduğunda preventDefault yapma
+	if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.closest('.isimsor')) {
+		return;
+	}
+	
+	e.preventDefault();
+	s.emit("tus", {
+		keyCode: 0
+	});
+	asagi_tusu = 1;
+	doubletouch = 0;
+}, { passive: false });
 window.addEventListener("touchstart", function(e){
+	// Input alanlarına dokunulduğunda preventDefault yapma
+	if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.closest('.isimsor')) {
+		return;
+	}
+	
+	e.preventDefault(); // Mobil tarayıcıda zoom'u engelle
+	
 	if (doubletouch == 0){
 		let suan = new Date().getTime();
 		doubletouchZaman = suan;
@@ -99,7 +122,7 @@ window.addEventListener("touchstart", function(e){
 
 	let suan = new Date().getTime();
 	let fark = suan-doubletouchZaman;
-	if (fark <= 200){
+	if (fark <= 300){ // Mobilde daha uzun süre
 		if (asagi_tusu == 1){
 			s.emit("tus", {
 				keyCode: 113
@@ -110,25 +133,34 @@ window.addEventListener("touchstart", function(e){
 		let suan = new Date().getTime();
 		doubletouchZaman = suan;
 	}
-});
+}, { passive: false });
 
 window.addEventListener("touchmove",function(e){
+	// Input alanlarına dokunulduğunda preventDefault yapma
+	if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.closest('.isimsor')) {
+		return;
+	}
+	
+	e.preventDefault(); // Mobil tarayıcıda scroll'u engelle
+	
 	var x = parseInt(e.changedTouches[0].clientX);
 	var y = parseInt(e.changedTouches[0].clientY);
 
-	var ortaX = pf(topaci_ekranda_ortala().ortaX+(topac.width/7/2));
-	var ortaY = pf(topaci_ekranda_ortala().ortaY+(topac.height/2));
+	var ortala = topaci_ekranda_ortala();
+	var ortaX = pf(ortala.ortaX+(ortala.width/2));
+	var ortaY = pf(ortala.ortaY+(ortala.height/2));
 
 	var wxyCikti = wxybul(ortaX, ortaY, x, y);	
 	s.emit("kord", {wx:wxyCikti.wx, wy:wxyCikti.wy});
-});
+}, { passive: false });
 
 window.addEventListener("mousemove", function(e){
 	var x = parseInt(e.clientX);
 	var y = parseInt(e.clientY);
 
-	var ortaX = pf(topaci_ekranda_ortala().ortaX+(topac.width/7/2));
-	var ortaY = pf(topaci_ekranda_ortala().ortaY+(topac.height/2));
+	var ortala = topaci_ekranda_ortala();
+	var ortaX = pf(ortala.ortaX+(ortala.width/2));
+	var ortaY = pf(ortala.ortaY+(ortala.height/2));
 
 	var wxyCikti = wxybul(ortaX, ortaY, x, y);	
 	wx = wxyCikti.wx;
@@ -138,12 +170,5 @@ window.addEventListener("mousemove", function(e){
 });
 
 window.addEventListener("resize", function(e){
-	myc.width = window.innerWidth;
-	myc.height = window.innerHeight;
-
-	mycSabit.width = window.innerWidth;
-	mycSabit.height = window.innerHeight;
-
-	mycTuslar.width = window.innerWidth;
-	mycTuslar.height = window.innerHeight;
+	resizeCanvases();
 });

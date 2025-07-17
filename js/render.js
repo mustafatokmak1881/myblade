@@ -1,31 +1,49 @@
 
+// Mobil uyumlu canvas boyutları
+function resizeCanvases() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    var myc = document.getElementById("myc");
+    var ctx = myc.getContext("2d");
+    myc.width = width;
+    myc.height = height;
+
+    var mycSabit = document.getElementById("mycSabit");
+    var ctxSabit = mycSabit.getContext("2d");
+    mycSabit.width = width;
+    mycSabit.height = height;
+
+    var mycTuslar = document.getElementById("mycTuslar");
+    var ctxTuslar = mycTuslar.getContext("2d");
+    mycTuslar.width = width;
+    mycTuslar.height = height;
+
+    var mycPuanlar = document.getElementById("mycPuanlar");
+    var ctxPuanlar = mycPuanlar.getContext("2d");
+    mycPuanlar.width = width;
+    mycPuanlar.height = height;
+
+    var mycPuanArkaplan = document.getElementById("mycPuanArkaplan");
+    var ctxPuanArkaplan = mycPuanArkaplan.getContext("2d");
+    mycPuanArkaplan.width = width;
+    mycPuanArkaplan.height = height;
+}
+
+// İlk yükleme
+resizeCanvases();
+
+// Global değişkenler
 var myc = document.getElementById("myc");
 var ctx = myc.getContext("2d");
-myc.width = window.innerWidth;
-myc.height = window.innerHeight;
-
 var mycSabit = document.getElementById("mycSabit");
 var ctxSabit = mycSabit.getContext("2d");
-mycSabit.width = window.innerWidth;
-mycSabit.height = window.innerHeight;
-
-
 var mycTuslar = document.getElementById("mycTuslar");
 var ctxTuslar = mycTuslar.getContext("2d");
-mycTuslar.width = window.innerWidth;
-mycTuslar.height = window.innerHeight;
-
-
-
 var mycPuanlar = document.getElementById("mycPuanlar");
 var ctxPuanlar = mycPuanlar.getContext("2d");
-mycPuanlar.width = window.innerWidth;
-mycPuanlar.height = window.innerHeight;
-
 var mycPuanArkaplan = document.getElementById("mycPuanArkaplan");
 var ctxPuanArkaplan = mycPuanArkaplan.getContext("2d");
-mycPuanArkaplan.width = window.innerWidth;
-mycPuanArkaplan.height = window.innerHeight;
 
 
 
@@ -98,51 +116,76 @@ bombaRes.src = "res/bomb.png";
 
 
 
+// Mobil uyumlu topaç boyutları
+function getTopacSize() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const minDimension = Math.min(screenWidth, screenHeight);
+    
+    // Mobil cihazlarda daha küçük topaç
+    if (screenWidth <= 768) {
+        return {
+            width: Math.min(minDimension * 0.15, 80), // Maksimum 80px
+            height: Math.min(minDimension * 0.15, 80)
+        };
+    } else {
+        return {
+            width: Math.min(minDimension * 0.12, 120), // Maksimum 120px
+            height: Math.min(minDimension * 0.12, 120)
+        };
+    }
+}
+
 function topaci_ekranda_ortala(){
-	//var ortaX = Math.floor((myc.width/2)-(topac.width/2));
-	//var ortaY = Math.floor((myc.height/2)-(topac.height/2));
-	var ortaX = Math.floor((myc.width/2)-((topac.width/7)/2));
-	var ortaY = Math.floor((myc.height/2)-(topac.height/2));	
-	return {ortaX: ortaX, ortaY: ortaY}
+	var topacSize = getTopacSize();
+	var ortaX = Math.floor((myc.width/2)-(topacSize.width/2));
+	var ortaY = Math.floor((myc.height/2)-(topacSize.height/2));	
+	return {ortaX: ortaX, ortaY: ortaY, width: topacSize.width, height: topacSize.height}
 }
 
 function topac_Ciz(sid,sidBilgi){
 	var x = 0;
 	var y = 0;
 
-	var ortaX = topaci_ekranda_ortala().ortaX;
-	var ortaY = topaci_ekranda_ortala().ortaY;
+	var ortala = topaci_ekranda_ortala();
+	var ortaX = ortala.ortaX;
+	var ortaY = ortala.ortaY;
+	var topacWidth = ortala.width;
+	var topacHeight = ortala.height;
 	var	benimX = sidBilgi.x;
 	var	benimY = sidBilgi.y;
 	var	benimC = sidBilgi.c;
 
+	// Mobil uyumlu font boyutu
+	var fontSize = Math.max(10, Math.min(16, window.innerWidth / 50));
 	ctx.shadowOffsetX = 1;
 	ctx.shadowOffsetY = 1;
 	ctx.shadowBlur = 35;
-	ctx.font = "12px Arial";
+	ctx.font = fontSize + "px Arial";
 
 	if (sid && sid == s.id){
 		ctx.shadowColor = "black";
-		//ctx.font = "12px Arial";
 		ctx.fillText(sidBilgi.ad, ortaX+0, ortaY-16);
 		ctx.fillStyle = "red";
 
+		// Mobil uyumlu Q tuşu
+		var qSize = Math.max(16, Math.min(24, window.innerWidth / 30));
 		if (sidBilgi.t > 0){
 			ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
 			ctxTuslar.fillStyle = "grey";
-			ctxTuslar.font = "20px Arial";
-			ctxTuslar.fillText("Q", mycTuslar.width/2-(10), mycTuslar.height-20);	
+			ctxTuslar.font = qSize + "px Arial";
+			ctxTuslar.fillText("Q", mycTuslar.width/2-(qSize/3), mycTuslar.height-20);	
 		}else{
 			ctxTuslar.clearRect(0,0,mycTuslar.width, mycTuslar.height);
 
 			ctxTuslar.beginPath();
 			ctxTuslar.fillStyle = "darkgreen";
-			ctxTuslar.arc(mycTuslar.width/2-(1), mycTuslar.height-29, 16,0, Math.PI*2);
+			ctxTuslar.arc(mycTuslar.width/2-(1), mycTuslar.height-29, qSize/1.5,0, Math.PI*2);
 			ctxTuslar.fill();
 
 			ctxTuslar.fillStyle = "white";
-			ctxTuslar.font = "24px Arial";
-			ctxTuslar.fillText("Q", mycTuslar.width/2-(10), mycTuslar.height-20);			
+			ctxTuslar.font = qSize + "px Arial";
+			ctxTuslar.fillText("Q", mycTuslar.width/2-(qSize/3), mycTuslar.height-20);			
 		}
 
 
@@ -159,7 +202,6 @@ function topac_Ciz(sid,sidBilgi){
 	}
 	else{
 		ctx.shadowColor = "black";
-		//ctx.font = "12px Arial";
 		ctx.fillText(sidBilgi.ad, sidBilgi.x+farkX+0, sidBilgi.y+farkY-16);
 		ctx.fillStyle = "green";
 		x = sidBilgi.x+farkX;
@@ -270,35 +312,39 @@ tipeGoreTopac(sidBilgi,x,y);
 
 
 function tipeGoreTopac(sidBilgi,x,y){
+	var ortala = topaci_ekranda_ortala();
+	var topacWidth = ortala.width;
+	var topacHeight = ortala.height;
+	
 	if (sidBilgi.b == 0){
-		ctx.drawImage(topac0, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
+		ctx.drawImage(topac0, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topacWidth, topacHeight);
 	}
 	else if (sidBilgi.b == 1){
-		ctx.drawImage(topac1, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
+		ctx.drawImage(topac1, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topacWidth, topacHeight);
 	}
 	else if (sidBilgi.b == 2){
-		ctx.drawImage(topac2, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
+		ctx.drawImage(topac2, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topacWidth, topacHeight);
 	}
 	else if (sidBilgi.b == 3){
-		ctx.drawImage(topac3, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
+		ctx.drawImage(topac3, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topacWidth, topacHeight);
 	}
 	else if (sidBilgi.b == 4){
-		ctx.drawImage(topac4, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
+		ctx.drawImage(topac4, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topacWidth, topacHeight);
 	}
 	else if (sidBilgi.b == 5){
-		ctx.drawImage(topac5, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
+		ctx.drawImage(topac5, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topacWidth, topacHeight);
 	}
 	else if (sidBilgi.b == 6){
-		ctx.drawImage(topac6, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
+		ctx.drawImage(topac6, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topacWidth, topacHeight);
 	}
 	else if (sidBilgi.b == 7){
-		ctx.drawImage(topac7, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
+		ctx.drawImage(topac7, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topacWidth, topacHeight);
 	}
 	else if (sidBilgi.b == 8){
-		ctx.drawImage(topac8, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
+		ctx.drawImage(topac8, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topacWidth, topacHeight);
 	}
 	else if (sidBilgi.b == 9){
-		ctx.drawImage(topac9, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topac.width/7, topac.height);
+		ctx.drawImage(topac9, topac.width/7*((sidBilgi.a)%7), 0, topac.width/7, topac.height, x, y, topacWidth, topacHeight);
 	}
 }
 
@@ -430,32 +476,34 @@ function render(data){
 
 		
 
-		ctxPuanlar.font = "16px Arial";
+		// Mobil uyumlu puan tablosu
+		var fontSize = Math.max(12, Math.min(16, window.innerWidth / 60));
+		ctxPuanlar.font = fontSize + "px Arial";
 		ctxPuanlar.fillStyle = "white";
 
 		puanlarY = 60;
 		puanlar.sort(function(a,b){
 			return b-a;
 		});
-		ctxPuanlar.fillText("LEADERS:  "+"(online:"+Object.keys(data.oyuncular).length+")", 15, puanlarY-35);
+		
+		var leaderText = "LEADERS: (online:"+Object.keys(data.oyuncular).length+")";
+		ctxPuanlar.fillText(leaderText, 15, puanlarY-35);
 
-		let ksayisi = 7;
+		let ksayisi = window.innerWidth <= 768 ? 5 : 7; // Mobilde daha az sıra
 		puanlar.forEach(function(v,k){
 
 			if (k<=ksayisi){
-
-				//c(advepuan[v]+": "+v);
-				ctxPuanlar.fillText((k+1)+"      "+advepuan[v].substr(0,10)+"      "+Math.floor(v/1000).toFixed(0), 15, puanlarY);
-				puanlarY+=30;
-
+				var playerName = advepuan[v].substr(0, window.innerWidth <= 768 ? 8 : 10);
+				var score = Math.floor(v/1000).toFixed(0);
+				ctxPuanlar.fillText((k+1)+" "+playerName+" "+score, 15, puanlarY);
+				puanlarY+=fontSize+10;
 			}
-
 		});
 		
 		ctxPuanArkaplan.fillStyle = "rgb(0,0,0,0.3)";
-
-		ctxPuanArkaplan.rect(0, 10, 220, 280);
-	
+		var panelWidth = window.innerWidth <= 768 ? 180 : 220;
+		var panelHeight = window.innerWidth <= 768 ? 200 : 280;
+		ctxPuanArkaplan.rect(0, 10, panelWidth, panelHeight);
 		ctxPuanArkaplan.fill();
 
 
